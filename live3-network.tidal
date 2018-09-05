@@ -1,0 +1,27 @@
+d1 <- stream "192.168.1.13" 7771 dirt
+d2 $ sound "bd*12 sn*8 [hh sn bd]*4 sn*4 bd*4"
+d1 $ sound "akuma6*8" # n (irand 32) # pan rand # accelerate (irand 5)
+d2 $ every 4 (fast 2) $ sound "ades2*8" # n (irand 16)
+
+hush
+bps (240/120)
+d1 $ slow 32 $ striate' 32 (1/16) $ sound "bev" # gain 1
+d1 silence
+d2 $ slow 8 $ sound "bass1:0*8" # up "[0 8 6 12]" # gain 1
+
+
+d3 $
+stack [
+sound "[[bd*3] [bd sn:1]]/2" # gain 0.90,
+sound "beacch*2" # accelerate (rand) # gain "1.4",
+sound "ade/4*2" # n 2 # up "[0 2]",
+up "0 ~ 1 ~" # s "bass1",
+slow 8 $ sound "sine*4" # gain 0.8
+] # cutoff 8000
+
+d5 silence
+
+d4 $ sound "ab*4" # n (irand 12)
+hush
+
+d5 $ fast 4 $ sound "<ade*2 ade:4 sine*2 psr:3>" # n 2 # up "[0 4]/16"

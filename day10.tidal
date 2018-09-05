@@ -1,0 +1,19 @@
+d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
+|+| sustain "0.25"
+|+| delay "0.5" # delaytime "0.375" # delayfeedback "0.75"
+|+| cutoff (scale 800 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.4 $ slow 4 $ sine1)
+
+
+let pat1 = "{0*2 ~ [0 ~] ~ 0*4 [~ 0] 0}%4"
+let pat3 = "{0 0*4 [~ 0] [~ 0] 0*2  0 ~ 0*4 ~ 0 -12 0 ~ [~ 0] [~ 0] ~ 0*2 -12}%8"
+
+
+let tsdelay = make' VF tsdelay_p
+let tsdelay_p = F "tsdelay" Nothing
+let xsdelay = make' VI xsdelay_p
+let xsdelay_p = I "xsdelay" Nothing
+
+cps(1)
+
+d1 $ striate 128 $ slow 5 $ s "[gabba]*5" # gain 1
+#cutoff (scale 20 20000 $ saw)

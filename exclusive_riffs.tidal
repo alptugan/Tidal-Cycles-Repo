@@ -1,0 +1,118 @@
+-- riff 4 - ambient dark techno
+d3 $ striate 32.(every 4 (64)) $ fast 0.2 $ up "[0 1 3 10]/8" # sound "<ade:5 ~>"  # pan (slow 8 $ saw) # gain "0.9"
+cps(0.8)
+
+hush
+d1 $ sound "akuma1*8" # n (irand 1) # gain "0."
+d1 $ sound "akuma1*8" # n (irand 1) #gain "1 1.2 1 0.8 1.1 1.2"
+d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sine1)
+
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12)
+d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 12) #gain "1 1.05 1 0.8 1.1 1.1"
+d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 12)
+d2 silence
+d2 $ up "[2 0 ~ 4]/4" #sound "bass1" #gain "1 1 1.2 1"
+d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
+hush
+-- alternatebass line and minimal noises
+cps(1)
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 0.95 # pan (slow 1 sine1)
+d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ sine? ~ psr:18 psr:20*2>" # gain "0.7"
+--d2 $ sound "psr*8" # n (irand 27) # gain "0.8"
+
+d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain 0.95 # pan (slow 1 sine1)
+
+d5 $ loopAt 2 $ s "bass1" # gain 1.3
+d6 $ s "click:3/2 sine*4?" # gain "1.2 0.5"
+hush
+-- alternate use of jux
+d2 $ slow 32 $ jux ((# speed "0.5") . rev) $ striate' 32 (1/16) $ sound "bev" # gain 0.5
+d2 silence
+d1 $ slow 1 $ s "akuma1 akuma1:2*2 akuma1:3 akuma1:4"
+
+-- Set of function applied one by one. Sounds like break beat again...
+d1 $ spread ($) [fast 2, rev, slow 2, striate 3, (# speed "0.8")]
+    $ sound "[akuma1*2 [~ akuma1]] [akuma1:1 akuma1:2]*2 akum2:4 jvbass*4"
+
+d2 silence
+-- alternate percussion glitchy sounds
+d2 $ s "psr*8" # n (irand 39) # gain "0.6"
+d2 $ s "psr*8" # n (run (irand 30)) # gain "0.4"
+d2 $ every 4 ((jux(rev)).striate(irand 128)) $ s "psr*8" # n (run (irand 30)) # gain "1"
+d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "psr*8" # n (run (irand 30)) # gain "1.2"
+
+hush
+-- Tidal bot
+d2 $ (jux (# speed (slow 8 $ scale 0.01 10 sine))) $ sound "[bd ~ cp hh]*4" # shape 0.99 # cutoff (slow 8 $ scale 0 9999 sine)
+d1 $ sound "drum*3 feel*4" |=| n (every 4 (palindrome) $ every 3 (0.10 ~>) $ sometimes (palindrome) $ "3") |=| coarse "2 16 4"
+
+d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "psr:18*2 psr:20*2 psr:25*2 psr:19*1" # n "1 7"
+
+d2 $ slow 0.01 $ s (randcat["bass1","bass*2","bass*3","bass*4"])# end(slow 666tri1)# speed(slow 999 $scale 99 0 saw1) # pan(slow 333 sine1)
+
+hush
+
+--- Glitchy noises
+d1 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1,ade:6 [ade:7*2,ade:11] ade:6 ade:6]"
+d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1.2]"
+d1 $ every 4 (brak) $ (0.55 ~>) $ striate 96 $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
+d2 $ slow 2 $ sound "sine/4" # gain 0.8 # speed 1
+-- Tidal Bot 2
+d1 $ every 4 (chop 32) $ every 2 (density 2) $ s "feelfx*3 bd*1" |=| n (sometimes (slow 2) $ "2 2 5 8 2 9 1 3 0")
+d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "blip*2 pluck*2 bass2*2 off*1" |=| n "1 7"
+
+d1 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "feel*4" |=| n "8"
+d1 $ superimpose (|=| speed "3") $ every 3 (chop 8) $ sometimes (0.25 <~) $ s "pluck*2 feelfx*2" |=| n (sometimes (density 4) $ run 4)
+
+d1 $ jux (|=| speed "-1 2 1 3") $ every 2 (0.125 ~>) $ s "ulgab*1 feelfx*3 future*3 jazz*2 hh*4 bass*4" |=| n "0 4 10 0 4 0 1"
+d1 $ superimpose (slow 4 . striate 8) $ every 2 (slow 2) $ s "house*1 ul*3" |=| n "8 7"
+
+
+--- Dark sometimes
+d3 $
+stack [
+sound "[[bd*3] [bd sn:1]]/2" # gain 0.90  |+| cutoff "0.1",
+sound "beacch*2" # accelerate (rand) # gain "1.4" # shape "-0.3",
+sound "ade/4*2" # n 2 # up "[0 2]",
+up "0 ~ 1 ~" # s "bass1",
+slow 8 $ sound "sine*4" # gain 0.8
+] |+| resonance "14"
+--- # cutoff 8000
+hush
+--- Replikas Replika
+d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.25 <~) $ striate 128 $ sound "[breaks125]" |+| speed "0.7", every 2 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[sytrus1/3]*16 [~ sytrus1/3]*24 [sytrus1/3 ~]*8 [sytrus1/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
+# gain 0.7
+
+
+hush
+-- EFFECTS as parameter
+-- delay
+#delay "0.5" #delaytime "0.5" #delayfeedback "0.5"
+
+-- panning
+# pan(slow 1 sine1)
+# pan rand
+
+-- shifting beat 1/4 of time to left in every 4th count
+every 4 (0.25 <~)
+
+-- FUNCTIONs
+-- reverses a pattern
+rev
+
+-- scramble creates a new pattern each cycle, patterns can be repetative like hh hh hh
+scramble n p
+
+-- shuffle creates a new pattern each cycle, patterns can't be repetative
+shuffle n
+
+-- loop At some sometimes
+loopAt 8
+d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
+
+-- Sometimes Play
+d1 $ sometimes (# speed "20") $ sound "drum*8"
+
+-- often
+d1 $ often (# n (irand 6)) $ sound "akuma4*6"

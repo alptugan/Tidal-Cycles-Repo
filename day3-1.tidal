@@ -1,0 +1,131 @@
+d1 $ sound "can*8" # n (irand 1000)
+
+d1 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1,ade:6 [ade:7*2,ade:11] ade:6 ade:6]"
+d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[1 1 1 1, 0.9 . 1.1]"
+d1 $ every 4 (rev) $ striate 4 $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
+
+hush
+
+# silence
+cps (-1)
+
+cps(1)
+d1 $ sound "bd ~ sn:3"
+hush
+
+
+d1 $ sound "[drum drum drum drum,cp cp cp cp]" # vowel "a o i u"
+
+d1 $ vowel "a o ~ i" # sound "drum"
+
+d1 $ sound "bd bd ~ ~" # gain sine1
+
+d1 $ speed "1000 200 10 8 9 6" # sound "<jungbass:6 jungbass:1>"
+hush
+
+d1 $ up "0 ~ 12 24 [48 72 36]" # sound "jungbass:6"
+d1 $ up "0 ~ 12 24 [48 72 36]" # sound "jungbass:6" # pan "0 0.5 1 0.25"
+d1 $ up "0 ~ 12 24 [48 72 36]" # sound "[jungbass:6]" # pan sine1 # speed "1"
+d1 $ iter 4 $ up "0 ~ 12 24 [48 72 36]" # sound "[jungbass:6]" # pan sine1 # speed "1"
+d1 $ every 4 (density 4) $ up "0 ~ 12 24 [48 72 36]" # sound "[jungbass:6]" # pan sine1 # speed "1"
+d1 $ every 4 (density (irand 80)) $ up "0 ~ 12 24 [48 72 36]" # sound "[jungbass:6]" # pan sine1 # speed "1"
+d1 $ jux (rev . (slow 1.5)) $ sound "arpy arpy:1 arpy:2 arpy:3"
+d1 $ jux (rev . (brak)) $ sound "arpy arpy:1 arpy:2 arpy:3"
+"""VERY VERY IMPORTANT IMPROVMENT
+USE MULTIPLE FUNCTION TOGETHER"""
+d1 $ jux (rev . (brak) . every 4 (striate 4)) $ sound "arpy arpy:1 arpy:2 arpy:3"
+hush
+
+hush
+d1 $ jux (striate (irand 32)) $ up "0 ~ 12 24 [48 72 36]" # sound "{jungbass:6,ade:1}"
+
+d1 $ sound "kurt:4 kurt:4" # shape "0 0.9" # gain "0.7"
+
+d1 $ sound "[drum bd hh bd, can can:2 can:3 can:4 can:2]"
+d1 $ sound "{drum bd hh bd, can can:2 can:3 can:4 can:2}"
+
+d1 $ n "0 1 2 3" # sound "arpy"
+d1 $ n (run 4) # sound "arpy"
+hush
+
+d1 $ slow 2 $ n "0 1 2 3 3 2 1 0" # sound "arpy"
+d1 $ palindrome $ n (run 4) # sound "arpy"
+
+d1 $ slow 4 $ n "[0 1 2 3] [0 1 2 3]*2 [0 1 2 3]*4 [0 1 2 3]*8" # sound "arpy"
+d1 $ slowspread (density) [1,2,4,8] $ n "0 1 2 3" # sound "arpy"
+
+d1 $ jux rev $ weave 16 (n (run 8) # sound "click")
+  [vowel "a e i",
+   vowel "e i*2 o u",
+   speed "1 1.5 ~ 1",
+   speed "2 1 0.5"
+  ]
+
+
+  d1 $ density 1 $ sound "arpy arpy:1 arpy:2 arpy:3"
+  d1 $ iter 4 $ sound "arpy arpy:1 arpy:2 arpy:3"
+
+  d1 $ slowspread (density) [2, 1.5, 4, 16] $ sound "bd sn:2 hh sn:1"
+
+
+-- slowcat
+
+d1 $ slowcat [sound "bd sn:3",
+                sound "arpy can arpy:3 can"
+               ]
+
+-- stack
+d1 $ stack [sound "bd bd bd bd*4",
+              sound "arpy can arpy:3 can"
+             ]
+
+d1 $ sound (density 2 "arpy arpy:1 arpy:2 arpy:3")
+ # speed (every 2 (density 2) "1 2 3 4")
+
+
+hush
+ -- chop it into bits:
+ d2 $ sound "[bd bd,akuma1:1 akuma1:2]"
+ d2 $ chop 128 $ sound "bev/2"
+
+ -- slow it down to fit 8 cycles:
+d1 $ loopAt 8 $ chop 128 $ sound "bev"
+
+
+-- ** transform the grain pattern:
+d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
+
+
+-- ** striate vs chop
+
+d1 $ slow 4 $ chop 4 $ sound "arpy:1 arpy:2 arpy:3 arpy:4"
+d1 $ slow 4 $ striate 4 $ sound "arpy:1 arpy:2 arpy:3 arpy:4"
+
+
+-- ** randslice
+d1 $ randslice 32 $ sound "bev"
+
+-- ** random sample
+d1 $ sound "arpy*8" # n (irand 16)
+
+
+-- ** sometimes
+d1 $ sometimes (# speed "20") $ sound "drum*8"
+
+
+-- ** often
+d1 $ often (# speed "2") $ sound "akuma4*8"
+d1 $ often (# n (irand 6)) $ sound "akuma4*6"
+d1 $ often (# n (irand 6)) $ sound "akuma4*6"
+
+d2 silence
+-- ** degrade
+d1 $ degrade $ sound "akuma2:0 akuma2:1 akuma2:2 akuma2:4"
+
+-- ** Use ? to make sounds optional..
+d1 $ sound "bd akuma3:2? bd akuma3:?"
+
+hush
+d1 $ sometimes (jux (rev)) $ every 4 (density 2) $ sound "gabba*6 rave:2/2 [cp ~ cp]"
+d1 $ sound "bd sn" # room (slow 4 saw) # sz (slow 8)
+hush

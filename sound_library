@@ -1,0 +1,191 @@
+------------------------------------------------
+sound library
+------------------------------------------------
+ade 10
+ade:0 - bassline
+ade:1 - melody
+ade:2 - pure string signal
+ade:3 - pure choir like signal
+ade:4 - fan noise
+ade:5 - fan noise short treble
+ade:6 - finger tick on glass
+ade:7 - micro granular sounds
+ade:8 - sample sound rhytm noise
+ade:9 - pure sine signal like
+
+akuma1 5
+akuma2 5
+akuma3 5
+akuma4 32
+akuma5 32
+akuma6 32
+akuma7 32
+
+amencutup - break beat oneshots
+armora 1 - sub/high shaking sound
+arp 2 - 0 sub like cello, 1 more like midi
+auto - drum kit
+
+bass 4 - bass sounds
+bass1 30
+bass1:0
+bass2 5 - long bass kick hybrid
+beacsub 1 - sub signal bass guitar
+beakr 1 - 10 seconds long pad predator like
+bev 1 - melodic woman - 16 seconds long
+birds 10 - just birds sound
+bit1 55 - 8bit glitch sound samples
+bleep 12 various bleep sounds
+breaks125 2 - breakbeat loops
+breaks152 1 - ""
+breaks157 1 - ""
+breaks165 1 - ""
+
+casio 3 - glitch blip and noise
+click 4 - like mike jack plugin/out
+
+clubkick 5 - various kick sounds
+
+cc 6 - cymbals
+co 4 - cymbals open/close
+chin 4 - minimal glitchy sound
+control 2 - keyboard sounds synth
+cosmicg 15 - cosmic noise
+cosmicg:3 - signal
+cr 6 - ride
+
+d 4 - various noise
+d4 6 - cresendo
+dark 2 - deamon speech
+db - drum set
+defdo 2 - soft signal sound
+dork2 3 - man talking singing tribal
+dr 12 - drum set hiphop
+dr_few - drum kicks
+drum - drum set
+
+electrowave 2 - electronic distorted sound pads
+
+fall 20 - 8 bit sounds
+fall2 35 - 8 bit craching sounds
+feelfx 7 - various sound effects
+fire - burning sound
+fm 10 - various breakbeat loops and nice pad sound
+foo - various break beat hiphop loops
+fur1 16 - breakbeat one shots
+fur2 16 - breakbeat one shots
+fur3 16 - breakbeat one shots
+
+gab 10 - distorded notes on keyboard
+gli1 37 - glitch sounds
+glitch 8 - glitch drum set
+gretsch - drum set acoustic
+
+hardkick 6 - distorted kicks
+hh - hiphop drum set
+hh27 - hiphop drum set
+hit 6 - various space hit sounds
+hoover 6 - harsh synth with pitchbend wheel
+
+if 5 - gabba like drum set
+ifdrums 3 - drum set acoustic
+insect 3 - insects sound
+ion1 - breakbeat drum set
+ion2 - ""
+ion3 - ""
+ion4 - ""
+
+jungbass:0 - deep low kick sub
+1 - deep low 2 sub kick
+2 - deep distorted sub
+3 - slideup sub long
+4 - slideup sub short
+5 - slideup sub down long
+6 - slideup distorted sub down long
+7 - sine shape bass
+8 - sildedown distort
+9 - sildedown distort
+10 - slidedown long sub **
+11 - distorted sub
+12 - short sub
+13 - long sustain bass
+14 - long sustain bass
+15 - long long sustain bass **
+16 - bass guitar like
+
+keys2 - key caiso like whole note set
+
+latibro 8 - keyboard notes - distorted sounds
+laz 6 - slideup/down distorted sound
+less 4 - interesting drum kit
+
+made2 1 - alien fucking distortion sound signal
+melt 1 - interesting long pad sound
+moog 7 - moog sound
+mp3 4 - mp3 glitch sound
+
+nau 6 - pad sounds all notes
+newnotes 15 - sin tone
+noise 3 - noise blips
+noise2 8 - noise shots short
+
+off 1 - noise sound bass
+outdoor:2 6 - like dark sound pad
+
+pad 3 - like dark sound pad
+pad:0 -12 sec (alien monolith)
+pad:1 -5 sec (angels)
+pad:2 -3 sec (bells)
+padlong 1 - Atmosheric long shot: 26 seconds
+print 11 - mechanic printer motor sound
+proc 2 - Glitchy sounds long shot
+procshort 8 - Glitchy sounds short shot
+
+psr 30 - glitchy sound bank
+psr:24 - short glitchy sample
+psr:25 - short glitchy sample
+psr:20 - short glitchy sample alva noto
+psr:19 - short glitchy sample alva noto
+psr:18 - long glitchy sample alva noto
+psr:17 - short distorted glitchy sample alva noto
+psr:16 - short distorted glitchy sample alva noto
+psr:15 - short/long distorted glitchy sample alva noto
+psr:11 - sub noise short
+psr:10 - high noise short kick
+psr:9 - high noise bit short kick
+psr:3 - melodic short sample
+psr:1 - noise signal
+
+
+
+reverbkick 1 - reverb kick
+ringpad 1 - pad sound sine 10 seconds long
+
+sax 22 - saxophone sound
+sea 2
+sea:0 - submarine ambient signal
+sea:1 - submarine long ambient signal
+selfx 1 - pure ambient sinesoidal tone 5 seconds pad
+sheffield 1 - long insects and fly sound 20 seconds
+sine 6
+sine:0 - pure sine tone
+sitar 8 - sitar chords india style
+space 18 - various space effects
+square 1 - square wave sound
+subroc3d - acayip sesler
+
+tacscan - plane airport sound
+teeny1 - break beat one shots
+teeny2 - break beat one shots
+teeny3 - break beat one shots
+teeny4 - break beat one shots
+tink 4 - chimney sound
+toys 13 - sound from old toys
+
+ul - glitchy drum set full
+
+vocad 1 - 3 senconds noisy pad glitchy
+
+wobble 1 - subbass signal
+
+yeah 31 - glicthy sound

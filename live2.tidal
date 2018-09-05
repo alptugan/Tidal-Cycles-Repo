@@ -1,0 +1,15 @@
+-- Notation & the speed of playback, semitones --
+
+-- base sample note is C, use up command to generate overtones --
+d1 $ up "[0 2 4 5 7 9 11 12]/7" # sound "bass1"
+
+d1 $ up "[12 0]/2" # sound "bass1"
+
+
+d1 $ sound "akuma5*8" # n (run 32)
+d1 $ sound "akuma5*8" # n (irand 32) #pan rand
+
+d2 $ up "[0 2 4 2 3 4 5 1]/8" # sound "bass1" # gain "1.1"
+d3 $ every 4 (0.25 <~) $ shuffle 8 $ sound "alpkeys*8" # n (irand 8) # gain 0.95
+d1 silence
+hush

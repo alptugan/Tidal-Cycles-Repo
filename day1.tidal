@@ -1,0 +1,42 @@
+d1 $ every 4 (rev) $ sound "[akuma4:1 akuma4:1] akuma6:1/2 [odx*2 [akuma5:1 akuma5:4]] <akuma2 akuma2:2 akuma2:4 akuma6:1>"
+d1 silence
+
+
+d2 $ sound "akuma1 akuma1:2 akuma1 akuma2"
+d2 silence
+hush
+
+d3 $ every 4 (jux (rev)) $ sound "akuma1:4 akuma1:5 akuma1:0 [.akuma1:1*4]" # gain "1.1"
+d3 silence
+
+d1 $ slow 2 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3, every click:5/4]]" #gain "1.5"
+
+""" SET 1: First session with bass then micro sounds"""
+bps (240/120)
+d1 $ slow 1.4 $ sound "bass1/1.4 ~ bass1 ~." #gain "1.2"
+d2 $ sound "<click:2*10 click:1 click:3 sine:0 click:4 sine:1/3>" # gain "<1.1 1.3 1.3 1 1 1.2>"
+d2 silence
+hush
+""" SET 2: First session with bass then micro sounds"""
+d3 $ sound "selffx" # gain "1.2"
+d2 $ slow 4.5 $ sound "selfcpr sea/2" # gain "1.3"
+d3 silence
+
+
+""" SET 3: Play with sax array """
+d1 $ up "[12 0]/2" # sound "bass1" # gain "1.15"
+d2 $ jux(rev) $ up "[4 4]/4" # sound "sax:2/4" # gain "0.9"
+d3 $ sound "<sax:20/8 sax:21/8 sax:19/4 sax18/2>"
+d4 $ sound "click*2" # n (irand 10)
+d4 $ sound $ samples "click*8" $ run $ irand $ 20
+d5 $ sound "sine" # n (irand 6)
+hush
+
+
+d1 $ (jux(rev)) $ up "[1 1 1 1 3 4 5 3]" # sound "rave:5 rave:7 rave:4 rave2:3" #gain "1"
+
+""" SET 4: Play with sax array """
+d1 $ every 4 (jux(rev))$ sound "psr*10" # n (irand 30) # gain "1.05"
+d1 silence
+d2 $ up "[1 4 6 -2]/8" # sound "sax:5/8" # gain "1.1" # pan (slow 8 $ saw)
+hush

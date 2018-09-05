@@ -1,0 +1,60 @@
+-- Slow down scale
+d1 $ s "imp*5" # gain 1 # cutoff (scale 20 20000 $ slow 3 $ sine)
+d1 $ s "cyclo*5" # gain 1 # speed 1 #accelerate 1
+
+hush
+
+d2 $ every 4 (echo (negate 3/32)) $ n "c5*4" # s "supernoise"
+# accelerate "-2" # speed "1" # sustain "0.1 ! ! 1" # voice "0.0"
+
+d1 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
+# accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
+# attack "1" # release "20" # room "0.9" # size "0.9" # orbit "1"
+
+hush
+
+d1 $ s "808cy:10" # speed 0.2 # crush 4
+d1 $ s "808cy:10" # speed 0.2 # coarse 8
+
+d1 $ s "808cy:10" # speed 0.2 # crush 4 # coarse 38
+d1 $ s "808cy:10" # speed 1 # hcutoff 3000 # hresonance 10
+
+cps 1
+
+d1 $ s "gab*19?"
+# speed 1
+# pan (slow 15 $ sine)
+# end (discretise (1/8) $ slow 19 $ scalex 0.0001 0.01 $ rand)
+# loop 99
+# delay 0.9
+# delayfb 0.95
+# delayt (discretise (1/9) $ slow 23 $ scalex (1/999) (1/9) $ rand)
+# lpf (slow 2 $ scale 200 20000 $ rand)
+# gain 4
+
+d1 $ s "tutorial1(5, 8, {0, 3})" #n "[0, 4, 7, 9, 11]" |+| n "{0, 7, 12}" |+|n "<-7 7 0 5 -5>/2" #cutoff (scale 800 20000 $ slow 4 $sine1) #resonance "0.3" #sustain "{0.01 0.15 0.1}%4"
+
+d1 $ note "a4 c5" # s "tutorial3"
+d1 $ s "tutorial3" # n "a5"
+d1 $ s "tutorial3:9"
+d1 $ s "noiseCreature" # n "a4"
+
+hush
+d1 $ note "c gs7 c6 gf4" # s "supernoise" # sustain "0.1 0.6"  # pitch1 "0.0115" # slide "1.5" # room "0.2"
+hush
+-- 1 import stuff
+import Sound.Tidal.MIDI.Context
+
+-- 2. list MIDI devices
+displayOutputDevices >>= putStrLn
+
+-- 3. connect to the MIDI device
+devices <- midiDevices
+m1 <- midiStream devices "IAC Driver Tidal" 1 synthController
+m1 $ note "0 3 5 7"
+m1 $ midinote "40 52"
+m1 $ midinote "40 [32 34] 36*2 42*3"
+m1 $ midinote "[[32 34], [36 38]]"
+m1 $ every 3 (density 2) $ every 4 (palindrome) $ n "{c a4 f3}%8"
+m1 $ n "c a d" # dur (scale 0.1 0.4 sine1)
+m1 silence

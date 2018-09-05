@@ -1,0 +1,30 @@
+d1 $ up "[0 0 0 0]" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
+
+d3 $ sound "selffx" # gain "1.2"
+d2 $ slow 4.5 $ sound "selfcpr sea/2" # gain "1.3"
+hush
+
+
+""" riff 3 - ambient glitchy numbers """
+d1 $ slow 2 $ up "[0]" # sound "<ade ade:1 ade:2>" #gain "1 1.1 1"
+
+
+""" riff 4 - ambient dark techno """
+d1 $ fast 1.2 $ sound "[ade:5]"
+d2 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+
+d1 silence
+d1 $ sound "akuma1*8" # n (irand 5)
+
+
+""" old riff - complex systems2 """
+d1 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2"
+hush
+
+""" Strecth time with loopAt function """
+d1  $ loopAt 5 $ chop 64 $ sound "<wind:1 wind:0>"
+d1 $  loopAt "<4 6 2 3>" $ chop 32 $ sound "wind:0"
+d1 $ sound "fm/6"
+hush
+
+d1 $ slow 3 $jux (fast 4) $ striate' 8 (1/4) $ sound "vocad/2"

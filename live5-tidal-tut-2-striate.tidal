@@ -1,0 +1,78 @@
+d1 $ loopAt 4 $ sound "fm"
+
+d1 $ sound "fm:12/2"
+
+d1 $ striate 4 $ sound "fm:12"
+
+# spread with timing
+d1 $ striate' 16 0.2 $ sound "fm:12"
+
+# add spread
+d1 $ spread' (striate' 16) "0.2 0.005 0.4 0.1 0.001" $ sound "fm:12"
+
+# add spread with sequence
+d1 $ spread' (striate' 16) "[0.2 0.005 0.4 0.1 0.001]/5" $ sound "fm:12"
+
+# striate with multiple samples
+d1 $ slow 4 $ sound "moog moog:3"
+
+d1 $ striate 16 $ sound "moog moog:3"
+
+d1 $ slow 8 $ striate 16 $ sound "moog moog:3"
+
+d1 $ slow 8 $ striate' 16 0.08 $ sound "moog moog:3 moog:5"
+
+-- alter speed of each samples. To do that we need to apply speed effect to striate via paranthesis
+d1 $ slow 2 $ (striate 16 $ sound "moog")
+# speed "[1 2 0.5 0.8 3 2.5 1.5]"
+
+d1 $ slow 1 $ (striate' 16 0.05 $ sound "moog")
+|+| speed "[[1 2 0.5 0.8 3 2.5 1.5], [~ 0.25 ~]/3, [9 82 8 9 2 1 0.5]/5]"
+
+# also apply striate to short samples
+
+d1 $ rev $ (striate' 16 0.8 $ sound "bd:8")
+|+| speed "[0.5 0.3 0.1]/5"
+|+| gain 1.2
+
+d1 $ trunc 0.3 $ slow 4 $ rev $ striate' 64 0.5 $ sound "bd:8"
+|+| gain 1.2
+
+hush
+
+
+d1 $ slow 4 $ striate' 16 (1/118) $ sound "numbers:0 numbers:1 numbers:2 numbers:3"
+d1 $ slow 4 $ chop 16 $ sound "numbers:0 numbers:1 numbers:2 numbers:3"
+
+
+
+
+--- several examples ---
+
+bps(120/120)
+hush
+d1 $ striate 4 $ iter 4 $ sound (samples "dr_few*8" (irand 32))
+d1 $ sound (samples "808*8" (run 7))
+d1 $ sound (samples "808*8" (irand 7)) # unit "c"
+
+d1 $ iter 4 $ sound (samples "akuma1*8" (run 8))
+d1 $ iter 4 $ sound (samples "akuma1*8"  (run 8 # every 2 (irand 8)) )
+d1 $ sound (samples "amencutup*8" (run 8))
+d1 $ n (run 8) # sound "amencutup"
+hush
+d1 $ sound (samples "akuma1*8" (every 2 (density 1.2) $ density 1.21 $ run 8))
+
+
+d2 $ up "[0 2 4~ 2 4 7 12]" # (sound "ades3:3") # gain 0.7
+
+d2 silence
+
+hush
+d1 $ sound (samples "amencutup*8" (iter 4 $ irand 32) )
+t1 anticipate $ sound (samples "bd(3,8)" (run 3))
+t1 (xfadeIn 4) $ sound "bd(5,8)"
+
+
+d1 $ midinote "60 62*2" # s "superpiano"
+
+d1 silence

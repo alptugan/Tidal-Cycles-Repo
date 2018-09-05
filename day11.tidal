@@ -1,0 +1,2 @@
+d1 $ s "gabba*8" # cutoff (density 8 $ scale 20 20000 $ rand)
+hush

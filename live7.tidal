@@ -1,0 +1,46 @@
+cps(0.77)
+-- slowdown melody
+d1 $ sound "akuma2*8" # n (irand 8) #gain 1 # unit "c" # speed "8"
+hush
+
+d2 $ shuffle 4 $ s "psr*4" # n "12 11 ~ [10, 4, 7, 6]" # gain "1"
+
+hush
+
+let steps = take 16 [10,0.0625,4]
+
+d1 $ every 2 (density 2) $ degradeBy 0.5 $ sound "akuma2*4"
+# n (irand 16)
+|=| cut "1"
+|=| gain "0.9"
+|=| begin (choose steps)
+
+hush
+d1 $ loopAt 4 $ sound "selfcpr"
+|=| gain "1.2"
+
+hush
+
+d1 $ s "funky*4"
+  # n (irand 8)
+  # gain "1"
+  # unit "c"
+  # speed "-0.8"
+
+
+-- Tidal kidhom
+
+  d1 $ every 5 (0.25 <~) $ every 4 (0.25 <~) $ every 3 (0.25 <~) $ stack [sound "[[odx*2 [odx/6 mt*2]] [odx/1 odx/3] [odx*3 [mt*2]] [odx/3 odx/6 ~ odx/1]]", every 4 rev $ sound (samples "click*8" (run 8))
+  |+| shape "0.04"]
+  |+| speed "[[1 0.8] 1 1.3 1]"
+  # gain 0.8
+
+hush
+hush
+  d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.25 <~) $ striate 128 $ sound "[breaks125]" |+| speed "0.7", every 2 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[sytrus1/3]*16 [~ sytrus1/3]*24 [sytrus1/3 ~]*8 [sytrus1/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
+
+hush
+d1 $ s "world*8" # n (irand 8) # gain 1 # unit "c" # speed "-0.1"
+d2 $ every 4 (0.5 ~>) $ s "newnotes*8" # n (irand 16) # speed "8" # unit "c"
+d2 silence
+d1 $ every 4 (0.11 <~) $ every 16 (degradeBy 0.01) $ shuffle 4 $ s "vocad*8 noise2:1/2 <noise2,noise:3,noise:5,noise:6> noise:4" # unit "c" # speed 0.4 # cutoff "300 20000" # shape "0.5" # gain "0.9 1.3 1 1.1"
