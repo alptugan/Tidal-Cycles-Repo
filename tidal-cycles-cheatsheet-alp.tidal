@@ -1,0 +1,6 @@
+-- random range - generates between 100 and 164
+striate (100 + irand 64)
+
+-- play different sound in same buffer
+d1 $ every 4 (const $ sound "dr_few") $ sound "co:3"
+

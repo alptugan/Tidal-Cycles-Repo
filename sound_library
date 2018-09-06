@@ -50,7 +50,7 @@ cc 6 - cymbals
 co 4 - cymbals open/close
 chin 4 - minimal glitchy sound
 control 2 - keyboard sounds synth
-cosmicg 15 - cosmic noise
+cosmicg 13 - cosmic noise
 cosmicg:3 - signal
 cr 6 - ride
 
@@ -67,7 +67,7 @@ drum - drum set
 electrowave 2 - electronic distorted sound pads
 
 fall 20 - 8 bit sounds
-fall2 35 - 8 bit craching sounds
+fall2 35 - 8 bit crashing sounds
 feelfx 7 - various sound effects
 fire - burning sound
 fm 10 - various breakbeat loops and nice pad sound
