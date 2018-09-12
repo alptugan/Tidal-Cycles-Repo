@@ -1,0 +1,4 @@
+d1 $ slow 1.8 $ cat [
+ sound "aset1 aset1:1 aset1:2 aset1:3 aset1:3 aset1",
+ sound "aset1:2 aset1 aset1 aset1:1 aset1:2 aset1"
+]
