@@ -5,7 +5,7 @@ d1 $ s "cyclo*5" # gain 1 # speed 1 #accelerate 1
 hush
 
 d2 $ every 4 (echo (negate 3/32)) $ n "c5*4" # s "supernoise"
-# accelerate "-2" # speed "1" # sustain "0.1 ! ! 1" # voice "0.0"
+# accelerate "-2" # speed "2" # sustain "0.1 ! ! 1" # voice "0.0"
 
 d1 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
 # accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
@@ -30,14 +30,14 @@ d1 $ s "gab*19?"
 # delayfb 0.95
 # delayt (discretise (1/9) $ slow 23 $ scalex (1/999) (1/9) $ rand)
 # lpf (slow 2 $ scale 200 20000 $ rand)
-# gain 4
+# gain 1
 
 d1 $ s "tutorial1(5, 8, {0, 3})" #n "[0, 4, 7, 9, 11]" |+| n "{0, 7, 12}" |+|n "<-7 7 0 5 -5>/2" #cutoff (scale 800 20000 $ slow 4 $sine1) #resonance "0.3" #sustain "{0.01 0.15 0.1}%4"
 
-d1 $ note "a4 c5" # s "tutorial3"
+d1 $ note "a4" # s "tutorial3"
 d1 $ s "tutorial3" # n "a5"
 d1 $ s "tutorial3:9"
-d1 $ s "noiseCreature" # n "a4"
+d1 $ s "noiseCreature" # n "10"
 
 hush
 d1 $ note "c gs7 c6 gf4" # s "supernoise" # sustain "0.1 0.6"  # pitch1 "0.0115" # slide "1.5" # room "0.2"
