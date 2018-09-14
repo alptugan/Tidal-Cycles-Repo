@@ -3,15 +3,11 @@ sound library
 ------------------------------------------------
 ade 10
 ade:0 - bassline
-ade:1 - melody
-ade:2 - pure string signal
-ade:3 - pure choir like signal
-ade:4 - fan noise
-ade:5 - fan noise short treble
-ade:6 - finger tick on glass
-ade:7 - micro granular sounds
-ade:8 - sample sound rhytm noise
-ade:9 - pure sine signal like
+ade:1 - pure string signal
+ade:2 - pure choir like signal
+ade:3 - fan noise
+ade:4 - fan noise short treble
+ade:5 - pure sine signal like
 
 akuma1 5
 akuma2 5
@@ -21,7 +17,6 @@ akuma5 32
 akuma6 32
 akuma7 32
 
-amencutup - break beat oneshots
 armora 1 - sub/high shaking sound
 arp 2 - 0 sub like cello, 1 more like midi
 auto - drum kit
@@ -36,6 +31,7 @@ bev 1 - melodic woman - 16 seconds long
 birds 10 - just birds sound
 bit1 55 - 8bit glitch sound samples
 bleep 12 various bleep sounds
+
 breaks125 2 - breakbeat loops
 breaks152 1 - ""
 breaks157 1 - ""
