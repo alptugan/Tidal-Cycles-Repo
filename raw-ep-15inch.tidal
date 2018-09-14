@@ -1,19 +1,20 @@
 -- intro 1 - noisy, ambient, crunchy
 
-d1 $every 4 (striate 64) $ sound "[ade:10 ade:14]/2" # pan (slow 3 $ saw) # delay "0.4" # delayfeedback "0.5" # hpf (slow 3 $ saw) # room "0.8" # gain 0.7
+d1 $every 4 (striate 64) $ sound "[ade:14]/2" # pan (slow 3 $ saw) # delay "0.4" # delayfeedback "0.5" # hpf (slow 3 $ saw) # room "0.8" # gain 0.55
 
 
 -- intro 2 - minimal saxophone noise
-d1 $ up "[12 0 2]/2" # sound "bass1" # gain "1.15"
+d1 $ up "[12 0 2]/2" # sound "bass1" # gain "1"
 d2 $ jux(rev) $ up "[4 4]/4" # sound "sax:2/4" # gain "0.9"
-d3 $ sound "<sax:20/8 sax:21/8 sax:19/4 sax18/2?>"
-d4 $ sound "click*2" # n "0 2 0 4 1 1"
-d4 $ shuffle 8 $ sound $ samples "click*8" $ run $ irand $ 10
-d5 $ sound "sine*4" # n (irand 6)
+d3 $ sound "<sax:20/8 sax:21/8? sax:19/4 sax18/2?>"
+d4 $ sound "click*2" # n "0 3 0 5 1 1" # gain 0
+d4 $ sound "glitch*16?" # n (irand 8) # gain "0" # pan "[1 0]"
+d5 $ striate 64 $ sound "sine*4?" # n (irand 8) # gain "0.9" # pan "[0 1]"
 
 d1 silence
 d2 silence
 d3 silence
+d5 silence 
 
 
 -- BAss line
@@ -22,12 +23,18 @@ d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain
 d2
 $ whenmod 8 6 (jux (iter 8))
 $ whenmod 4 2 (jux (iter 4))
-$slow 2
-$ sound "{bd(3, 8, 2), glitch(3, 16, 5), minidrum(4,4,4), dr55(3, 8, 5)}" -- , dr55(3,8,4) ifdrums(3, 8, 5),
-#gain "1.2"
- # n (irand 64)
+$ every 4 (jux(rev))
+$ every 8 ((striate 8).(# gain 0.9))
+$ slow 2
+$ sound "{glitch(3, 16, 5), yeah(4,4,4)?, ifdrums(3, 8, 5)?}"
+# gain "1.1"
+# n (irand 64)
 # pan (rand)
 
+
+d3 $ s "subroc3d*4?" # n (irand 12) # gain 0.8
+
+d5 silence
 let randNum = 50
 
 -- sometimes = sometimesBy 0.5
