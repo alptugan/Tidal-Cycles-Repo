@@ -20,24 +20,6 @@ d5 silence
 -- BAss line
 d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine1)
 
-d2
-<<<<<<< HEAD
-$ whenmod 8 6 (jux (iter 8))
-$ whenmod 4 2 (jux (iter 4))
-$ every 4 (jux(rev))
-$ every 8 ((striate 8).(# gain 0.9))
-$ slow 2
-$ sound "{glitch(3, 16, 5), yeah(4,4,4)?, ifdrums(3, 8, 5)?}"
-# gain "1.1"
-# n (irand 64)
-# pan (rand)
-
-
-d3 $ s "subroc3d*4?" # n (irand 12) # gain 0.8
-
-d5 silence
-let randNum = 50
-=======
 -- $ whenmod 8 6 (jux (iter 8))
 --  $ whenmod 4 2 (jux (iter 4))
 $ whenmod 3 16 (jux(rev))
@@ -57,7 +39,6 @@ $ cat [
     s "mlkick ~ mlkick:3",
     every 4 (striate 128) $ s "mlglitch3*4" # n (irand 12)
 ]  -- # nudge "[0 0.04]*4"
->>>>>>> 6a95b0e9a7d0325e747876cdbab66f990f25cfc0
 
 -- sometimes = sometimesBy 0.5
 -- often = sometimesBy 0.75
@@ -89,11 +70,12 @@ stack [
 ]
 
 -- NEW SET 4
-d1 $ every 8 (jux(rev).(every 2 (striate (100 + irand 64)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1.1"
+cps(1)
+d1 $ every 8 (jux(rev).(every 2 (striate (100 + irand 64)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
 d2 $ sound "auto:6*8"
 d3 $ every 8 (degradeBy 2) $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
-d4 $ sound "bit1*8?" # n (irand 55) # gain "1" # pan "[0 1]"
-d5 $ sound "jungbass:5/8" # gain "1.2"
+d4 $ sound "bit1*8?" # n (irand 55) # gain "0.95" # pan "[0 1]"
+d5 $ sound "jungbass:5/8" # gain "1"
 
 
 -- riff 7 --- Glitchy noises

@@ -16,7 +16,7 @@ d1 $ every 4 (# n (irand 300) ) $ s "noiseCreature" # n "{10,11,13}"
 
 
 
-
+d1 $ s "bd"
 
 
 
