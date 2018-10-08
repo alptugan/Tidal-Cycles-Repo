@@ -23,7 +23,7 @@ $s "akuma3(3,16,5)"
 #gain "1.0"
 
 d3
-$s "akuma43(3,16,9)"
+$s "akuma4(3,16,9)"
 #sustain "1.0"
 #gain "1.0"
 
@@ -33,6 +33,7 @@ hush
 cps(0.25)
 
 -- 02
+
 d4
 $stack[
   s "sine(5,16)" # n "{c5, e5, f5, g5, a5}"
@@ -58,12 +59,12 @@ $jux (iter 16)
 -- $every 2 (#gain "0")
 $stack [
   s "auto(3, 16, 5)",
-  s "drums(2, 16, 2)",
+  s "drum(2, 16, 2)",
   ---s "psr(4,16)",
   s "glitch(2, 16)"
 ]
 #n (irand 64)
-#gain "0"
+#gain "1"
 #pan (rand)
 
 hush
@@ -71,15 +72,15 @@ hush
 
 d6
 $jux (iter 8)
-$sound "{ifdrums(3, 16, 3), drums(3, 16, 2), glitch(3, 16)}"
+$sound "{ifdrums(3, 16, 3), drum(3, 16, 2), glitch(3, 16)}"
 #gain "1.3"
 #n (irand 64)
 #pan (rand)
 
 d6
 $jux (iter 8)
-$sound "{ifdrums(5, 16, 3), ade:6(5, 16, 2), glitch(11, 16, 2)}"
-#gain "1.3"
+$sound "{ifdrums(5, 16, 3), chin:6(5, 16, 2), glitch(11, 16, 2)}"
+#gain "1"
 #n (irand 64)
 #pan (rand)
 
@@ -112,7 +113,7 @@ $ stack[
   --sound "procshort(3,16,4)",
   --sound "procshort(2,15,3)",
   sound "bass(3,16,2)",
-  sound "dr55(3,16,10)",
+  sound "space(3,16,10)",
   sound "glitch(3,16,5)",
   --sound "808bd(3,16,9)"
   sound "click(3,16,3)",

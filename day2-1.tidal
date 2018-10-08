@@ -1,9 +1,9 @@
-d4 $ up "[0 0 0 0]" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
+d4 $ up "[0 0 0 0]" #sound "bass1" #gain "1 1 1.3 1"
 
 -- Intro - 1
 d3 $ sound "selffx" # gain "1" # pan rand
 -- <sax:3 sax:1 sax:2 sax:5>/2
-d2 $ slow 4.5 $ sound "selfcpr sea/2 " # gain "0.85 1"
+d2 $ slow 4.5 $ sound "defdo:2 sea/2 " # gain "0.85 1"
 hush
 
 

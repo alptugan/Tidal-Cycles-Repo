@@ -35,7 +35,7 @@ d6 silence
 
 d1 
 $ every 2 ((# crush 16).(striate 32).(# gain "0.85"))
-$ every 4 (# delay 0.2).().() 
+$ every 4 (# delay 0.2)
 $ slow 1.5  
 $ striate 32 $ s "armora" 
 # crush 4

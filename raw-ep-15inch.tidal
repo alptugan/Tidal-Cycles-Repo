@@ -58,13 +58,14 @@ d5 $ slow 4 $ every 8 (#gain "1.1") $ s "moog:3" # gain "0" # cut 3
 d6 $ slow 2 $ every 8 (#gain "1.05") $ s "jungbass:8" # gain "0"
 
 -- NEW SET 3
+
 d1 $
 stack [
   sound (samples "bass1:0*4?" (run 10)) # gain 0.9 # cut "1",
   sound "ifdrums:10" # gain "1",
   slowcat [
   -- sound (samples "minperc*16?" (irand 50)) # accelerate "-1",
-  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
+  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
   -- sound (samples "print*8?" (irand 13)) # pan "[0 1]*4" # gain "0.95"
   ]  -- |+| unit "c" |+| speed "2"
 ]
