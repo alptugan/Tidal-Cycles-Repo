@@ -20,4 +20,19 @@ d2 $ every 4 ((#speed "0.01").(#sustain "5").(slow "10")) $ s "subroc3d*8?" # n 
 
 d2 $ s "subroc3d*8?" # n (irand 30) # gain "0.75" # sustain "1" # pan "[0 1]"  # speed "0.1"
 
-d1 $ up "-10" # s "sea" # gain "1.4" # speed "0.1"
+d1 $ up "{-10}" # s "sea" # gain "0.55" # speed "0.1"
+d2 $ sound (samples "glitch*8?" (every 2 (density 5.2) $ density 2.21 $ run 50)) # pan "[0 1]" # gain "0.85"
+
+
+--- SET LED 
+
+d2 $ shuffle 4 $ jux(rev) $ every 4 (striate 128) $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9, ade:7>" # gain "0.7 0.8 1" # pan (slow 4 $ saw) # room "1" # delay "0.1" # delayfeedback "0.5" # lpf 1000
+
+
+d1 $ s "cosmicg*8?" # n (irand 13) # gain "0" #delay "0.6" #delaytime "0.5" #delayfeedback "0.5" # pan "[0 1]"
+
+---- SET LED 2
+d2 $ every 4 (jux(rev)) $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:0*40" # gain 0.7
+
+

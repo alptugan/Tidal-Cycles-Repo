@@ -1,6 +1,6 @@
 -- intro 1 - noisy, ambient, crunchy
 
-d1 $every 4 (striate 64) $ sound "[ade:14 ade:3]/2" # pan (slow 3 $ saw) # delay "0.5" # delayfeedback "0.7" # hpf (slow 3 $ saw) # room "0.8" # gain "0" # pan (slow sine)
+d1 $every 4 (striate 64) $ sound "[ade:14 ade:3]/2" # pan (slow 3 $ saw) # delay "0.5" # delayfeedback "0.7" # hpf (slow 3 $ saw) # room "0.8" # gain "1" # pan (sine)
 
 d1 $ every 8 ((striate 2).(# gain 0.9)) $ sound "ade:1" # gain "0.9" # sustain "1"
 -- intro 2 - minimal saxophone noise
@@ -19,7 +19,7 @@ d5 silence
 d1 $ s "bd" 
 
 -- BAss line
-d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 0 # pan (slow 1 sine1) 
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine1) 
 
 -- $ whenmod 8 6 (jux (iter 8))
 --  $ whenmod 4 2 (jux (iter 4))
@@ -56,11 +56,8 @@ d3
 $ slow 2
 $ every 4 (jux(rev))
 -- $ every 8 ((striate 32).(jux(iter 4)).(# gain "0.4").(const $ sound "mlglitch2*8" # n (irand 8)))
-$ s "glitch*8(16,16)" # gain "0.5" # n (irand 8) -- irand 8 -- beat 16,16
-
-d4 $ slow 2 $ every 2 (#gain "1") $ s "less laz?*8" # n (irand 8) # pan "[0 1]" # gain "0"
-d5 $ slow 4 $ every 8 (#gain "1.1") $ s "moog:3" # gain "0.7" # cut 3
-d6 $ slow 2 $ every 8 (#gain "1.05") $ s "jungbass:8" # gain "1"
+$ s "glitch*8(16,16)" # gain "1" # n (irand 8) -- irand 8 -- beat 16,16
+d5 $ slow 4 $ every 8 (#gain "1.1") $ s "moog:3" # gain "0.9" # cut 3
 
 -- NEW SET 3
 d1 $
@@ -77,15 +74,15 @@ stack [
 -- NEW SET 4
 -- 
 cps(1)
-d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "0"
-d2 $ sound "auto:6*8" # gain 0
-d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
-d4 $ sound "bit1*8?" # n (irand 55) # gain "0.9" # pan "[0 1]" # gain 0
+d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+d2 $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0.9"
+d4 $ sound "bit1*8?" # n (irand 55) # gain "0.9" # pan "[0 1]" # gain 0.9
 d5 $ sound "jungbass:5/8" # gain "1.1"
 cps 1
 
 -- riff 7 --- Glitchy noises
-d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0
+d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 1
 d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2" # gain "0.7"
 d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" -- # n "[10 5 4 0 12 10]"
 d1 silence

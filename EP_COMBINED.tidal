@@ -1,0 +1,39 @@
+-- AGGRESSIVE
+cps(1)
+d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+d2 $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0.9"
+d4 $ sound "bit1*8?" # n (irand 55) # gain "0.9" # pan "[0 1]" # gain 0.9
+d5 $ sound "jungbass:5/8" # gain "1.1"
+cps 1
+
+
+-- APHEX TWIN
+cps (145/120) 
+
+
+d2 $ slow 1 $ every 16 (shuffle 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~ mlkick:3" # gain 1
+
+d2 $ every 4 (# gain 0) $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12) # gain 1
+
+d1
+    $ cat [
+        ---every 16 (shuffle 4) $ s "akuma1*4" # n (irand 12) # gain 1,
+    every 6 (striate 64).jux(rev) $ s "mlglitch3*8" # n (irand 22) # pan "[0 1]",
+   -- every 6 (striate 32) $ every 4 (shuffle 4) $ s "akuma1*4" # n (irand 12) # gain 1,
+    every 4 (striate 128) $ s "mlglitch3*8" # n (irand 22)
+    -- s "akuma1*8?" # n (irand 12) # gain 1
+    ] 
+
+
+let glitchIntro = cat [every 6 (striate 64).jux(rev) $ s "mlglitch3*8" # n (irand 22) # pan "[0 1]",every 4 (striate 128) $ s "mlglitch3*8" # n (irand 22)]
+
+cps(-1)
+cps (145/120) 
+
+d1 $ seqP [
+(0,4,glitchIntro),
+-- (0, 12, sound "dr_few:3 dr_few:3*2"),
+-- (4, 12, sound "glitch2"),
+(8, 12, sound (samples "dr_few:3*8" (run 16)))
+]
