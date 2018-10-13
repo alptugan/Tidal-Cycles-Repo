@@ -37,3 +37,30 @@ d1 $ seqP [
 -- (4, 12, sound "glitch2"),
 (8, 12, sound (samples "dr_few:3*8" (run 16)))
 ]
+
+
+--- 
+d1 $
+stack [
+  sound (samples "bass1:0*4?" (run 10)) # gain 1 # cut "0.3 0.5",
+  every 4 (const $ s "ifdrums:10*4 ~ ifdrums:10*2 ifdrums:3" # gain 0.9) $ sound "ifdrums:10" # gain "1",
+  slowcat [
+  sound (samples "ul*8?" (irand 50)) # accelerate "-1" # sustain "0.05" # speed 100 # pan "[0 0 1 1 0.5 0.4 0.2 0.8 0 0 1 1]",
+  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
+  sometimesBy 0.9 ((# sustain "10").(# pan "0.5")) $ sound (samples "print*4?" (irand 13)) # pan "[0 1]" # gain "0.85" # sustain "0.1" # speed (rand*7)
+  ] -- |+| unit "c" |+| speed "2"
+]
+
+
+--- 
+-- NEW SET 1
+d1 $ fast 2
+$ whenmod 3 16 (jux(rev))
+$ every 32 (jux(rev))
+$ whenmod 3 8 (jux(striate 64))
+$ cat [
+    s "mlkick:1*2 mlkick",
+    every 6 (striate 64).jux(rev) $ s "mlglitch3*2? mlglitch*2?" # n (irand 12) # pan "[0 1]",
+    s "mlkick ~ mlkick:3",
+    every 4 (striate (irand 128)) $ s "mlglitch3*4" # n (irand 12)
+] # nudge "[0 0.04 2 0.1 0.05]*4"
