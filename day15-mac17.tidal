@@ -25,6 +25,7 @@ d2 $ every 4 (density (irand 80)) $ up "0 ~ 12 24 [48 72 36]" # sound "[jungbass
 solo $
 cps 0.25
 cps 0.9
+
 d1
 $stack[
   s "supersaw(7,16,13)" #n "{0, 7, 10, 17, 19}" #speed "1.5" #pan (rand),
@@ -50,7 +51,6 @@ $s "supersaw(7, 16, {3, 4})" # n "{c7, e7, f7, g7, a7, d8}"
 #gain "0.5"
 #shape "0.5"
 
-d8 $s "ade:2" #gain "0.7"
 
 -- intro 5
 -- RHYTM
@@ -144,9 +144,12 @@ let pat5 = "{[~ 0] 0 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0 -12 0*4 ~ [~ 0] [~ 0] ~ 0*2
 let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
 
 -- INTRO 5
+
+
 cps 0.25
+
 d4
-$stack[
+$ stack[
   s "sine(5,16)" # n "{c5, e5, f5, g5, a5}"
 ]
 #cutoff (scale 800 15000 $slow 4 $sine1) #resonance "0.2"

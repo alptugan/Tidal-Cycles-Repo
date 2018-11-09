@@ -33,15 +33,16 @@ d1 $ s "cosmicg*4?" # n (irand 13) # gain "0.5" #delay "0.5" #delaytime "0.5" #d
 --- set 2
 
 d3 $ slowcat [
-    iter 4 $ s "{auto:3,auto:2} auto:3" # gain "0.0",
-    every 8 (const $ sound  "jungbass:8 auto:3*2 auto:3*2 ~") $ sound "jungbass:0 auto:3" # gain 0
+    iter 4 $ s "{auto:3,auto:2} auto:3" # gain "1.0",
+    every 8 (const $ sound  "jungbass:8 auto:3*2 auto:3*2 ~") $ sound "jungbass:0 auto:3" # gain 1
 ]
+
 d3 silence
 
 --- set 3
 d4 $ degradeBy 0.5 $ slow 45 $ striate 64 $ s "dark:2" # gain "0.95"  
 d1 $ slow 4 $ striate 32 $ s "pad:0" # pan sine # gain "1"
-d2 $ s "procshort*4?" # n (irand 6) # gain "0.5" # pan "[0 1]"
+d2 $ s "procshort*4?" # n (irand 6) # gain "0.8" # pan "[0 1]"
 ---
 
 -- Set 4
@@ -54,7 +55,7 @@ d1
  $ whenmod 3 16 (jux(rev))
 $ whenmod 3 8 (jux(striate 64))
 $ slow 2
-$ sound "{ dr(3, 8, 5)}"
+$ sound "{ hit(3, 8, 5)}"
 # gain "0.95"
 # n (irand 64)
 # pan (slow 15 sine)
@@ -76,7 +77,7 @@ $ every 4 (jux(rev))
 -- $ every 8 ((striate 32).(jux(iter 4)).(# gain "0.4").(const $ sound "mlglitch2*8" # n (irand 8)))
 $ s "glitch*8(16,16)" # gain "0.5" # n (irand 8) -- irand 8 -- beat 16,16
 
-d4 $ slow 2 $ every 2 (#gain "1") $ s "less laz?*8" # n (irand 8) # pan "[0 1]" # gain "0"
+d4 $ slow 2 $ every 2 (#gain "1") $ s "less laz?*8" # n (irand 8) # pan "[0 1]" # gain "1"
 d5 $ slow 4 $ every 8 (#gain "1.1") $ s "moog:3" # gain "0.7" # cut 3
 d6 $ slow 2 $ every 8 (#gain "1.05") $ s "jungbass:8" # gain "1"
 
@@ -87,7 +88,7 @@ stack [
   sound "ifdrums:10" # gain "1",
   slowcat [
   -- sound (samples "minperc*16?" (irand 50)) # accelerate "-1",
-  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
+  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
   -- sound (samples "print*8?" (irand 13)) # pan "[0 1]*4" # gain "0.95"
   ]  -- |+| unit "c" |+| speed "2"
 ]
