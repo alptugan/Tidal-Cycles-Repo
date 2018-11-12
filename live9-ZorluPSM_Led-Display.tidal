@@ -1,3 +1,5 @@
+d1 $ s "bd" 
+
 cps(1)
 -- BACKUP
 d1 $ s "auto:3 ~"
