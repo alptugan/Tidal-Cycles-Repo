@@ -121,6 +121,7 @@ d1 $ seqP [
     (91, 94, sound "jungbass:3*16" # gain "0.4" # pan (slow 8 sine) # cutoff (fast 80 $ scale 10 3500 $ sine)),
     (94, 97, sound "jungbass:3*16" # gain "0.3" # pan (slow 8 sine) # cutoff (fast 80 $ scale 10 3500 $ sine)),
     (97, 99, sound "jungbass:3*16" # gain "0.1" # pan (slow 8 sine) # cutoff (fast 80 $ scale 10 3500 $ sine)),
+    --final
     (83,84, sound "auto:8*30" # gain "0.2"),
     (85,86, sound "auto:8*30" # gain "0.3"),
     (87,88, sound "auto:8*30" # gain "0.4"),
