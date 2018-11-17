@@ -87,7 +87,7 @@ d1 $ seqP [
     (16, 20, every 8 ((# speed "-0.1").(degrade).(jux(rev))) $ every 2 (# speed "-0.4") $ sound "auto:8*30" # gain "1" #cutoff 1200 #resonance "0.2"),
     --(16, 20, sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"#cutoff 1200 #resonance "0.25"),
     (20, 24, every 8 ((# speed "-0.1").(degrade).(jux(rev))) $ every 2 (# speed "-0.5") $ sound "auto:8*30" # gain "1" #cutoff 1500 #resonance "0.2"),
-    -- Drums  in
+    -- Drums  i
     (20, 24, sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"#cutoff 1200 #resonance "0.25"),
     (24, 28, every 8 ((# speed "-0.1").(degrade).(jux(rev))) $ every 2 (# speed "-0.6") $ sound "auto:8*30" # gain "1" #cutoff 1800 #resonance "0.2"),
     (24, 28, sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"#cutoff 1800 #resonance "0.25"),
