@@ -62,15 +62,23 @@ $ s "glitch*8(16,16)" # gain "1" # n (irand 8) -- irand 8 -- beat 16,16
 d5 $ slow 4 $ every 8 (#gain "0.85") $ s "moog:3" # gain "0.85" # cut "0.4"
 
 -- NEW SET 3
+
 d1 $
 stack [
   sound (samples "bass1:0*4?" (run 10)) # gain 1 # cut "0.3 0.5",
   every 4 (const $ s "ifdrums:10*4 ~ ifdrums:10*2 ifdrums:3" # gain 0.9) $ sound "ifdrums:10" # gain "1",
   slowcat [
+<<<<<<< HEAD
+  -- sound (samples "minperc*16?" (irand 50)) # accelerate "-1",
+  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
+  -- sound (samples "print*8?" (irand 13)) # pan "[0 1]*4" # gain "0.95"
+  ]  -- |+| unit "c" |+| speed "2"
+=======
   sound (samples "ul*8?" (irand 50)) # accelerate "-1" # sustain "0.05" # speed 100 # pan "[0 0 1 1 0.5 0.4 0.2 0.8 0 0 1 1]",
   sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
   sometimesBy 0.9 ((# sustain "10").(# pan "0.5")) $ sound (samples "print*4?" (irand 13)) # pan "[0 1]" # gain "0.85" # sustain "0.1" # speed (rand*7)
   ] -- |+| unit "c" |+| speed "2"
+>>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 ]
 
 -- NEW SET 4

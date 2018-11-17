@@ -44,6 +44,7 @@ d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "psr*8" # n (run (irand
 
 hush
 -- Tidal bot
+cps 1
 d2 $ (jux (# speed (slow 8 $ scale 0.01 10 sine))) $ sound "[bd ~ cp hh]*4" # shape 0.99 # cutoff (slow 8 $ scale 0 9999 sine)
 d1 $ sound "drum*3 feel*4" |=| n (every 4 (palindrome) $ every 3 (0.10 ~>) $ sometimes (palindrome) $ "3") |=| coarse "2 16 4"
 
@@ -62,10 +63,11 @@ d2 $ slow 2 $ sound "sine/4" # gain 0.8 # speed 1
 d1 $ every 4 (chop 32) $ every 2 (density 2) $ s "feelfx*3 bd*1" |=| n (sometimes (slow 2) $ "2 2 5 8 2 9 1 3 0")
 d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "blip*2 pluck*2 bass2*2 off*1" |=| n "1 7"
 
-d1 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "feel*4" |=| n "8"
+d1 $ sometimes (density 20) $ s "bit1*20" |=| n "5" # hpf 1000
 d1 $ superimpose (|=| speed "3") $ every 3 (chop 8) $ sometimes (0.25 <~) $ s "pluck*2 feelfx*2" |=| n (sometimes (density 4) $ run 4)
 
-d1 $ jux (|=| speed "-1 2 1 3") $ every 2 (0.125 ~>) $ s "ulgab*1 feelfx*3 future*3 jazz*2 hh*4 bass*4" |=| n "0 4 10 0 4 0 1"
+d1 $ jux (|=| speed "-1 2 1 3") $ every 2 (0.125 ~>) $ s "auto*1 feelfx*3 bd*3 drum*2 hh*4 bass*4" |=| n "0 4 10 0 4 0 1"
+
 d1 $ superimpose (slow 4 . striate 8) $ every 2 (slow 2) $ s "house*1 ul*3" |=| n "8 7"
 
 
@@ -79,9 +81,12 @@ up "0 ~ 1 ~" # s "bass1",
 slow 8 $ sound "sine*4" # gain 0.8
 ] |+| resonance "14"
 --- # cutoff 8000
+
 hush
+cps 1.1
+
 --- Replikas Replika
-d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.25 <~) $ striate 128 $ sound "[breaks125]" |+| speed "0.7", every 2 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[sytrus1/3]*16 [~ sytrus1/3]*24 [sytrus1/3 ~]*8 [sytrus1/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
+d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.25 <~) $ striate 128 $ sound "[amencutup]" |+| speed "0.7", every 2 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[auto/3]*16 [~ auto:2/3]*24 [auto:5/3 ~]*8 [auto:8/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
 # gain 0.7
 
 
@@ -112,7 +117,7 @@ loopAt 8
 d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
 
 -- Sometimes Play
-d1 $ sometimes (# speed "20") $ sound "drum*8"
+d1 $ sometimes (# speed "20") $ sound "drum*8" # n (irand 20)
 
 -- often
-d1 $ often (# n (irand 6)) $ sound "akuma4*6"
+d1 $ often (# n (irand 6)) $ sound "akuma4*3 akuma2*3"

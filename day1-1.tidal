@@ -9,7 +9,7 @@ hush
 d3 $ every 4 (jux (rev)) $ sound "auto:0 auto:1 auto:5 [.auto:5*4]" # gain "1.1"
 d3 silence
 
-d1 $ slow 2 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3, every click:5/4]]" #gain "1.3"
+d1 $ slow 2 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3, click:5/4]]" #gain "1.3"
 
 """ SET 1: First session with bass then micro sounds"""
 bps (240/120)
@@ -32,7 +32,7 @@ d3 silence
 """ SET 3: Play with sax array """
 d1 $ up "[12 0]/2" # sound "bass1" # gain "1"
 d2 $ jux(rev) $ up "[4 4]/4" # sound "sax:2/4" # gain "1"
-d3 $ sound "<sax:20/8  sax:21/8 sax:19/4  sax18/2>"
+d3 $ sound "<sax:20/8  sax:21/8 sax:19/4  sax:18/2>"
 d3 silence
 d4 $ sound "click*2" # n (irand 2)
 d4 $ sound $ samples "click*8" $ run $ irand $ 20
