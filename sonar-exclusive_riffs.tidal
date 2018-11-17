@@ -1,59 +1,65 @@
 
 -- intro 1
 
-d1 $every 4 (striate 64) $ sound "[ade:10 ade:14]/2" # pan (slow 3 $ saw) # delay "0.4" # delayfeedback "2.5" # hpf (slow 3 $ saw) # room "1.1"
+d1 $every 4 (striate 64) $ sound "[ade:10 ade:14]/2" # pan (slow 3 $ saw) # delay "0.4" # delayfeedback "2.5" # hpf (slow 3 $ saw) # room "0.5" # gain 0
 
 hush
 
 -- intro 2
-d1 $ up "[12 0]/2" # sound "bass1" # gain "1.15"
-d2 $ jux(rev) $ up "[4 4]/4" # sound "sax:2/4" # gain "0.9"
-d3 $ sound "<sax:20/8 sax:21/8 sax:19/4 sax18/2?>"
+d1 $ up "[12 0]/2" # sound "bass1" # gain "1.1"
+d2 $ every 4 (jux(rev))  $ up "[4 4]/4" # sound "sax:2/4" # gain "0.9"
+d3 $ sound "<sax:20/8 sax:21/8 sax:19/4 sax18/2?>" # gain "1"
 d4 $ sound "click*2" # n (irand 2)
-d4 $ shuffle 8 $ sound $ samples "click*8" $ run $ irand $ 20
-d5 $ sound "sine" # n (irand 6)
+d4 $ shuffle 8 $ sound $ samples "click*8" $ run $ irand $ 20 # gain "0.9"
+d5 $ sound "sine" # n (irand 6) # gain "0.75"
 hush
 
 
 -- intro 3,
 hush
-d1 $ sound "ade:5"
-d1 $ up "[0]" #sound "<ade:5>"
-d1 $ up "[0 2 0 6]/8" #sound "<ade:5>"
-d1 $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" #delay "0.25" #delayfeedback "0.8" # lpf 2000
-d1 $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" # pan (slow 4 $ saw) # room "1" # delay "0.1" # delayfeedback "0.5" # lpf 2000
+d1 $ sound "ade:5/4" # gain "0.9"
+d1 $ up "[0]" #sound "<ade:5/4>" # gain "0.8"
+d1 $ up "[0 2 0 6]/8" #sound "<ade:5>" # gain "0.9"
+d1 $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" #delay "0.25" #delayfeedback "0.8" # lpf 2000 # gain "0.8"
+d1 $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" # pan (slow 4 $ saw) # room "1" # delay "0.1" # delayfeedback "0.5" # lpf 2000 # gain "0.26"
 d1 $ every 4 (striate 128) $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" # gain "0.7 0.85" # pan (slow 4 $ saw) # room "0.8" # delay "0.1" # delayfeedback "0.3" # lpf 2000
 d1 $ shuffle 4 $ jux(rev) $ every 4 (striate 128) $ up "[0 2 7 6]/8" #sound "<ade:5 ,ade:9>" # gain "0.7 0.85" # pan (slow 4 $ saw) # room "1" # delay "0.1" # delayfeedback "0.5" # lpf 2000
 hush
 
 -- riff 1 - ambient dark techno
-d3 $ every 4 (striate 64) $ fast 2 $ up "[0 2 9 10]/8" # sound "<ade:2/4>"  # pan (slow 4 $ saw) # gain "1"
+d3 $ every 4 (striate 64) $ fast 2 $ up "[0 2 9 10]/8" 
+# sound "<ade:2/4>"  
+# pan (slow 4 $ saw) 
+# gain "1"
+
 cps(1)
 hush
 -- riff 2 -break beat
 d2 silence
-d2 $ sound "akuma1*8" # n (irand 1) # gain "1"
-d1 $ sound "akuma1*8" # n (irand 1) #gain "1 1.2 1 0.8 1.1 1.2"
+d2 $ sound "akuma1*8" # n (irand 1) # gain "0.9"
+d1 $ sound "akuma1*8" # n (irand 1) #gain "1 1.1 1 0.8 1.0 1.1"
 d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sine1)
 
-d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw) # gain 1  # pan(slow 1 sine1)
-d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw) # gain 0  # pan(slow 1 sine1)
+d3 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12) # gain "0"
 d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 8) #gain "1 1.05 1 0.8 1.1 1.1"
-d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 12)
+d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 1)
 d1 silence
-d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1"
+d2 $ every 4 ((striate 128).(#gain 0.6)) $ up "[0 2 0 4]/4" #sound "bass1" #gain "0"
 hush
 
-d1 $ up "[0 ~ 2 ~]/16" # sound "ade:9" # gain 1
-
+d1 $ every 4 (jux(rev2)) $ up "[8 ~ 2 ~]/8" # sound "ade:9" # gain 0 # pan "[0 1]"
+d1 silence
 -- riff 3 - alternatebass line and minimal noises
 cps(1)
-d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine1)
-d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ sine? newnotes:2 psr:18 psr:20*2>" # gain "0.7"
+d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "0"
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 0 # pan (slow 1 sine1)
+d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ newnotes:2 psr:18 psr:20*2>" # gain "1"
 d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain 0.95 # pan (slow 1 sine1)
 d4 silence
-d5 $ loopAt 2 $ s "bass1" # gain 1.3
-d6 $ s "click:3/2 sine*4?" # gain "1.2 0.5"
+d5 $ loopAt 2 $ s "bass1" # gain 1.1
+d6 $ s "click:3/2?" # gain "1 0.7 0.8"
+d6 $ s "click:3/2?" # gain "0" 
 hush
 
 
@@ -79,9 +85,9 @@ hush
 
 
 -- riff 7 --- Glitchy noises
-d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0.85
+d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0
 d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
-d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
+d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
 
 -- Tidal Bot 2
 -- riff 8 experimental

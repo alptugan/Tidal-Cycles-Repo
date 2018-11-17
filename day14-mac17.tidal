@@ -9,29 +9,30 @@ d1 $ slow 1.8 $ cat [
 
 d1 $ every 4 (# n (irand 300) ) $ s "noiseCreature" # n "{10,11,13}"
 # room 0.8 
+# gain 0.8
 # delay "0.2"
 # delayfeedback "0.3"
 # delaytime "0.3"
 -- # pan (fast 4 sine)
 
 
+cps 1
+d1 $ s "akuma1*8" # n (irand 16)
 
 
 
 
 
 
+cps(0.75)
+d1 $ s "drum*8" # n (irand 8) # gain "1"
+d2 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0.4 
+d3 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" # gain "1"
+d4 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "1" 
+d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.7"
+d6 $ sometimesBy 0.15 (# gain 1) $ s "dark/8" # n "2" # sustain "10" # gain 1
 
-
-cps(0.9)
-d1 $ s "drum*8" # n (irand 8)
-d2 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0 
-d3 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" 
-d4 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) 
-d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.8"
-d6 $ sometimesBy 0.25 (# gain 1) $ s "dark/8" # n "2" # sustain "10" # gain 0
-
-d6 silence
+d1 silence
 
 d1 
 $ every 2 ((# crush 16).(striate 32).(# gain "0.85"))
@@ -41,5 +42,4 @@ $ striate 32 $ s "armora"
 # crush 4
 
 
-d2
-$ sound "arp"
+d2 $ sound "bd"

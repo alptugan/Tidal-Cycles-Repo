@@ -15,12 +15,14 @@ hush
 
 -- Intro 2  katıl
 """ riff 4 - ambient dark techno # pan (slow 0.3 $ saw) ade 3 - 7 - 8 - 9 - 10"""
-d5  $ sound "[ade:5 ade:10]" # gain "[0.5 0]" # pan (slow 0.3 $ saw)
+d5  $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
 hush
-d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw) # gain "0.5"
 cps(0.8)
+
 d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12) #gain "1 1.2 1 0.8 1.1 1.2" # pan (slow 8 $ saw)
 hush
+
 d1 $ sound "akuma1*8" # n (irand 1) #gain 0.8
 d1 $ sound "akuma1*8" # n (irand 1) #gain "0.8 1.1 1 0.8 1.1 1.1"
 d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2"
@@ -30,19 +32,19 @@ d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2"
 
 hush
 
-d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
-d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 12) # pan (slow 8 $ sine)
-d1 $ every 8 ((striate 32).jux(rev)) $ sound "akuma1*8" # n (irand 12)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw) # gain 0  
+d1 $ every 8 (striate 64) $ sound "auto*8" # n (irand 12) # pan (slow 8 $ sine) # gain "1.1"
+d1 $ every 8 ((striate 64).jux(rev)) $ sound "akuma1*8" # n (irand 12) # gain 0
 
 
 d1 silence
-d2 $ slow 4 $ sound "bass1"
+d2 $ slow 4 $ sound "bass1" # gain 0
 d3 $ striate 64 $ slow 2 $ sound "[psr:9 psr:7 psr:12)] psr:1*8? ~ psr:3" #gain 0.7 # pan rand
 d3 silence
 d2 $ up "[0 2 0 4]/16" #sound "bass1" #gain "1.1 1.1 1.3 1.1"
 d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
 
-d4 $ loopAt 1 $ s "selfx" # gain "1.3"
+d4 $ loopAt 1 $ s "selfx" # gain "0.6"
 d2 silence
 hush
 --cps(1)
