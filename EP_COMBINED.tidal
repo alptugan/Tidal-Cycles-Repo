@@ -216,20 +216,19 @@ cps 0
 d1 $ seqP [
     -- intro 1
     (0, 2, fast 8 $ spaceOut ([1,0.98..0.0]) $ s "auto:3*12" # gain "0.6" # sustain "1"),
-    (2, 3, ((striate' (43) (1/2)).(# gain "0.75").(# speed (-0.08))) $ s "auto:4" # gain "1"),
+    (2, 3, ((striate' (43) (1/2)).(# gain "0.75").(# speed (-0.05))) $ s "auto:4" # gain "1"),
     -- intro 2
-    (2, 3, sound "jungbass:8" # gain "0.95" # speed 0.65 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
+    (2, 3, sound "jungbass:8" # gain "0.95" # speed 0.6 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
     (5, 7, fast 9 $ spaceOut ([1,0.98..0.0]) $ s "auto:3*12" # gain "0.61" # sustain "1"),
-    (7, 8, ((striate' (irand 20) (1/2)).(# gain "0.75").(# speed (-0.09))) $ s "auto:4" # gain "1"),
+    (5, 7, ((striate' (irand 40) (1/2)).(# gain "0.75").(# speed (-0.04))) $ s "auto:4" # gain "1"),
     -- intro 3
-    (7, 8, sound "jungbass:8" # gain "0.95" # speed 0.55 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
+    (7, 8, sound "jungbass:8" # gain "0.95" # speed 0.5 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
     (10, 12, fast 10 $ spaceOut ([1,0.98..0.0]) $ s "auto:3*12" # gain "0.62" # sustain "1"),
-    --(12, 13, ((striate' (irand 22) (1/2)).(#gain 0.75).(# speed (-0.1))) $ s "auto:4" # gain "1"),
+    (12, 13, ((striate' (irand 52) (1/2)).(#gain 0.75).(# speed (-0.05))) $ s "auto:4" # gain "1"),
     (12, 13, sound "jungbass:8" # gain "0.95" # speed 0.75 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
     (15, 19, fast 12 $ spaceOut ([1,0.99..0.0]) $ s "auto:3*12" # gain "0.64"),
     -- Part 2
     (18, 33, sound "auto:6*8" # gain "1" # hpf (slow 8 $ scale 1000 8500 $ sine)),
-    (0, 18, sound "auto:8*40" # gain "0.8" # hpf (slow 8 $ scale 100 12000 $ rand)),
     (18, 25, s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"),
     (25, 26, sound "jungbass:8" # gain "0.95" # speed 0.75 # gain "1" # lpf (slow 4 $ scale 20 450 $ sine)),
     (25, 33, every 8 ((striate' (irand 22) (1/16)).(#gain 0.75).(# speed ((rand)))) $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"),
