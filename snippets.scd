@@ -8,3 +8,7 @@ Server.local.options.device = 3; // "Display Audio"
 
 ~dirt.loadSoundFiles("Users/alptugan/Downloads/aset1");
 
+// Change Sampling Rate
+Server.local.options.sampleRate = 44100;
+Server.internal.options.sampleRate = 44100;
+
