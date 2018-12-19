@@ -1,5 +1,8 @@
 
-d1 $ sound "bd*2" # gain 1
+d1 $ sound "bd" # gain 1
+d1 $ every 4 ((striate' 32 0.5).(#gain "0.8")) $ sound "dr_few:1*4" # gain 1 
+d1 $ every 6 (density 4) $ every 4 ((striate' 32 0.5).(#gain "0.8")) $ sound "dr_few:1*4" # gain 1 
+
 
 bps (60/120)
 
