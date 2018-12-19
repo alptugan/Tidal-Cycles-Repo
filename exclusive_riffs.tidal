@@ -1,4 +1,6 @@
 d1 $ s "bd"
+
+
 -- riff 4 - ambient dark techno
 d3 $ striate 32.(every 4 (64)) $ fast 0.2 $ up "[0 1 3 10]/8" # sound "<ade:5 ~>"  # pan (slow 8 $ saw) # gain "0.9"
 cps(0.8)
@@ -6,9 +8,9 @@ cps(0.8)
 hush
 d1 $ sound "akuma1*8" # n (irand 1) # gain "0."
 d1 $ sound "akuma1*8" # n (irand 1) #gain "1 1.2 1 0.8 1.1 1.2"
-d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sine1)
+d1 $ sound "akuma1*8" # n (irand 19) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sine1)
 
-d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:1"  # pan (slow 8 $ saw)
 d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12)
 d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 12) #gain "1 1.05 1 0.8 1.1 1.1"
 d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 12)

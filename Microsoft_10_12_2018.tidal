@@ -1,5 +1,8 @@
 
-d1 $ sound "bd*2" # gain 1
+d1 $ sound "bd" # gain "0"
+d1 $ every 4 ((striate' 32 0.5).(#gain "0.8")) $ sound "dr_few:2*4" # gain "0.9"
+d1 $ every 6 (density 4) $ every 4 ((striate' 32 0.5).(#gain "0.8")) $ sound "dr_few:2*4" # gain 1 
+
 
 bps (60/120)
 
@@ -83,10 +86,10 @@ $stack[
   s "supersaw(3,16,3)" #n "{0, 7, 10, 17, 19}" #speed "0.25" #pan (rand)
 ]
 |+| n "0 7 -7 0 0 -5 5"
-# cutoff (scale 800 9000 $slow 16 $sine1) 
+# cutoff (scale 100 600 $slow 16 $sine1) 
 --1 #resonance "0.1"
-#resonance "0.1"
-#sustain "0.5" -- 1
+#resonance "0.01"
+#sustain "1" -- 1
 #gain "0"
 #shape "0.4"
 
@@ -96,7 +99,7 @@ $jux (iter 16)
 $s "supersaw(7, 16, {3, 4})" # n "{c7, e7, f7, g7, a7, d8}"
 |+| up "5 0 -5 0 -12 12 7 0 -7 0"
 #sustain "0.05"
-#cutoff (scale 2000 15000 $slow 5 $sine1) #resonance "0.1"
+#cutoff (scale 200 1000 $slow 5 $sine1) #resonance "0.1"
 #gain "0"
 #shape "0.2"
 
@@ -119,11 +122,11 @@ $ stack[
 d3
 $ jux (iter 8)
 $ stack[
- up pat5 |=| sound "dr_few:3",
- up pat6 |=| sound "dr_few:0",
- up pat4 |=| sound "dr_few:6"
+ up pat5 |=| sound "dr_few:1",
+ up pat6 |=| sound "dr_few:2",
+ up pat4 |=| sound "dr_few:5"
 ]
-|+| delay "0.25" |+| delaytime "0.375" |+| delayfeedback "0.5"
+|+| delay "0.25" |+| delaytime "0.275" |+| delayfeedback "0.3"
 |=| gain "0.8"
 
 d3 silence
@@ -148,7 +151,7 @@ $ stack[
 |*| speed "1.0" |*| speed "1.25"
 |+| delay "0.5" # delaytime "1.375" # delayfeedback "0.8"
 |+| cutoff (scale 100 8000 $ slow 1 $ sine1) # resonance (scale 0.1 0.8 $ slow 8 $ sine1)
-|=| gain "1.0"
+|=| gain "0.8"
 
 
 
