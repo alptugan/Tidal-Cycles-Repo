@@ -184,10 +184,10 @@ loopAt 8
 d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
 
 -- Sometimes Play
-d1 $ sometimes (# speed "20") $ sound "drum*8" # n (irand 20)
+d1 $ sometimesBy 0.9 (# speed "20") $ sound "drum*8" # n (irand 20)
 
 -- often
-d1 $ often (# n (irand 6)) $ sound "akuma4*3 akuma2*3"
+d1 $ often (# n (irand 6)) $ sound "akuma4*3 akuma2*3" # cut "1" # lpf (slow 4 $ scale 100 6000 $ sine)
 
 
 -- play long files one shot

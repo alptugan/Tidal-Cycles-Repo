@@ -8,7 +8,7 @@ d1 $ slow 16 $ striate 16 $ sound "bev"
 d1 $ slow 16 $ striate 16 $ sound "bev" # loop  "1"
 
 -- OLEY
-d1 $ zoom (0.6, 0.65) $ striate 258 $ sound "bev" # cut "1"
+d1 $ zoom (0.6, 0.65) $ striate 32 $ sound "bev" # cut "1"
 
 d1 $ every 4 ((# speed "1").(# room "0.1").(# delay "0.5").(#delayfeedback "0.5")) $ zoom (0.8, 1) $ striate 16 $ sound "bev" # speed "-0.5" 
 
@@ -42,7 +42,7 @@ d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "0.85 1
 d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "0.7"
 d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
-d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "0"
+d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "0" # speed (rand)
 ---------------
 
 """ old riff - complex systems2 """
@@ -63,7 +63,7 @@ d1 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
 # attack "1" # release "20" # room "0.9" # size "0.9" # orbit "1"
 
 
-d1 $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5"
+d1 $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85"
 
 
 ------ NOISEYYYY
@@ -85,7 +85,7 @@ d1 $ every 4 (0.11 <~) $ every 16 (degradeBy 0.01) $ shuffle 4 $ s "vocad*8 nois
 d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
 |+| sustain "0.25"
 |+| delay "0.5" # delaytime "0.375" # delayfeedback "0.75"
-|+| cutoff (scale 800 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.4 $ slow 4 $ sine1)
+|+| cutoff (scale 800 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.4 $ slow 4 $ sine1) # gain 0.9
 
 
 -----------------
@@ -97,7 +97,7 @@ d1 $ s "cyclo*5" # gain 1 # speed 1 #accelerate 1
 -----------------
 ---- MINI SET
 d1 $ striate 2 $ every 4 (jux(rev)) $ s "newnotes*4?" # n (irand 15) # delay "0.2" # delayfeedback "0.25" 
-d3 $ s "{auto:3,auto:2} ~ auto:3 ~" # gain "1"
+d3 $ s "{auto:3,auto:2} ~ [auto:3 [auto:1 auto:5 auto:4 ~]] ~" # gain "0.9"
 
 -----------------
 ---- VOCAL PADDS
@@ -117,7 +117,7 @@ cps 1
 let r = [0.1,-2,0.3,4,30]
 
 -- Kendi başına şarkı oldu AQ
-d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 256)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 4 30]" # cutoff (scale 0 3000 $ sine)
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 256)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 4 30]" # cutoff (scale 0 3000 $ sine) # gain "0.8"
 
 
 -------------------- 
@@ -280,7 +280,7 @@ $jux (iter 16)
 $stack [
   s "auto(3, 16, 5)",
   s "drum(2, 16, 2)",
-  ---s "psr(4,16)",
+  s "psr(4,16)",
   s "glitch(2, 16)"
 ]
 #n (irand 64)
@@ -445,11 +445,11 @@ $ cat [
     every 6 (striate 64).jux(rev) $ s "mlglitch3*2? mlglitch*2?" # n (irand 7) # pan "[0 1]",
     s "mlkick ~ mlkick:3",
     every 4 (striate 128) $ s "mlglitch3*4" # n (irand 12)
-]  -- # nudge "[0 0.04]*4"
+]  # nudge "[0 0.04]*4"
 
 
 -------------
-d1 $ chunk 4 (fast 2) $ n "0(3,8,<0 2>)" # sound "ul"
+d1 $ chunk 4 (fast 2) $ n "0(3,8,<0 2>)" # sound "dark:2"
    # size (slow 8 saw)
    # room (slow 8 saw)
    # legato 1
