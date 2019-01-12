@@ -37,7 +37,9 @@ d5 $ striate 64 $ sound "sine*4?" # n (irand 8) # gain "1" # pan "[0 1]"
 
 -- Synthdef Creature
 d1 $ every 4 (# n 110) $ s "noiseCreature" # n 0 
-d1 $ every 4 (jux(rev)) $ s "noiseCreature*8?" # n (irand 200) # pan "[0 1]" # gain "0.85"
+d1 $ every 4 (jux(rev)) $ s "noiseCreature*8?" # n (irand 20) # pan "[0 1]" # gain "0.35"
+
+d1 silence
 
 -- Another signal
 d1 $ slow 5 $ striate 128 $ every 4 (jux(rev)) $ s "ade:5" # gain "1"
@@ -95,7 +97,7 @@ $ s "glitch*8(16,16)" # gain "0.6" # n (irand 8) # gain 1-- irand 8 -- beat 16,1
 
 d4 $ slow 2 $ every 2 (#gain "1") $ s "less laz?*8" # n (irand 8) # pan "[0 1]" # gain "0"
 d5 $ slow 4 $ every 8 (#gain "1.1") $ s "moog:3" # gain "0.7" # cut 3
-d6 $ slow 2 $ every 8 (#gain "1.05") $ s "jungbass:8" # gain "1"
+d6 $ slow 2 $ every 8 (#gain "1") $ s "jungbass:8" # gain "1"
 
 -- set 7
 d1 $
@@ -104,7 +106,7 @@ stack [
   sound "ifdrums:10" # gain "1",
   slowcat [
   -- sound (samples "minperc*16?" (irand 50)) # accelerate "-1",
-  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
+  sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
   -- sound (samples "print*8?" (irand 13)) # pan "[0 1]*4" # gain "0.95"
   ]  -- |+| unit "c" |+| speed "2"
 ]
@@ -112,15 +114,15 @@ stack [
 -- set 8
 -- 
 cps(1)
-d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "0"
-d2 $ sound "auto:6*8" # gain 0
-d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0"
-d4 $ sound "bit1*8?" # n (irand 55) # gain "0.9" # pan "[0 1]" # gain 0
+d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+d2 $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
+d4 $ sound "bit1*8?" # n (irand 55) # gain "0.9" # pan "[0 1]" # gain 1
 d5 $ sound "jungbass:5/8" # gain "0"
 cps 1
 
 -- set 9 --- Glitchy noises
-d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0.2
+d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0.8
 d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2" # gain "0.7"
 d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" -- # n "[10 5 4 0 12 10]"
 d1 silence
@@ -139,10 +141,10 @@ d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sin
 
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw) # gain 0.3  # pan(slow 1 sine1)
 d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12)
-d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand ) #gain "1 1.05 1 0.8 1.1 1.1"
+d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 8) # gain "1 1.05 1 0.8 1.1 1.1"
 d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 12) # pan "[0 1]"
 d1 silence
-d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "0.6"
+d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1"
 hush
 
 d1 $ up "[0 ~ 2 ~]/16" # sound "ade:9" # gain 1
@@ -154,8 +156,8 @@ d1 $ s "drum*8" # n (irand 8) # gain "1"
 d2 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0.4 
 d3 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" # gain "1"
 d4 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "0.6" 
-d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.6"
-d6 $ sometimesBy 0.15 (# gain 1) $ s "dark/8" # n "2" # sustain "10" # gain "1.1"
+d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.85" # speed (rand) # cut "1"
+d6 $ sometimesBy 0.15 (# gain 1) $zoom (0.2, 0.6) $ striate 40 $ s "dark/8" # n "2" # gain "1.1"
 
 
 -- 

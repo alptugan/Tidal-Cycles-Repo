@@ -14,18 +14,18 @@ let pat5 = "{[~ 0] 0 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0 -12 0*4 ~ [~ 0] [~ 0] ~ 0*2
 let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
 
 -- Ambient 1
-d4 $ slow 19 $ striate 19 $ sound "sheffield" # gain "1" # speed "0.3" # lpf (fast 2 $ scale 300 5000 $ sine)
-d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo sea/2 " # n (irand 12) # gain "0 0"
+d4 $ slow 19 $ striate 19 $ sound "sheffield" # gain "0" # speed "0.3" # lpf (fast 2 $ scale 300 5000 $ sine)
+d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo sea/2 " # n (irand 12) # gain "0. 0"
 d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0.5]" # pan (slow 0.3 $ saw)
-d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 4 $ saw) # gain "0.8"
-d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.75" # cut "1"
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 4 $ saw) # gain "0"
+d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0" # cut "1"
 d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "0" # speed (rand)
 
 
 -- Ambient 2
 d2 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
 # accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
-# attack "1" # release "20" # room "0.9" # size "0.9" # orbit "1" # gain "1"
+# attack "1" # release "20" # room "0.9" # size "0.9" # orbit "1" # gain "0.8"
 
 d1 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.85" # speed "0.3"
 
@@ -41,16 +41,19 @@ d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
 |+| cutoff (scale 100 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.2 $ slow 4 $ sine1) # gain 0.8
 
 ---- SOME KIND OF WIERD
-d1 $ s "imp*5" # gain 1 # cutoff (scale 20 20000 $ slow 3 $ sine)
-d1 $ s "cyclo*5" # gain 1 # speed 1 #accelerate 1
+d3 $ s "auto:3 auto:2" # gain "1"
+d5 $ every 6 (# gain 0) $ every 4 (# gain "0.9") $ s "auto:3*40" # gain "0" # 
+d4 $ every 8 (# gain "1") $  s "jungbass:9" # gain "0" 
+d1 $ s "imp*5" # gain 0 # cutoff (scale 20 20000 $ slow 3 $ sine)
+d2 $ s "cyclo*5" # gain 0 # speed (rand) #accelerate (rand)
 
 -- DARK SPEECH
-d1 $ every 4 (# speed (rand)) $ zoom(0.4,0.9) $ striate 45 $ s "dark:2" # speed "0.1" # cut "0.5" # gain 0.8
+d1 $ every 4 (# speed (rand)) $ zoom(0.5,0.6) $ striate 45 $ s "dark:2" # speed "0.1" # cut "0.5" # gain 1
 
 -- Minimal
 d3 $ s "procshort*5?" # n (irand 6) # gain "1" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
 ---- APHEX TWIN
-d2 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~ mlkick:3" # gain 1
+d1 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~ mlkick:3" # gain 1
 
 
 -- MEGADETH ŞARKI AÇILIŞ
@@ -58,61 +61,71 @@ d1 $ every 2 ((0.25 ~>).(every 4 (jux(rev)))) $ every 8 ((striate' (irand 64) (1
 cps 1
 let r = [0.1,-2,0.3,4,30]
 
--- Alone in myself
-d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 4 30]" # cutoff (scale 0 3000 $ sine) # gain "0.8"
+-- Alone in myself - prova
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 -4 30]" # cutoff (scale 0 5000 $ sine) # gain "0"
 
 
 -- AP TN REMIX
 d1 -- $ every 4 (iter 4) $ e 8 8 
 $ stack [
-  --sound (samples "bass1:0*4" (run 10)) # gain 1 # cut "0.3 0.5",
+  ---sound (samples "bass1:0*4" (run 10)) # gain 1 # cut "0.3 0.5",
   every 4 (const $ s "ifdrums:10*4 ~ ifdrums:10*2 ifdrums:3" # gain 0.95) $ sound "ifdrums:10" # gain "1",
   slowcat [
   sound (samples "ul*8?" (irand 50)) # accelerate "-1" # sustain "0.05" # speed (irand 100) # pan "[0 0 1 1 0.5 0.4 0.2 0.8 0 0 1 1]",
   sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]",
   sometimesBy 0.9 ((# sustain "10").(# pan "0.5")) $ sound (samples "print*4?" (irand 13)) # pan "[0 1]" # gain "0.85" # sustain "0.1" # speed (rand*7)
-  ] |+| unit "c" |+| speed "2"
+  ] |+| unit "c" |+| speed "2",
+  s "akuma1*8" # n (irand 18) # gain "0.9"
 ]
 
-d2 $ every 8 (# gain 0) $ every 8 (striate 32) $ sound "hh27*8" # n (irand 12) # gain "0.9"
-d3 $ s "hoover" # n "<[3,2] 3 3 3 1>" # speed "1" 
+d2 $ every 8 (# gain 0) $ every 8 (striate 32) $ sound "hh27*8" # n (irand 12) # gain "1"
+d3 $ s "hoover" # n "<[3,2] 3 3 3 1>" # speed "1"  # gain "0.8"
 d3 $ slow 4 $ s "dork2" # speed "-0.5"
 
 
 -- MOMENTUS
-cps 0.25
+cps 1
+cps 0.5
 
 d1
-$jux (iter 8)
+$jux (iter 4)
 $ stack [
- s "ifdrums(2, 16, 1)",
- s "bd(3, 16, 0)",
- s "glitch(3, 16, 2)",
- s "bass(2, 16, 3)",
- s "dr55(2,16,5)}"
+ -- s "ifdrums(2, 8, 1)",
+ -- s "bd(2, 16, 4)",
+  -- s "glitch(2, 16, 2)",
+ -- s "bass(4, 16, 3)",
+ --   every 2 (# n (irand 4)) $ s "newnotes*32" # n 2 # gain "0.75" # speed "4",
+ -- s "dr55(2,16,5)}",
+ -- s "akuma1*16" # n (irand 18) # gain "0.9"
+ -- s "akuma5*8" # n (irand 12) # gain "0.9"
 ]
-#pan "[0 0.5 1]"
-#n (irand 32)
-#gain "1"
-#shape "0.4"
+#pan (sine)
+-- #n (irand 32)
+#shape "0.3"
+
+d5 silence
+
+hush
+
+
 
 d5
 $jux (iter 16)
-$s "supersaw(7, 16, {3, 4})" # n "{c7, e7, f7, g7, a7, d8}"
+$s "supersaw(7, 16, {3, 4})" # n "{c7, e7, c4, g6, f7, g7, a7, d8}"
 |+| up "5 0 -5 0 -12 12 7 0 -7 0"
 #sustain "0.05"
-#cutoff (scale 100 10000 $slow 5 $sine1) #resonance "0.3" -- scale between 100-1000
-#gain "0.55"
+#cutoff (scale 100 1000 $slow 5 $sine1) #resonance "0.3" -- scale between 100-1000
+#gain "0.5"
 #shape "0.5"
 
 
 ---- DARK DAYS
-cps 0.25
-d1 $ slow 32 $ jux (rev) $ striate' 64 (1/8) $ sound "dark" # gain "1.4"
+cps 1
+d1 $ slow 32 $ jux (rev) $ striate' 64 (1/8) $ sound "dark" # gain "1"
 d2 $ sound "[auto:5 auto:5 ~ ~] ~ auto:2"
 d1 $ slow 32 $ jux ((# speed "0.5") . rev) $ striate' 32 (1/8) $ sound "dark" # gain 1
 d2 $ every 4 (jux (rev)) $ sound "[bd:10*4 dr_few:4*4,sn auto:9]" # gain "[[1 0.8]*2-0.5 [0.5-0.2 0.8-0.2]]/2"
-d3 $ every 4(jux(rev)) $ sound "[click:3 click:4*2 drum:1*3]" # gain "[[1 0 0 0.8 0]]"
+d3 $ every 4(jux(rev)) $ sound "[click:3 click:4*2 click:1*3]" # gain "[[1 0 0 0.8 0]]"
 d4 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3, every click:5/4]]" #gain 1
 
 
@@ -136,13 +149,20 @@ d2 $ stack [
 
 d5 silence
 
+
+cps 1
+
+d1 $ s "drum*8" # n (irand 15) # gain "1"
+
 d1 $ stack [
-    cat [
-    s "drum*8" # n (irand 32) # lpf (fast 2 $ scale 100 4000 $ sine),
-    striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1",
-    s "drum*8" # n (irand 2) # speed "-1",
-    s "drum*8" # n (irand 4),
-    s "drum*8" # n (irand 32)
-    ]--,
+    randcat [
+    -- s "drum*8" # n (irand 32) # lpf (fast 2 $ scale 100 4000 $ sine),
+    -- striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1",
+    -- s "drum*8" # n (irand 2) # speed "-1",
+    -- s "drum*8" # n (irand 4),
+    -- s "drum*8" # n (irand 32)
+    -- s "drum*16?" # n "1" # speed "0.1" # gain "0.7" # cut "1"
+    ],
+    -- s "auto:6*8"
     --s "moog"
-] # gain "1"
+] # gain "1" # lpf (slow 2 $ scale 100 20000 $ sine)
