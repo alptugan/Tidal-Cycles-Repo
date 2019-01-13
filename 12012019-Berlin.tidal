@@ -1,0 +1,20 @@
+d1 $ s "bd"
+
+-- downtempo reggie
+d1 $ every 8 ((striate' 128 (1/16)).(every 4 (# gain 0))) $ s "jungbass:2" -- # speed (fast 1 $ scale 0 1 $ sine) 
+d1 $ every 8 ((striate' 128 (1/16)).(every 4 (# gain 0))) $ s "jungbass:2" # speed "-0.02"
+d2 $ n "1" # s "latibro" # gain "1" # speed "-0.25"
+
+cps 1
+
+
+-- 
+d1 $ s "less" # n ("5" + irand 7)
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.6" # cut "1"
+
+d3 $ s "melt" # gain "0"
+
+d4 $ s "noise2" # n (irand 8) # gain "0" # speed "-1"
+d5 $ s "outdoor:4" # gain "1" # speed (slow 4 $ scale 0 2 $ sine)
+d6 $ s "square" # gain (slow 4 $ scale 0 1 $ sine)
+d4 $ every 4 (#n (irand 8)) $ s "yeah*8" # gain "1.2" # n (irand 8) # speed "3" # pan "[0 0.5 1]"
