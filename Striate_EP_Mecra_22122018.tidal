@@ -115,7 +115,7 @@ cps "1"
 d2 $ s "drum*8" # n (irand 8) # gain "1"
 d3 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0.4 
 d4 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" # gain "1"
-d5 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "0.6" 
+d5 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "1" 
 d6 $ s "cosmicg*8?" # n (irand 13) # gain "0.85" # speed (rand) # cut "1"
 d7 $ sometimesBy 0.15 (# gain 1) $zoom (0.2, 0.6) $ striate 40 $ s "dark/8" # n "2" # gain "1.1"
 
