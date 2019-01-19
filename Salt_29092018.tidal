@@ -145,9 +145,9 @@ $ jux (iter 4)
 $ every 4 (gap 4)
 $ every 5 (chop 4)
 $ stack[
-  up pat6 |=| sound "cr:4" # speed (scale 1.0 5.0 $ rand),
-  up pat4 |=| sound "cr:6" # speed (scale 1.0 5.0 $ rand),
-  up pat5 |=| sound "cr:2" # speed (scale 1.0 5.0 $ rand)
+  up pat6 |=| sound "auto:4" # speed (scale 1.0 5.0 $ rand),
+  up pat4 |=| sound "auto:6" # speed (scale 1.0 5.0 $ rand),
+  up pat5 |=| sound "auto:2" # speed (scale 1.0 5.0 $ rand)
 ]
 |=| cutoff (scale 1000 12000 $ slow 3 $ sine1) # resonance (scale 0.1 0.4 $ rand)
 |=| delay "0.5" # delaytime "0.375" # delayfeedback "0.8"
@@ -157,9 +157,9 @@ $ stack[
 d3
 $ jux (iter 8)
 $ stack[
- up pat5 |=| sound "dr_few:3",
- up pat6 |=| sound "dr_few:0",
- up pat4 |=| sound "dr_few:6"
+ up pat5 |=| sound "drum:3",
+ up pat6 |=| sound "drum:0",
+ up pat4 |=| sound "drum:6"
 ]
 |+| delay "0.25" |+| delaytime "0.375" |+| delayfeedback "0.5"
 |=| gain "1.3"
@@ -288,6 +288,7 @@ $stack [
 #pan (rand)
 
 d6
+$ fast 2
 $jux (iter 8)
 $ stack [
  s "ifdrums(2, 16, 1)",
@@ -298,7 +299,7 @@ $ stack [
 ]
 #pan (rand)
 #n (irand 64)
-#gain "1.3"
+#gain "1"
 #shape "0.5"
 
 
@@ -422,8 +423,8 @@ d1 $ seqP [
 -- BACKUP FEROX
 d1 $ s "auto:3 ~"
 d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
-d2 $ sound "auto:6*8" # gain 0
-d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0"
+d2 $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "1") $ sound "auto:8*30" # gain "0"
 d4 $ sound "bit1*8?" # n (irand 55) # gain "0.1" # pan "[0 1]" # gain 0
 d5 $ sound "jungbass:5/8" # gain "0.9"
 

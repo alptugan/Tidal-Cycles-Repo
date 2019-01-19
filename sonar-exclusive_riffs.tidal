@@ -45,17 +45,19 @@ d3 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12) # gain "0"
 d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 8) #gain "1 1.05 1 0.8 1.1 1.1"
 d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 1)
 d1 silence
-d2 $ every 4 ((striate 128).(#gain 0.6)) $ up "[0 2 0 4]/4" #sound "bass1" #gain "0"
+d2 $ every 4 ((striate 128).(#gain 0.6)) $ up "[0 2 0 4]/4" #sound "bass1" #gain "1"
 hush
 
-d1 $ every 4 (jux(rev2)) $ up "[8 ~ 2 ~]/8" # sound "ade:9" # gain 0 # pan "[0 1]"
+
+d1 $ every 4 (jux(rev)) $ up "[8 ~ 2 ~]/4" # sound "ade:9" # gain 1 # pan "[0 1]"
+
 d1 silence
 -- riff 3 - alternatebass line and minimal noises
 cps(1)
-d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "0"
-d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 0 # pan (slow 1 sine1)
+d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "1"
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine1)
 d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ newnotes:2 psr:18 psr:20*2>" # gain "1"
-d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain 0.95 # pan (slow 1 sine1)
+d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain "1.2" # pan (slow 1 sine1)
 d4 silence
 d5 $ loopAt 2 $ s "bass1" # gain 1.1
 d6 $ s "click:3/2?" # gain "1 0.7 0.8"
@@ -68,7 +70,7 @@ d2 $ s "nau/8" # n (3) # gain "1"
 d3 $ s "nau*8" # n (irand 39) # gain "1"
 d2 $ s "nau*8" # n (run (irand 30)) # gain "0.9"
 d2 $ every 4 ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand 30)) # gain "0.9"
-d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand 30)) # gain "0" #lpf 600
+d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand 30)) # gain "1" #lpf 300
 
 hush
 
@@ -79,13 +81,14 @@ d2 $ (jux (# speed (slow 8 $ scale 0.01 100 saw))) $ sound "[bd ~ cp hh]*4" # sh
 
 -- riff 6 percussive noise
 d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "psr:18*2 psr:20*2 psr:25*2 psr:19*1" # n "1 7"
+
 d2 $ slow 0.01 $ s (randcat["bass1","bass*2","bass*3","bass*4"])# end(slow 666tri1)# speed(slow 999 $scale 99 0 saw1) # pan(slow 333 sine1)
 
 hush
 
 
 -- riff 7 --- Glitchy noises
-d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 0
+d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 1
 d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
 d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
 
@@ -94,19 +97,20 @@ d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click
 d2 $ every 4 (chop 32) $ every 2 (density 2) $ s "feelfx*3 bd*1" |=| n (sometimes (slow 2) $ "2 2 5 8 2 9 1 3 0") # gain 0.9
 
 -- riff 9 experimental hardcore
-d2 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "blip*2 pluck*2 bass2*2 off*1" |=| n "1 7" # gain 0.8
+d2 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "bass2:5*2 bass*2 bass2*2 off*1" |=| n "1 " # gain 1
 
-d2 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "feel*4" |=| n "8" # gain 0.9
+d2 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "bass*4 proc ade:4" |=| n "8" # gain 0.9
 d1 $ superimpose (|=| speed "3") $ every 3 (chop 8) $ sometimes (0.25 <~) $ s "wind*2 noise*2" |=| n (sometimes (density 4) $ run 4) #gain 0.8
 hush
 -- riff 10 experimental hardcore funky
 d1 $ shuffle 6 $ jux (|=| speed "-1 2 1 3") $ every 2 (0.225 ~>) $ s "ulgab*1 feelfx*3 future*3 jazz*2 hh*4 bass*4" |=| n "0 4 10 0 4 0 1"
+
 d2 $ superimpose (slow 4 . striate 8) $ every 2 (slow 2) $ s "sax:2*1 ul*3" |=| n "8 7" # gain 0.8
 hush
 
 --- Sin signals
 -- riff 11 sin soft
-d1 $ chunk 4 (fast 2) $ n "0(3,8,<0 2>)" # sound "minidrum"
+d1 $ chunk 4 (fast 2) $ n "0(3,8,<0 2>)" # sound "akuma1"
    # size (slow 8 saw)
    # room (slow 8 saw)
    # legato 1
@@ -142,8 +146,8 @@ slow 8 $ sound "sine*4" # gain 1
 
 --- Replikas Replika
 -- riff 14
-d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.55 <~) $ striate 4 $ sound "[breaks125]" |+| speed "0.4", every 4 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[sytrus1/3]*16 [~ sytrus1/3]*24 [sytrus1/3 ~]*8 [sytrus1/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
-# gain 0.7
+d1 $ smash 2 [3,2,8,1] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.55 <~) $ striate 4 $ sound "[akuma1]" |+| speed "0.4", every 4 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[glitch/3]*16 [~ glitch2/3]*24 [glitch/3 ~]*8 [glitch2/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.1" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
+# gain "1"
 
 
 hush
@@ -170,10 +174,11 @@ shuffle n
 
 -- loop At some sometimes
 loopAt 8
-d1 $ rev $ loopAt 8 $ chop 128 $ sound "bev"
+d1 $ rev $ loopAt 18 $ chop 128 $ sound "bev"
 
 -- Sometimes Play
 d1 $ sometimes (# speed "20") $ sound "drum*8"
 
+cps 1
 -- often
 d1 $ often (# n (irand 6)) $ sound "akuma4*6"
