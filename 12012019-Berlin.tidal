@@ -245,7 +245,7 @@ d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:
 d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
 
 -- set 5 BOT
-d2 $ slow 0.01 $ s (randcat["bass1","bass*2","bass*3","bass*4"])# end(slow 666tri1)# speed(slow 999 $scale 99 0 saw1) # pan(slow 333 sine1)
+d2 $ slow 0.01 $ s (randcat["bass1","bass*2","bass*3","bass*4"])# end(slow $ tri1)# speed(slow 999 $scale 99 0 saw1) # pan(slow 333 sine1)
 
 -- set 6 EASY RIDER LOW PASS FILTER GAMES
 d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand 30)) # gain "1" #lpf 300
@@ -263,8 +263,8 @@ stack [
 ] # gain "1"
 
 -- set 8 BASS DARK 2
-5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "1"
-d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine1)
+d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "1"
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine)
 d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ newnotes:2 psr:18 psr:20*2>" # gain "1"
 d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain "1.2" # pan (slow 1 sine1)
 d4 silence
