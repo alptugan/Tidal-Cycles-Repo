@@ -6,8 +6,19 @@ striate (100 + irand 64)
 d1 $ every 4 (const $ sound "dr_few") $ sound "co:3"
 
 -- play a long sample file without waiting. The parameter of the slow func. is defined by the length of the sound file
-d1 $ slow 16 $ striate 16 $ sound "bev" # loop  "1"
+d1 $ slow 16 $ striate 16 $ sound "bev" -- # loop  "1"
 
 -- play part of a long sample file
 d1 $ zoom (0.6, 0.65) $ striate 32 $ sound "bev" # cut "1"
 
+-- play lots of tone at the same time
+d1 $ stack [
+    s "tt_fx" # gain "0.8",
+    s "tt_kick" # gain "1"
+]
+
+-- play tons randomly
+d1 $ randcat [
+    s "tt_fx" # gain "0.8",
+    s "tt_kick" # gain "1"
+]
