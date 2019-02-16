@@ -22,6 +22,9 @@ d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "1"
 d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
 
+d1 $ s "arp" # gain "0" # cut "1"
+d2 $ up "4 5 6 7"  # s "arp" # gain "1.2" -- # speed rand
+d3 $ loopAt "4" $ striate 64 $ s "arp:1" # gain "0.7" # speed "15.5"
 
 -- old riff - complex systems2 
 d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2"
