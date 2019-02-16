@@ -465,14 +465,15 @@ $ stack[
  up pat4 |=| sound "drum:6"
 ]
 |+| delay "0.25" |+| delaytime "0.375" |+| delayfeedback "0.5"
-|=| gain "1.3"
+|=| gain "1"
 
 
 d4
--- $ jux (iter 32)
--- $ every 3 (chop 8)
+$ jux (iter 32)
+$ every 3 (chop 8)
+$ every 5 (jux(rev)) 
 $ stack[
- up pat5 |=| sound "akuma1:1" |=| speed "0.5 0.25 1.0 -1.0",
+ up pat5 |=| sound "akuma1:1" |=| speed "0.65 0.25 1.0 -1.0",
  up pat2 |=| sound "akuma1:0" |=| speed "1.0 0.5 0.25 1.0 -1.0",
  up pat3 |=| sound "akuma1:3" |=| speed "1.0 -0.5 0.25 1.0 -1.0 1.0 1.5",
  up pat4 |=| sound "akuma1:2" |=| speed "0.5 0.25 -1.5 1.0 -0.75 1.0 -0.25"
@@ -480,7 +481,7 @@ $ stack[
 |*| speed "1.0" |*| speed "1.25"
 |+| delay "0.5" # delaytime "1.375" # delayfeedback "0.8"
 |+| cutoff (scale 100 8000 $ slow 1 $ sine1) # resonance (scale 0.1 0.8 $ slow 8 $ sine1)
-|=| gain "0.85"
+|=| gain "0.55"
 
 hush
 
@@ -517,7 +518,7 @@ $stack[
 ]
 #cutoff (scale 800 15000 $slow 4 $sine1) #resonance "0.2"
 #sustain "0.08"
-#gain "0.9"
+#gain "0"
 
 
 d1
@@ -531,8 +532,8 @@ $stack[
 |+|n "0 7 -7 0 0 -5 5"
 #cutoff (scale 800 18000 $slow 16 $sine1) #resonance "0.1"--(rand)
 #sustain "0.5"
-#gain "0.4"
-#shape "0.5"
+#gain "0.25"
+#shape "0"
 #room "1.0"
 
 d5
@@ -547,17 +548,18 @@ d6
 $jux (iter 4)
 $jux (iter 8)
 $ stack[
-  -- sound "arpy(3,16,3)",
-  -- sound "felld(5,16,0)",
-  -- sound "fell2(5,16,8)"|+|up "-7 0 7 14",
+  sound "arpy(3,16,3)",
+  sound "fell2(5,16,8)"|+|up "-7 0 7 14",
   --sound "procshort(3,16,4)",
   --sound "procshort(2,15,3)",
-  sound "bass(3,16,2)",
-  -- sound "space(3,16,10)"
+  sound "bass2(3,16,2)",
+  sound "bit1(3,16,10)",
   sound "glitch(3,16,5)",
     sound "808bd(3,16,9)",
-  sound "click(3,16,3)"
-  -- sound "sine(3,16,3)"
+  sound "click(3,16,3)",
+  sound "sine(3,16,3)",
+  sound "tt_fx(9,8,3)" # gain "0.9" # cut "1",
+  sound "tt_kick(16,8,4)" # gain "0.95" -- # cut "1" # speed (irand 6)
 ]
 #n (irand 128)
 #gain "0.8"

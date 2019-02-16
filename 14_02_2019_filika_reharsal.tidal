@@ -1,0 +1,9 @@
+d2 $ s (choose["tt_kick:1","tt_hh:6","tt_perc:2","tt_kick:7"]) # cut "1"--  # n (irand 20) # pan "[0 0.5 1]"
+d3 $ every 8 ((jux(rev)).(striate (irand 120))) $ s "auto:3*8" # gain "0" # pan "[0.5 0 1]" # speed (irand 40)
+
+
+
+d1 $ s "tt_fx*8" # n (irand 100) # cut "1" # gain "0" -- # lpf (slow 4 $ scale 100 20000 $ rand)
+
+d1 $ s "tt_vocal:3/4" # gain "0.8" # speed "-0.4" -- # cut "1" 
+d1 $ s "tt_perc*4" # gain "0.9" # n (irand 10) # lpf "900"-- # cut "1" -- # speed "-0.4" -- # cut "1" 

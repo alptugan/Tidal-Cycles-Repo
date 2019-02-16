@@ -11,3 +11,5 @@ d1 $ slow 16 $ striate 16 $ sound "bev" # loop  "1"
 -- play part of a long sample file
 d1 $ zoom (0.6, 0.65) $ striate 32 $ sound "bev" # cut "1"
 
+-- fade In
+t1 (xfadeIn 30) $ s "bd" # gain "1"
