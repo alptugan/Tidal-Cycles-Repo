@@ -22,7 +22,7 @@ d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "1"
 d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
 
-d1 $ s "arp" # gain "0" # cut "1"
+d1 $ s "arp" # gain "1" # cut "1"
 d2 $ up "4 5 6 7"  # s "arp" # gain "1.2" -- # speed rand
 d3 $ loopAt "4" $ striate 64 $ s "arp:1" # gain "0.7" # speed "15.5"
 
@@ -186,7 +186,7 @@ d1 $ slow 9 $ striate 9 $ sound "atrip1:0" # gain "0"
 
 
 d1 $ stack [
-    slow 9 $ striate 9 $ sound "atrip1:0" # gain "0.78",
+    slow 9 $ striate 9 $ sound "atrip1:0" # gain "1",
     -- slow 4 $ striate 4 $ sound "atrip1:1",
     -- slow 12 $ striate 12 $ sound "atrip1:2",
     -- slow 15 $ striate 15 $ sound "atrip1:3",
@@ -205,7 +205,7 @@ d1 $ stack [
 d2 $ zoom(0.1,0.6) $ striate 9 $ s "atrip1" # gain "1" # speed "0.5"
 d3 $ slow 9 $ striate 9 $ s "atrip1:0"
 
-d1 $ sometimesBy 0.25 ((# n (irand 30)).(fast 2).(#accelerate "0.6").(#speed (scale 0 10 $ rand))) $ s "bleep*8" # n (irand 32) # cut "1" # gain "0" # pan "[0 0.5 1.0]"
+d1 $ sometimesBy 0.25 ((# n (irand 30)).(fast 2).(#accelerate "0.6").(#speed (range 0 10 $ rand))) $ s "bleep*8" # n (irand 32) # cut "1" # gain "1" # pan "[0 0.5 1.0]"
 
 d4 $ slow 8 $ striate 13 $ sound "atrip1:2" # speed "0.25"
 
@@ -246,6 +246,7 @@ t2 (xfadeIn 5) $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $
 
 
 solo $ d1 -- $ every 4 (iter 4) $ e 8 8 
+
 $ stack [
   --sound (samples "bass1:0*4" (run 10)) # gain "1" # cut "1",
   every 4 (const $ s "ifdrums:10*4 ~ ifdrums:10*2 ifdrums:3" # gain 0.95) $ sound "ifdrums:10" # gain "1",

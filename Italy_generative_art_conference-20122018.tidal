@@ -14,7 +14,7 @@ let pat5 = "{[~ 0] 0 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0 -12 0*4 ~ [~ 0] [~ 0] ~ 0*2
 let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
 
 -- Ambient 1
-d4 $ slow 19 $ striate 19 $ sound "sheffield" # gain "1" # speed "0.3" # lpf (fast 2 $ scale 300 5000 $ sine)
+d4 $ slow 19 $ striate 19 $ sound "sheffield" # gain "1" # speed "0.3" # lpf (fast 2 $range 300 5000 $ sine)
 d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo sea/2 " # n (irand 12) # gain "1 1"
 d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0.5]" # pan (slow 0.3 $ saw)
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 4 $ saw) # gain "1"
@@ -62,7 +62,7 @@ cps 1
 let r = [0.1,-2,0.3,4,30]
 
 -- Alone in myself - prova
-d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 -4 30]" # cutoff (scale 0 5000 $ sine) # gain "0"
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 -4 30]" # cutoff (range 0 5000 $ sine) # gain "1"
 
 
 -- AP TN REMIX
@@ -114,8 +114,8 @@ $jux (iter 16)
 $s "supersaw(7, 16, {3, 4})" # n "{c7, e7, c4, g6, f7, g7, a7, d8}"
 |+| up "5 0 -5 0 -12 12 7 0 -7 0"
 #sustain "0.05"
-#cutoff (scale 100 1000 $slow 5 $sine1) #resonance "0.3" -- scale between 100-1000
-#gain "0.5"
+#cutoff (range 100 1000 $slow 5 $sine) #resonance "0.3" -- scale between 100-1000
+#gain "0.8"
 #shape "0.5"
 
 
@@ -143,8 +143,8 @@ d2 $ randcat [
 
 d2 $ stack [
     s "bd",
-    s "latibro"
-    --zoom(0.2,0.35) $ striate 64 $ s "melt" # cut "1"
+    s "latibro",
+    zoom(0.2,0.35) $ striate 64 $ s "melt" # cut "1"
 ] # gain "0.9"
 
 d5 silence
@@ -156,13 +156,13 @@ d1 $ s "drum*8" # n (irand 15) # gain "1"
 
 d1 $ stack [
     randcat [
-    -- s "drum*8" # n (irand 32) # lpf (fast 2 $ scale 100 4000 $ sine),
-    -- striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1",
-    -- s "drum*8" # n (irand 2) # speed "-1",
-    -- s "drum*8" # n (irand 4),
-    -- s "drum*8" # n (irand 32)
-    -- s "drum*16?" # n "1" # speed "0.1" # gain "0.7" # cut "1"
+     s "drum*8" # n (irand 32) # lpf (fast 2 $ range 100 4000 $ sine),
+     striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1",
+     s "drum*8" # n (irand 2) # speed "-1",
+     s "drum*8" # n (irand 4),
+    s "drum*8" # n (irand 32),
+     s "drum*16?" # n "1" # speed "0.1" # gain "0.7" # cut "1"
     ],
-    -- s "auto:6*8"
-    --s "moog"
-] # gain "1" # lpf (slow 2 $ scale 100 20000 $ sine)
+     s "auto:6*8",
+    s "moog"
+] # gain "1" -- # lpf (slow 2 $ range 100 20000 $ sine)

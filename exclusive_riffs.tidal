@@ -6,25 +6,27 @@ d3 $ striate 32.(every 4 (64)) $ fast 0.2 $ up "[0 1 3 10]/8" # sound "<ade:5 ~>
 cps(0.8)
 
 hush
-d1 $ sound "akuma1*8" # n (irand 1) # gain "0."
+d1 $ sound "akuma1*8" # n (irand 1) # gain "1"
 d1 $ sound "akuma1*8" # n (irand 1) #gain "1 1.2 1 0.8 1.1 1.2"
-d1 $ sound "akuma1*8" # n (irand 19) #gain "1 1.2 1 0.9 1.1 1.2" # pan(slow 1 sine1)
+d1 $ fast 2 $ sound "akuma1*8" # n (irand 19) #gain "1 1 1 0.9 0.96 0.99" # pan (slow 2 $ sine)
 
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:1"  # pan (slow 8 $ saw) # gain "0.9"
 d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12)
 d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 12) #gain "1 1.05 1 0.8 1.1 1.1"
 d1 $ every 8 ((striate 8).jux(rev)) $ sound "auto*8" # n (irand 12)
 d2 silence
-d2 $ up "[2 0 ~ 4]/4" #sound "bass1" #gain "1 1 1.2 1"
+d2 $ up "[2 0 ~ 4]/4" #sound "bass1" #gain "1.1 1.3 1.2 1.1"
 d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
 hush
 -- alternatebass line and minimal noises
 cps(1)
-d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 0.95 # pan (slow 1 sine1)
+
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain "1" # pan (slow 1 sine)
+
 d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ sine? ~ psr:18 psr:20*2>" # gain "0.7"
 --d2 $ sound "psr*8" # n (irand 27) # gain "0.8"
-
-d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain 0.95 # pan (slow 1 sine1)
+setcps 1
+d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain 0.95 # pan (slow 1 sine)
 
 d5 $ loopAt 2 $ s "bass1" # gain 1.3
 d6 $ s "click:3/2 sine*4?" # gain "1.2 0.5"

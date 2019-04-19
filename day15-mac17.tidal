@@ -249,56 +249,37 @@ let pat5 = "{[~ 0] 0 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0 -12 0*4 ~ [~ 0] [~ 0] ~ 0*2
 let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
 
 -- INTRO 5
-<<<<<<< HEAD
-d4
-$stack[
-=======
-
-
-cps 0.25
+setcps 1
 
 d4
 $ stack[
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
   s "sine(5,16)" # n "{c5, e5, f5, g5, a5}"
 ]
 #cutoff (scale 800 15000 $slow 4 $sine1) #resonance "0.2"
 #sustain "0.08"
-<<<<<<< HEAD
 #gain "1"
-=======
 #gain "0.4"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 
 -- INTRO 6
 -- 01
 d1
 $s "akuma2(3, 16)"
-<<<<<<< HEAD
 #gain "1.0"
-=======
 #gain "0.7"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
  #cutoff (scale 800 8000 $rand) #resonance "0.3"
  #delay "0.8" #delaytime "0.01 0.02 0.03 0.005" #delayfeedback "0.8"
 
 d2
 $s "akuma3(3,16,5)"
 #sustain "1.0"
-<<<<<<< HEAD
 #gain "1.0"
-=======
 #gain "0.7"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 
 d3
 $s "akuma4(3,16,9)"
 #sustain "1.0"
-<<<<<<< HEAD
 #gain "1.0"
-=======
 #gain "0.7"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 
 
 hush
@@ -313,11 +294,8 @@ $stack[
 ]
 #cutoff (scale 800 15000 $slow 4 $sine1) #resonance "0.2"
 #sustain "0.08"
-<<<<<<< HEAD
 #gain "1"
-=======
 #gain "0.6"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 
 hush
 
@@ -329,19 +307,16 @@ d5
 $slow 2
 $sound "ifdrums*2 ~ ~ ~ ~ ~ ~ ~"
 #n "[0 2] 0 0 0 0 0 0 0"
-<<<<<<< HEAD
 #gain "1.5"
 
 d6
 $jux (iter 16)
 -- $every 2 (#gain "0")
-=======
 #gain "0.8"
 
 d6
 $jux (iter 16)
 $every 2 (#gain "0")
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 $stack [
   s "auto(3, 16, 5)",
   s "drum(2, 16, 2)",
@@ -349,11 +324,8 @@ $stack [
   s "glitch(2, 16)"
 ]
 #n (irand 64)
-<<<<<<< HEAD
 #gain "1"
-=======
 #gain "0.9"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 #pan (rand)
 
 hush
@@ -362,22 +334,16 @@ hush
 d6
 $jux (iter 8)
 $sound "{ifdrums(3, 16, 3), drum(3, 16, 2), glitch(3, 16)}"
-<<<<<<< HEAD
 #gain "1.3"
-=======
 #gain "0.8"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 #n (irand 64)
 #pan (rand)
 
 d6
 $jux (iter 8)
 $sound "{ifdrums(5, 16, 3), chin:6(5, 16, 2), glitch(11, 16, 2)}"
-<<<<<<< HEAD
 #gain "1"
-=======
 #gain "0.8"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 #n (irand 64)
 #pan (rand)
 
@@ -394,11 +360,8 @@ $ stack [
 ]
 #pan (rand)
 #n (irand 64)
-<<<<<<< HEAD
 #gain "1.3"
-=======
-#gain "0.7"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
+#gain "0"
 #shape "0.5"
 
 
@@ -421,11 +384,7 @@ $ stack[
   sound "sine(3,16,3)"
 ]
 #n (irand 128)
-<<<<<<< HEAD
-#gain "1"
-=======
 #gain "0.6"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 #shape "0.3"
 #pan (rand)
 #up "{7 0 -7 0 5 -12 0 12 0 7 0 -7 0 12}%16"
@@ -435,19 +394,16 @@ $ stack[
 
 -- INTRO 7
 cps(0.9)
-<<<<<<< HEAD
 d1 $ s "drum*8" # n (irand 8)
 d2 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0 
 d3 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" 
 d4 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) 
 d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.8"
-=======
 d1 $ s "drum*8" # n (irand 8) # gain "1"
 d2 $ every 4 ((# gain "0").(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0 
 d3 $ slow 4 $ every 4 (const $ up "12*14 ~ 12*14 ~" # s "bass1") $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" 
 d4 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "1"
 d5 $ s "cosmicg*8?" # n (irand 13) # gain "0.7"
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 d6 $ sometimesBy 0.25 (# gain 1) $ s "dark/8" # n "2" # sustain "10" # gain 0
 
 -- INTRO 8
@@ -462,15 +418,18 @@ slow 8 $ sound "sine*4" # gain 0.8
 
 -- INTRO 9
 cps 0.5
-d1 $ sound "auto*8" # n (run 32)
-<<<<<<< HEAD
+d1 $ sound "auto*8" # n (run 32) # gain 0
 d1 $ sound "auto*8" # n (irand 32) #pan rand
 
 d2 $ up "[0 2 4 5]/4" # sound "bass1" # gain "1.1"
-d3 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 8) # gain 0.95
+d3 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 8) # gain 0.95 # cut "1"
+
+d2 $ whenmod 8 2 (# up "[8 2 4 4]/4") $ up "[0 2 4 5]/4" # sound "bass1" # gain "1.1"
+d3 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 8) # gain 0.95 # cut "1"
+d3 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 8) # gain 0.95 # cut "1"
+d2 $ whenmod 8 2 (# up "[8 2 4 4]/4") $ up "[0 2 4 5]/4" # sound "bass1" # gain "1.1" 
 
 -- INTRO 10
-=======
 d1 $ sound "auto*8" # n (irand 32) #pan rand # gain "0.9"
 d1 $ every 4 (striate irand(64)) $ sound "auto*8" # n (irand 32) #pan rand # gain "0.9"
 
@@ -479,7 +438,6 @@ d3 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 8) # gain 0.75
 
 -- INTRO 10
 cps 0.5
->>>>>>> ae923d8e17b98f75fdbb07c058265b3ccc9f2e72
 d1 $
 stack [
   sound (samples "bass1:0*4?" (run 10)) # gain 0.9 # cut "1",
@@ -492,7 +450,7 @@ stack [
 ]
 
 -- break beat
-d1 $ every 8 ( # speed (rand + 0.1)) $ sound "akuma3*6" # n ((irand 10) + 13)
+d1 $ every 8 ( # speed (rand + 0.1)) $ sound "akuma1*6" # n ((irand 10) + 13)
 d1 $ s "akuma1*6" # n (choose [4,5,1,2,3,6,7,8,9,10])
 d1 $ n (run "<4 8 4 6>") # sound "amencutup"
 
@@ -522,9 +480,3 @@ d2 $ slowcat [
 
 
 cps (1)
-
-  d1 $ seqP [ 
-    (0, 12, sound "bd bd*2"), 
-    (4, 12, sound "hh*2 [sn cp] cp future*4"), 
-    (8, 12, sound (samples "arpy*8" (run 16)))
-  ]

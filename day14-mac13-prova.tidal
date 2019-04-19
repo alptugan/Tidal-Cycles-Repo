@@ -35,5 +35,5 @@ d3 silence
 --- set 3
 d4 $ degradeBy 0.5 $ slow 45 $ striate 64 $ s "dark:2" # gain "0"  
 d1 $ slow 4 $ striate 16 $ s "pad:0" # pan sine # gain "0"
-d2 $ s "procshort*4?" # n (irand 6) # gain "0" # pan "[0 1]"
+d2 $ s "procshort*4?" # n (irand 6) # gain "1" # pan "[0 1]"
 ---

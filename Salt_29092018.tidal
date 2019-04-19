@@ -42,7 +42,7 @@ d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "0.85 1
 d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
 d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "0.7"
 d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
-d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "0" # speed (rand)
+d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "1" # speed (rand)
 ---------------
 
 """ old riff - complex systems2 """
@@ -90,7 +90,7 @@ d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
 
 -----------------
 ---- SOME KIND OF WIERD
-d1 $ s "imp*5" # gain 1 # cutoff (scale 20 20000 $ slow 3 $ sine)
+d1 $ s "imp*5" # gain 1 # cutoff (range 20 20000 $ slow 3 $ sine)
 d1 $ s "cyclo*5" # gain 1 # speed 1 #accelerate 1
 
 

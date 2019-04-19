@@ -1,0 +1,24 @@
+d1 $ fast 2 $ sound "akuma1*8" # n (irand 19) #gain "0.9 0.88 0.89 0.9 0.96 0.99" # pan (slow 2 $ sine)
+d2 $ up "[2 0 ~ 4]/4" #sound "bass1" #gain "1.1 1.3 1.2 1.1 1.1"
+
+d1 $ slow 2 $ randcat [
+    fast 2 $ sound "auto*8" # n (irand 19) #gain "0.9 0.88 0.89 0.9 0.96 0.99" # pan (slow 2 $ sine)
+    ,fast 3 $ sound "akuma1*4" # n (2 + irand 2) # gain "0.9"
+    ,fast 4 $ sound "akuma1*4" # n (4 + irand 2) # gain "0.9"
+   --- ,fast 5 $ sound "akuma1*4" # n "4" # cut "1"
+]
+
+setcps "0.5"
+
+d1 $ every 4 (# n (irand 8)) $ s "~ tt_fx:4" # gain "1"
+
+d1 $ stack [
+    every 4 (# n (irand 8)) $ s "~ tt_fx:4" # gain "1"
+   -- ,whenmod 8 2 (# n (irand 8)) $ s "tt_vocal:2/4" # gain "1"
+    --,whenmod 8 2 (fast 4) $ s "tt_kick:4" # gain "1"
+    ,s "tt_sn" # gain "1"
+]
+
+d1 $ stack [
+   s "whisper/2" # gain "1"
+]

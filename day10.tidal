@@ -1,7 +1,7 @@
 d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
 |+| sustain "0.25"
 |+| delay "0.5" # delaytime "0.375" # delayfeedback "0.75"
-|+| cutoff (scale 800 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.4 $ slow 4 $ sine1)
+|+| cutoff (range 800 1000 $ slow 4 $ sine) # resonance (range 0.02 0.4 $ slow 4 $ sine)
 
 
 let pat1 = "{0*2 ~ [0 ~] ~ 0*4 [~ 0] 0}%4"

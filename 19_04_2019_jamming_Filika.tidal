@@ -1,0 +1,25 @@
+4 2 5
+d2 $ slow 4 $ s "aspeech" # n (irand 5) # gain "1" # pan "[0 0.5 1]"  
+
+d2 $ stack [
+    slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
+   ,degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # speed rand # n (irand 8) # gain 0.6 # cut "2"
+   ,degradeBy "0.25"  $ s "tt_fx*8?" # n ("28" + irand 7) # gain "0.57" # cut "3"  -- 18,28 not bad
+]
+
+-- p1 channel p2 loop num
+xfadeIn 2 48 $ s "bd" # gain "0"
+
+d6 $ stack [
+    every 4 ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
+    ,s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" # gain "0.98"
+]
+
+d6 $ stack [
+    every 4 ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
+    ,whenmod 8 4 (const $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}") $ s "bd" # gain "0"
+    ,whenmod 8 4 (const $ s "bd" # gain "0") $ s "{aset1:4*4, aset1*8}"
+]
+
+xfadeIn 6 32 $ s "bd" # gain "0"
+
