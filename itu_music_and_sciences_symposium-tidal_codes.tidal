@@ -1,0 +1,11 @@
+-- play the 1st sound file from tt_fx folder
+d1 $ sound "tt_fx"
+
+-- play the 3rd, 1st, 5th and 9th sound files from tt_fx folder in sequence
+d1 $ sound "tt_fx:2 tt_fx:0 tt_fx:4 tt_fx:8"
+
+-- play the sound files from the tt_fx folder randomly
+-- # n represents the sound file index.
+-- (irand 32) is a function that generates random integers from 0 - 32 on every cycle
+-- # cut "1" limits the release time of the sound currently playing into its own cycle, so the playing sounds don't overlap each other
+d1 $ sound "tt_fx*8" # n (irand 32) # cut "1"
