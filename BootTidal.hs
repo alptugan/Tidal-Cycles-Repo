@@ -54,4 +54,7 @@ let d14 = p 14
 let d15 = p 15
 let d16 = p 16
 
+let bpm x = setcps(x/120)
+
 :set prompt "tidal> "
+

@@ -1,0 +1,10 @@
+bpm 120
+d1 $ degradeBy 0.24 $ sound "ttm*8" # n (irand 95) # cut "1"
+
+do
+    once $ s "01ambi:5" # gain "0.8"-- # cut "1" 
+
+
+bpm 120
+
+d1 $ s "bd"

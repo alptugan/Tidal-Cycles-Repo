@@ -45,5 +45,5 @@ d1 $ stack [
   ,whenmod 4 2 (jux(rev)) $ s "super808 superclap ~ superkick*2" # gain "1.2" # sustain "4" 
 ]
 
-setcps(1)
+bpm 120
 d1 $ s "{auto:3(4,4) auto:4(2,4)}"
