@@ -1,22 +1,23 @@
-4 2 5
+-- 4 2 5
+bpm 120
 d2 $ whenmod 8 2 (striate 64) $  slow 4 $ s "aspeech" # n (irand 5) # gain "0.6"  
 
 -- 1
-xfadeIn 2 15 $ slow 4 $ up "[0 0 0 0]" # sound "bass1" # gain "1.1" # cut "1"
+xfadeIn 2 15 $ slow 4 $ up "[0 0 0 0]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100
 
 -- 2
-d2 $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"
+d2 $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100
 
 -- 3
-d2 $ sound "bass1" # up (choose [0,2,4,5]) # gain "1.1" # cut "1"
+d2 $ sound "bass1" # up (choose [0,2,4,5]) # gain "1.1" # cut "1" # hpf 100
 
 -- 4
-d3 $ degradeBy "0.8" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound "defdo*4" # n (irand 18) # gain 0.68 -- # cut "2"
+d3 $ degradeBy "0.8" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound "defdo*4" # n (irand 18) # gain 0.65 -- # cut "2"
 
 -- 2
 d3 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain 0.75 # cut "2"
 
-d1 $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "0.66" # cut "3" 
+d1 $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "0.7" # cut "3" 
 
 
 d2 $ stack [
@@ -28,40 +29,25 @@ d2 $ stack [
 -- p1 channel p2 loop num
 xfadeIn 3 16 $ s "bd" # gain "0"
 
-d6 $ stack [
-    every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15")) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"
-    ,s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" # gain "1"
-]
+
 
 d6 $ stack [
-    every 4 ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
-    ,whenmod 8 4 (const $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}") $ s "bd" # gain "0"
-    ,whenmod 8 4 (const $ s "bd" # gain "0") $ s "{aset1:4*4, aset1*8}"
+    --every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "4"  # hpf 100
+    s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" # gain "1"
+    ,every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15").(# hpf 150)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "4"  # hpf 100
 ]
 
-xfadeIn 6 30 $ s "bd" # gain "0"
 
 
--- 3 
-d6 $ s "{aset1:4*4, aset1*8}"
-d6 $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" 
-d6 $ whenmod 8 4 ((jux(rev)).(# speed "-1").(# gain "0.9")) $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" 
+xfadeIn 8 30 $ s "bd" # gain "0"
 
--- 4 -- selcuk whenmod dan sonra
-d6 $ 
- randcat [
-    s "{aset1:4*4, aset1*8}"
-    ,s "{aset1:4*4, aset1*8 aset1:2}" 
-    ,s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" 
-    ,whenmod 8 4 ((jux(rev)).(# speed "-1").(# gain "0.9")) $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" 
- ]
 
  -------------------------------------------------------
 
- d7 $ whenmod 8 6 ((fast 4).(# pan "[0.5 0 1]")) $ s "gabba:1*2" # gain "1.1" # lpf (range 200 8000 $ slow 2 $ sine)
+ d8 $ whenmod 8 6 ((fast 4).(# pan "[0.5 0 1]")) $ s "tta*2" # n (irand 10) # lpf (range 200 8000 $ slow 2 $ sine) # hpf 100 # gain "0.85"
 
  d7 $ whenmod 8 3 ((fast 2)) $ every 4 (striate 12) $ s "tt_fx:3 tt_clap:3*4" # gain "0.75" # pan "[0.3 0.5 0.8]"
 
  d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5")) $ every 4 (striate 32) $ s "tt_clap:6 tt_clap:3*4" # gain "0.75" 
 
- d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.8" 
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.8" # hpf 100
