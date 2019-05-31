@@ -1,0 +1,64 @@
+bpm 120
+
+d2 $ every 4 (iter 1) $ sound "bd*2 [bd [hh hh*2 hh] hh]"
+   # speed (-2 + 4*rand)
+
+list
+resetCycles
+
+-- Keep it
+d1 $ s "{<gabba tta:7*40 [tta:1 [ttm:5 ttm:0 ttm:15 ttm:4] tta:8*40 tta:2*40 tta:9*40] tta:2*40> ,tta:10*10}"
+
+do
+let patN = "gab gabba"
+let patF = "gab [gab:1 gab:3? gab:4?] gab:2 <gabba tta:7*40 [tta:1 ttm:5 tta:8*40 tta:2*40 tta:9*40] tta:2*40>"
+d1 $ s patN
+d1 $ whenmod 11 8 (const $ every 4 (iter 4) $ s patF ) $ s patN
+
+
+d1 $ every 4 (iter 2) $ sound (fit 3 ["tta:25", "tta:10", "ttm:13", "tta:7", "ttm:9", "tta:9","tta:19","tta:18","tta:17"] "0 [2? 1] 2 0")
+-----
+
+d2 $ smash 4 [2,3,4] $ sound "noise noise:2 noise:3 noise"
+
+-- Spread
+d2 $ spread ($) [fast 2, rev, slow 2, striate 3, (# speed "0.8")]
+    $ sound "[bd*2 [~ bd]] [tta:19 auto]*2 tta:10 bass*4" -- # cut "1"
+
+
+-- Trunc
+-- Plays the first two cycles
+setcps (120/60/4)
+bpm 120
+d1 $ trunc (2/4) $ sound "bd hh*2 tta:13 hh*4" # crush (slow 2 $ sine*8)
+
+d1 $ zoom (0,1) $ every 8 ((brak).(jux(rev))) $ loopAt 16 $ rev $ chop 128 $ sound "pad:1" # gain "0.85" # cut "1"
+d2 $ chop 16 $ whenmod 8 6 ((# n "akuma2:8*4").(# pan (slow 2 $ range 0 1 $ sine))) $ every 3 (iter 4) $ every 21 (iter 3) $ sound (samples "akuma1*8" (run 4)) # gain "0.9" # cut "3"
+d3 $ whenmod 8 6 ((# s "bass1").(rev)) $ iter 4 $ up "1 0 3 0" # s "bass1:0" # cut "2" # hpf "90"
+
+unsolo 3
+unmute 2
+unmute 1
+
+----------------------
+-- ifp
+d1 $ s "tta:4*4 tta:2*4" # coarse (slow 8 $ run 100) # n (4 + (run 4))
+
+d1 $ ifp ((== 0).(flip mod 2))
+  (striate 4)
+  (# coarse "24 16") $
+  sound "hh hh:2"
+
+--- superimpose
+
+d1 $ superimpose (fast 20) $ sound "bd hh" # cut "1"
+d1 $ sound "bd(3,8)"
+d1 $ sound "[[gabba gabba] gabba]" # legato "1"
+
+
+-- nudge
+d1 $ stack [
+  sound "bd bd/4",
+  sound "hh(5,8)"
+  ] # nudge "[0 0.04 0.002]*4"
+

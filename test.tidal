@@ -1,0 +1,232 @@
+d1 $ s "bd" 
+
+
+
+
+d1 $s"gabba*8"#n(choose[0,5,0,1])#cutoff(slow 2$range 20 9999 $ rand)#pan(slow 3$choose[0,0.125..0.875])#cut(choose[0,1,3])#shape 0.19
+
+d1 $slow 0.15$s(randcat["if*3","ifdrums","if*2"])#cut 1#n(irand 4)#pan(fast 9 $ rand)#lpf(range 200 9999 $ rand) # up(range (-9) 9 $ rand)#gain 1
+
+
+    setcps 0.5
+
+d1 $ s"{auto? gabba tt_fx,tt_kick}%8"
+# n(choose[0..12]) 
+# begin saw
+# end(slow 2 $ saw) 
+# pan(slow 9 $ rand) 
+# up(choose[-9,-8.5..9]) -- # cut(run 1)
+
+d1 $s"auto*7?"#n(irand 10)#cut"1"#speed(slow 9$range 0.25 2 $ sine)#shape(slow 18$sine)#pan(slow 17$tri)#nudge(slow 16$sine) #loop 19
+
+d1 $slow 0.1$s"armora*2"#n 6#release 0.5#cutoff(slow 0.1$range 20 9999 $ rand)#resonance rand#speed(range 0 3 $ rand)#pan"0 0.25 0.5 0.75 1"
+
+d1 $slow 0.1$s"bev"#n(choose[0..31])#pan(slow 198 $ saw)#nudge(slow 99$range (-0.5) 3 $ sine)#up 3#release(slow 2 $ rand)#gain 1
+
+d1 $slow 0.13$s(randcat["bass1","rave2","ifdrums","hh"])#n(slow 0.1$irand 29)#up(discretise(1/29)(choose[0..33]))#cut 1#pan(slow 66 saw)
+
+bpm 120
+
+d1
+$ fast (slow 0.1 $ choose [1,1.125..16])
+$ s "sea"
+# n (irand 72 - 48)
+# attack (slow 0.11 $ range 1 8 $ rand)
+# rel (slow 0.12 $ range 1 8 $ rand)
+# sustain (slow 0.14 $ range 6 12 $ rand)
+# pan (slow 0.15 $ rand)
+# gain (slow 0.16 $ range 0.1 1 $ rand)
+
+-----------------------------------
+
+d1        
+$ iter 2
+$ sometimesBy (1/5) (1<~)                   
+$ sometimesBy (1/4) (slow 2)                   
+$ sometimesBy (1/3) (slow 4)                   
+$ sometimesBy (1/2) (slow 8)                   
+$ sometimesBy (3/4) (slow 16)                   
+$ sometimesBy (4/5) (slow 32)                   
+$ degradeBy 0.6
+$ spreadChoose _fast [1..12]
+$ spaceOut (map (toRational . exp . (/8) . (1-)) [1..40])
+$ s "bit1(3,8,5)"
+# n (discretise (1/1) $ choose ([0..4]++[56..57]++[78..83]))
+# gain (discretise (1/29) $ slow 0.12 $ range 1 2 $ rand)
+# pan (slow 0.13 $ rand)
+# up (discretise (1/29) $ slow 0.16 $ range (-9) 3 $ rand)
+# rel (discretise (1/29) $ slow 0.17 $ range 0 0.2 $ rand)
+
+d2
+$ s "tt_fx*8"
+# n (slow 0.2 $ choose [0..36] )
+# pan (slow 0.21 $ rand)
+# up (slow 0.22 $ choose [0,1,3,4,6,8,10] + choose [0,12,24])
+# cut (slow 0.23 $ choose [0,4])
+# gain (slow 0.24 $ range 2 5 $ rand)
+# lpf (slow 0.25 $ range 20 20000 $ rand)
+# shape (slow 0.26 $ range 0.1 0.9 $ rand)
+# rel (slow 0.27 $ range 0.1 0.9 $ rand)
+
+d3
+$ sometimesBy (1/2) (iter 4)
+$ s "gabba*8?"
+# n (slow 0.28 $ choose [1..36] )
+# gain (slow 0.29 $ range 2 6 $ rand)
+# pan "0 0.5 1 0.5 0 0.5 1 0.5"
+# up (-4.5)
+# rel (slow 0.31 $ range 0.3 0.9 $ rand)
+# cut (slow 0.32 $ choose [2,1] )
+
+------------------------------------------
+-- Binary Patterns 
+------------------------------------------
+let inverse 1 = 0
+    inverse 0 = 1
+
+do
+    let pat = "[1 0 1 1 0 1 0 0]"
+    d1 $ fast 2 $ gain pat # sound "tt_kick:4" # cut "1"
+    d2 $ gain (inverse <$> pat) # sound "tt_fx" # n (choose [9, 7, 9, 10 , 12])
+    d3 $ foldEvery [3,4] (0.125 ~>) $ gain pat # sound "tt_clap" # n (irand 8)
+    d4 $ gain pat # sound "mlbarkick:2"
+
+    setcps "1"
+
+do
+    let pat1 = "<1 1 1 1 0 0 0 0>"
+    let pat2 = "<1 1 1 1 0 0 2 0>"
+    let pat3 = "<1 1 3 4 0 0 2 0>"
+    -- d1 $ s "latibro(3,8)" # cut "1" # gain "1.2" # n pat1
+    d1 $ sometimesBy (0.5) (# n pat2) $ s "latibro(3,8)" # cut "1" # gain "1.2" # n pat1
+
+
+setcps 1
+-- stut x(number of times to play same note) y(gain) z(time)
+d1 $ stut 2 0.5 0.125 $ s "bd(3,8)" 
+d1 $ stut 4 0.5 0.125 $ s "bd(3,8)" 
+d1 $ rev $ stut 8 0.6 0.25 $ s "bd(3,8)" 
+
+-- stut'
+d1 $ stut' 3 0.125 (|*| gain "0.8") $ s "bd(3,8)" 
+d1 $ stut' 3 0.125 (|*| speed "0.8") $ s "bd(3,8)" 
+d1 $ stut' 3 0.125 (|*| speed (choose[0.2,-3,5,1,0.4])) $ s "bd(3,8)" 
+d1 $ stut' 3 0.125 (|*| speed (every 2 (0.25 <~) $ "1 2 6 4 5 6")) $ s "bd(3,8)" 
+
+-- off
+d1 $ off 0.125 (|*| speed (rand)) $ s "gab(3,8)" # n (irand 100) -- # cut "1" 
+d1 $ off 0.125 (|*| speed (4 + rand)) $ s "gab(3,8)" # n ("1 2 3 4 5 6 7 8 9") -- # cut "1" 
+d2 $ (0.25 ~>) $ off 0.125 (|*| speed (4 + rand)) $ s "gabba(3,8)" # n ("1 2 3 4 5 6 7 8 9") -- # cut "1" 
+d2 $ (0.25 ~>) $ off 0.125 (|*| speed (40 + rand)) $ s "gabba(3,8)" # n (choose [1,2,3,4,5,6,7,8,9,10]) -- # cut "1" 
+d1 $ off 0.125 (|*| speed (4 + rand)) $ s "gab(3,8)" # n (choose [1,2,3,4,5,6,7,8,9,10]) # cut "1"
+d3 $ every 4 (|*| speed ( (0.25 <~) $ "1 2 6 4 5 6")) $ s "tt_fx(3,8)" # n (irand 32)
+
+
+------------------------------------------
+-- 01.04.2019 - Nick Collins Break Beat paper
+------------------------------------------
+-- Tidal's timing is based on cycles, rather than beats, however it is more common for people to think in terms of beats per minute (BPM). If you prefer to think in this way, you have to decide how many beats you want to have per cycle, and divide accordingly. For example if you wanted to play at 140 bpm, with four beats per cycle, then you could do:
+
+setcps (160/60/4)
+
+-- akuma5
+-- 0 kick
+-- 1 hihat
+-- 2 snare
+setcps 1
+
+do
+    let pat1 = "0 1 2 1 4 9 8 3 9 9 ~ 0"
+    d1 $ every 8 ((within (0, 0.5) (#speed 2)).(iter 16)) $ sound "akuma5*8" # n (pat1) # gain "1.3" 
+
+
+    d1 $ every 8 (iter 4) $ sound "akuma7*8" # n "0 ~ 0? ~ ~ ~ ~ 0? ~ ~ 0? ~ ~ ~ ~ 0?"# gain "1.3" 
+    d2 $ every 8 (iter 8) $ iter 4 $ sound "akuma7*8" # n "~ ~ ~ ~ 2 ~ ~ 3? ~ 4? ~ ~ 2 ~ ~ 5?"# gain "1.3" 
+    d3 $ every 8 (iter 2) $ iter 4 $ sound "akuma7*8" # n "~ ~ 1 ~ ~ ~ 1 1? ~ ~ 1 ~ ~ ~ 1 1?"# gain "1.3" 
+
+-- SONGI
+d2 $ cat [sound "bd", sound "gabba"]
+
+d2 $ fastcat [sound "tt_kick:4(8,1,<2 0>)" # gain "1.2", sound "tt_kick:8" # gain "1"]
+
+-- INTERLACE
+d1 $ interlace (sound  "tt_fx:7 tt_fx:4 tt_fx:3") (sound $ slow 2 $ "auto auto:2 auto*2")
+d1 $ whenmod 2 1 (const $ sound "ttm:10*160"  # gain "1") $ sound "ttm:9*64" # shape (range 0 0.8 $ square)  # gain "0.8"
+d1 $ whenmod 4 1 (const $ sound "hh*4") $ sound "bd*4" -- # shape (range 0 0.8 $ square)
+
+d1 $ stack [
+    whenmod 2 1 (const $ sound "ttm:10*160") $ sound "ttm:9*64" # shape (range 0 0.8 $ square) # gain "0.6"
+    ,whenmod 4 1 (#gain "0") $ s "sine:0*30" # cut "1"  --  # cps (slow 64 $ range 1 0.5 $ saw)
+    ,sound "tta:8(3,8,<2 4 6>)" -- # n (111 + irand 15)
+]
+
+
+
+--------------------------------------------------------------
+-- Haskell
+-- print line
+putStrLn "Hello World!"
+
+-- function def
+cube x = x * x * x
+print(cube 3)
+
+do
+    print "Enter your name:"
+    name <- getLine
+    print ("Hello " ++ name ++ "!")
+
+
+-- to fix types we are using '::' 
+f :: Int -> Int -> Int
+f x y = x*x + y*y
+
+-- sample run
+print (f 2 3)
+
+--------------------------------------------------------------
+-- OSC
+--------------------------------------------------------------
+import Sound.OSC.FD
+import Data.Time
+
+
+c <- getCurrentTime
+
+--putStrLn Data.Time show today
+
+client <- openUDP "127.0.0.1" 12000
+
+--send fullscreen message
+sendOSC client $ Message "/video/control" [string "fullscreen"]
+
+--send volume message
+sendOSC client $ Message "/video/volume" [Float 0.7]
+
+--send play
+sendOSC client $ Message "/video/control" [string "play"]
+
+--send exit
+sendOSC client $ Message "/video/control" [string "exit"]
+
+
+--------------------------------------------------------------
+-- 26_05_2019   
+--------------------------------------------------------------
+d1 $ stack [
+    s "tta"
+]
+
+
+-- INTERLACE
+d1 $ interlace (sound  "tt_fx:7 tt_fx:4 tt_fx:3") (sound $ slow 2 $ "auto auto:2 auto*2")
+d1 $ whenmod 2 1 (const $ sound "ttm:10*160") $ sound "ttm:9*64" # shape (range 0 0.8 $ square)
+d1 $ whenmod 4 1 (const $ sound "hh*4") $ sound "bd*4" -- # shape (range 0 0.8 $ square)
+
+d1 $ stack [
+    whenmod 2 1 (const $ sound "ttm:10*160") $ sound "ttm:9*64" # shape (range 0 0.8 $ square) # gain "0.6"
+    ,whenmod 4 1 (#gain "0") $ s "tta:0*30" # cut "1"  --  # cps (slow 64 $ range 1 0.5 $ saw)
+    --,sound "tta:8(3,8,<2 4 6>)" # n (111 + irand 15)
+]
+unsolo 1
+d2 $ fastcat [sound "tt_kick" # gain "1.2", sound "tt_kick:10" # gain "1"]
