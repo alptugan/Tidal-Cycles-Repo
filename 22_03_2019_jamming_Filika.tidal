@@ -24,13 +24,15 @@ setcps 1
 ------------------------------ riff 1 - ambient dark techno -----------------------------
 -----------------------------------------------------------------------------------------
 -- Alone in myself - prova
-d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 -4 30]" # cutoff (range 0 5000 $ sine) # gain "1"
+unsolo 2
+
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 32)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8? glitch:3 glitch:7 tta:10 ttm:34" # gain 1 # speed "[0.1 -2 -0.3 -4 3]" # cutoff (slow  4 $ range 0 8600 $ sine) # gain "1"
 
 d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:2*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # gain 1 # speed "[0.1 -2 0.3 -4 -5]" # cutoff (range 1000 5000 $ sine) # gain "1"
 
 d3 $ every 4 (striate 128) $ fast 2 $ up "[0 2 9 10]/8" # sound "<pad:0>"  # pan (slow 4 $ saw) # gain "1"
 
-d4 $ every 4 (slow 10) $ s "tt_fx*100" # gain "1"
+d4 $ every 4 (slow 10) $ s "tt_fx*10" # gain "0" 
 
 --- riff 2
 d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 32) $ sound "<psr:25 ~ sine? newnotes:2 psr:16 psr:20*2>" # gain "<0.8 0.8 0.6 0.8 0.8>"
@@ -48,15 +50,16 @@ d1 $ s "akuma1*6" # n (choose [4,5,1,2,3,6,7,8,9,10])
 
 
 --- 
-d1 $ degradeBy 0.5 $ s "auto:3*8" # gain (choose [0.9,1,0.9,0.95])
+d1 $ degradeBy 0.1 $ s "gabba*8" # gain (choose [0.9,1,0.9,0.95,0.45]) # pan "[0.5 0 1]" -- # cut "1"
 d1 silence
 
-d2 $ degradeBy 0.5 $ s "sitar" # n (irand 8) # gain "1" # speed "0.1" # pan "0.5" -- # cut "1"
+d2 $ degradeBy 0.5 $ s "sitar" # n (irand 8) # gain "0.6" # speed "0.1" # pan "[0.5 0 1]" -- # cut "1"
 d3 $ every 4 ((jux(rev)).(striate 64)) $ s "gab" # gain "0.8"
 d3 $ every 4 ((jux(rev)).(striate 64)) $ s "square" # gain (choose [0.72,0.8,0.77,0.75])
 d3 $ every 4 ((jux(rev)).(striate 64).(#speed 1)) $ s "square" # gain (choose [0.82,0.83,0.87,0.79])
 d3 $ every 4 ((jux(rev)).(#speed 1)) $ s "gabba" # gain (choose [0.82,0.8,0.87,0.85]) # speed "[1,2,4]" # cut "1" # lpf (slow 4 $ range 100 1000 $ sine)
 
+d4 $ s "tta_hh"
 
 ---- ambient selçuk pad altı davul
 xfadeIn 10 
@@ -65,20 +68,22 @@ d1 $ every 16 (# gain "0")
     $ whenmod 8 4 (jux(rev))
     $ stack 
     [
-    degradeBy 0 $ s "ifdrums*8" # gain "1" # n (irand 19) # speed 9  # lpf (slow 4 $ range 300 5500 $ sine) -- # cut "1"
+    degradeBy 0 $ s "akuma1*8" # gain "0.1" # n (irand 20) # lpf "400" -- # cut "1"
     ,whenmod 8 2 (fast 2) $ s "tt_hh:4*8" # lpf (slow 4 $ range 2000 7000 $ sine) # pan "[0.5 0 1]"
     ,whenmod 8 2 (striate 64) $  slow 4 $ s "aspeech" # n (irand 5) # gain "1" # cut "1"  
-    ]
+    ] # gain "1"
 
 --- 
-d1 $ whenmod 4 2 (# speed "0.4") $ s "~ gab" # n (irand 4) # gain "1"
-d2 $ s "arp/4" # gain "1.2" # speed "-0.7"
-d3 $ degradeBy 0.5 $ s "tt_fx*4" # gain "0.75"
-d4 $ whenmod 8 2 (# n (irand 8)) $ s "tt_rimshot" # gain "0.8"
+d1 $ whenmod 4 2 (# speed "0.4") $ s "~ gab" # n (irand 4) # gain "0"
+d2 $ s "arp/4" # gain "0" # speed "-0.7"
+d3 $ degradeBy 0.5 $ s "tt_fx*4" # gain "0"
+d4 $ whenmod 8 2 (# n (irand 8)) $ s "tt_rimshot" # gain "0.58"
 
 d6 $ whenmod 4 2 ((0.25 <~)) $ whenmod 8 4 (striate 16) $ s "{aset1:4*4, aset1*8}" # gain "1.1"
 d6 $ s "{aset1:4*4, aset1*8 aset1:2}" 
 d6 $ s "{aset1:4*4, aset1*8 {aset1:2, aset1:3}}" 
+
+
 
 ---
 --1 selcuk ambi
@@ -153,7 +158,7 @@ d6 $ 
 
  -------------------------------------------------------
 
- d7 $ whenmod 8 6 ((fast 4).(# pan "[0.5 0 1]")) $ s "gabba:1*2" # gain "1.1" # lpf (range 200 8000 $ slow 2 $ sine)
+ d7 $ whenmod 8 6 ((fast 4).(# pan "[0.5 0 1]")) $ s "gabba:1*2" # gain "1" # lpf (range 200 8000 $ slow 2 $ sine)
 
  d7 $ whenmod 8 3 ((fast 2)) $ every 4 (striate 12) $ s "tt_fx:3 tt_clap:3*4" # gain "0.75" # pan "[0.3 0.5 0.8]"
 
@@ -163,19 +168,20 @@ d6 $ 
 
 -------------------------------------------------------
 -- set 3 
+
 d1 $ stack [
-    s "moog" # gain "1" # cut "1"
-    , s "jungbass:5/8" # gain "1.2"
-    , whenmod 8 6 (( fast 2).(# pan "[0.5 0 1]")) $ s "bit1*4" # n (irand 8) # gain "0.9"
-    , whenmod 8 6 ((slow 2).(# pan "[0.5 0 1]")) $ s "tt_hh*8"
-    , whenmod 8 6 (fast 4) $ s "atrip1:5" # gain "1.2" # cut "2"
+    ---s "moog" # gain "1" # cut "1" # pan "[0.5 0 1.0]"
+    ----, s "jungbass:5/8" # gain "1"
+    ---, whenmod 8 6 (( fast 2).(# pan "[0.5 0 1]")) $ s "bit1*4" # n (irand 8) # gain "0.85"
+    --, whenmod 8 6 ((slow 2).(# pan "[0.5 0 1]")) $ s "tt_hh*8"
+    whenmod 8 6 (fast 4) $ s "atrip1:5" # gain "0.4" # cut "2"
 ]
 
 -------------------------------------------------------
-d2 $ every 4 ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"
+d2 $ every 4 ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "1"
 
-d2 $  ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
-d2 $  ((0.25 <~).(striate' 32 (1/2))) $ slow 2 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
+d2 $  ((0.25 <~).(striate' 32 (1/2))) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"
+d2 $  ((0.25 <~).(striate' 32 (1/2))) $ slow 2 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "1"
 d2 $  whenmod 8 6  (slow 2) $ ((0.25 <~).(striate' 32 (1/2))) $ fast 2 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "1"
 d2 $  whenmod 8 6 (slow 2) $ ((0.25 <~).(striate' 32 (1/2))) $ fast 2 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "1"
 

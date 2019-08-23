@@ -59,4 +59,8 @@ do
 let pat1 = "choose [3,4,5,7]"
 d1 $ whenmod 8 2 ((#n "11").(#speed pat1).(iter 4)) $ s "ttm:7 ttm:2 ttm:1 ttm:19" -- # n "23"
 
-d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.8" # hpf 100
+d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(#gain "0.9").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.9" # hpf 100
+
+unsolo 2
+
+d2 $ whenmod 8 6 (#n (irand 4)) $ s "asubkick:1 asubkick*2 ~ {asubkick,asubkick:1}" # n pat1 # cut "1" # speed 1

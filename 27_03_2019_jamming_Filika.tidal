@@ -14,11 +14,11 @@ d1 $ every 4 (# n (irand 8)) $ s "~ tt_fx:4" # gain "1"
 
 d1 $ stack [
     every 4 (# n (irand 8)) $ s "~ tt_fx:4" # gain "1"
-   -- ,whenmod 8 2 (# n (irand 8)) $ s "tt_vocal:2/4" # gain "1"
-    --,whenmod 8 2 (fast 4) $ s "tt_kick:4" # gain "1"
+    ,whenmod 8 2 (# n (irand 8)) $ s "tt_vocal:2/4" # gain "1"
+    ,whenmod 8 2 (fast 4) $ s "tt_kick:4" # gain "1"
     ,s "tt_sn" # gain "1"
 ]
 
 d1 $ stack [
-   s "whisper/2" # gain "1"
+   whenmod 8 2 (#gain "0") $ s "whisper/2" # n (irand 10)# gain "1.1"
 ]

@@ -66,7 +66,7 @@ cps 1
 d6 $ slow 2 $ stack [
      -- s "cosmicg*8?" # n (irand 13) # gain "0" # speed "-0.044" # cut "1",
      -- s "chin*3 chink*2? click*2 casio/10?" # n (irand 12) # pan (slow 5 sine) # gain "1",
-     s "subroc3d*4" # n (irand 22) # pan (sine) # gain "0.8" # cut "1",
+     s "subroc3d*4" # n (irand 22) # pan (sine) # gain "0.8" # cut "1"
     --s "toys" # n (irand 34) # gain 0.7 # lpf "500" # speed "-0.3" # resonance (scale 0.02 0.2 $ slow 4 $ sine)
 ] -- # gain "0.9" |+| speed (rand) 
 

@@ -1,0 +1,30 @@
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.6" # cut "1"
+d3 $ n "1" # s "latibro" # gain "1" # speed "-0.25"
+
+--------------------------------------------
+d1 $ slow 4 $ s "tta:2" # speed "-0.05" # gain "1.1"
+
+d2 $ stack [
+    slow 8 $ s "tt_kick"
+    --, s "~ tt_kick:1 tt_kick:7"
+]
+
+
+--------------------------------------------
+-- karanlik
+d2 $ slow 8 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "1 1"
+d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
+d3 $ fast 1 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "1"
+d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
+
+d6 $ s "bass1" # up "1 0 2 0 ~ 3*2" # gain "1.3" # cut "2"
+
+---------------------------------------------
+d7 $ degradeBy 0.5 $ s "ttm*4" # n (irand 90) # gain "1" # cut "3"
+
+unsolo 6
+unsolo 6
+
+solo 6
+
+
