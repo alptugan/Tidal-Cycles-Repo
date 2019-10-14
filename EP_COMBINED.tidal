@@ -1,5 +1,5 @@
 -- AGGRESSIVE
-cps(1.1)
+setcps 1.1
 
 d1 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
 d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
@@ -8,10 +8,10 @@ d1 $ every 8 ((const $ s "dr_few:1 dr_few:1*2 dr_few:1 dr_few:1*8" # gain 1).jux
 
 d1 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(iter 4)) $ s "dr_few:3 dr_few:1*2 bit1:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:2] ~" # gain "0"
 
-d2 $ every 8 (every 2 (striate (irand 256))) $ sound "auto:6*8" # gain 0
-d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0"
+d2 $ every 8 (every 2 (striate (irand 256))) $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
 
-d4 $ every 16 ((loopAt "0.1").(# pan "[0 1]")) $ sound "bit1*8?" # n (irand 55) # pan "[0 1]" # gain 1
+d4 $ every 16 ((loopAt "0.01").(# pan "[0 1]")) $ sound "bit1*8?" # n (irand 40) # pan "[0 1]" # gain 1
 d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "0"
 
 

@@ -1,6 +1,6 @@
 -- 4 2 5
 bpm 120
-d2 $ whenmod 8 2 (striate 64) $  slow 4 $ s "aspeech" # n (irand 5) # gain "0.6"  
+d2 $ whenmod 8 2 (striate 64) $  slow 4 $ s "aspeech" # n (irand 5) # gain "0.8"  
 
 -- 1
 xfadeIn 2 15 $ slow 4 $ up "[0 0 0 0]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100

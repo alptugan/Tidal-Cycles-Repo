@@ -1,0 +1,58 @@
+-- AGGRESSIVE
+setcps 1.1
+
+d1 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+
+d1 $ every 8 ((const $ s "dr_few:1 dr_few:1*2 dr_few:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+
+d1 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(iter 4)) $ s "dr_few:3 dr_few:1*2 bit1:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:2] ~" # gain "0"
+
+d2 $ every 8 (every 2 (striate (irand 256))) $ sound "auto:6*8" # gain 1
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
+
+d4 $ every 16 ((loopAt "0.01").(# pan "[0 1]")) $ sound "bit1*8?" # n (irand 40) # pan "[0 1]" # gain 1
+d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "0"
+
+
+-----------------------------------------------------------------
+--- EXPERIMENTEL
+d6
+$jux (iter 4)
+$jux (iter 8)
+$ stack[
+  -- sound "arpy(3,16,3)",
+  -- sound "felld(5,16,0)",
+  -- sound "fell2(5,16,8)"|+|up "-7 0 7 14",
+  --sound "procshort(3,16,4)",
+  --sound "procshort(2,15,3)",
+  sound "bass(3,16,2)",
+  sound "space(3,16,10)",
+  sound "glitch(3,16,5)",
+  --sound "808bd(3,16,9)"
+  sound "click(3,16,3)",
+  sound "sine(3,16,3)"
+]
+#n (irand 1)
+#gain "1"
+#shape "0.5"
+#pan (rand)
+#up "{7 0 -7 0 5 -12 0 12 0 7 0 -7 0 12}%16"
+#cutoff (range 100 10800 $ slow 3 $ rand) #resonance "0.3"
+--- pad pad:1
+
+-------------------------------------------------------------------
+-- DARK AMBIENT DRONE 
+
+d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "1 1"
+d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "1"
+d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0.8" # cut "1"
+
+d1 $ s "arp" # gain "1" # cut "1"
+d2 $ up "4 5 6 7"  # s "arp" # gain "1.2" -- # speed rand
+d3 $ loopAt "4" $ striate 64 $ s "arp:1" # gain "0.7" # speed "15.5"
+
+-- old riff - complex systems2 
+d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2"
+d1 $ slow 3 $jux (fast 4) $ striate' 16 (1/4) $ sound "vocad/2"

@@ -33,16 +33,17 @@ d1 $ n "<[a5,cs5,e5,g5]*3 [d5,fs5,g5,c5]>" # s "supermandolin" # gain "1"
 d1 $ jux (# accelerate "-0.1") $ s "supermandolin*8" # midinote "[80!6 78]/8"
   # sustain "1 0.25 2 1"
 
-d1 $ midinote (slow 2 $ (run 8) * (7) + 50) # s "superpiano" # decay "[1 0.2]/8"
+d1 $ midinote (slow 2 $ (run 8) * (10) + 50) # s "superpiano" # decay "[1 0.2]/8"
   # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "22"
 
 
-let pat1 = "a0 c e g g2" 
+let pat1 = "c e g g2" 
 
 d1 $ stack [
-    midinote (slow 2 $ (run pat1) * (7) + 50) # s "superpiano" # decay "[1 0.2]/8"
-  # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "22"
-  ,whenmod 4 2 (jux(rev)) $ s "super808 superclap ~ superkick*2" # gain "1.2" # sustain "4" 
+    midinote (slow 2 $ (pat1) * (7) + 50) # s "superpiano" # decay "[1 0.2]/8"
+  # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "2" # gain "0.9"
+  ,whenmod 4 2 (jux(rev)) $ s "<super808 tt_kick> superclap ~ superkick*2" # gain "1.2" # sustain "4" 
+  , slow 4 $ midinote (slow 2 $ (pat1) * (7) + 50) # s "supercomparator" # gain "1"
 ]
 
 bpm 120
