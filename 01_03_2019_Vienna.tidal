@@ -80,23 +80,25 @@ d1 $ every 8 ((striate' 128 (1/16)).(every 4 (# gain 0))) $ s "jungbass:2" # spe
 d2 $ n "1" # s "latibro" # gain "1" # speed "-0.25"
 
 d3 $ n "2 0 2 0" # s "bass2" # gain "1"
-d3 $ n "4 4 4 4 4 4 4 4" # s "bass2" # cut "1" # gain "0"
+d3 $ n "4 4 4 4 4 4 4 4" # s "bass2" # cut "1" # gain "1"
 d3 $ every 4 (# s "bass2:4" ) $ n "2 0 2 0" # s "bass2"
 d3 $ every 4 (striate 32) $ every 8 ((# s "bass2:6").(#cut "1")) $ n "2 0 2 0" # s "bass2" # gain "1"
-d4 $ degradeBy 0.25 $ s "yeah*8" # n (irand 32) # gain "1.2" # pan (rand) # lpf (slow 4 $ scale 100 5000 $ rand)
+d4 $ degradeBy 0.25 $ s "yeah*8" # n (irand 32) # gain "1.2" # pan (rand) # lpf (slow 4 $ range 100 5000 $ rand)
 
+unsolo 4
 
 cps 1
+bpm (120)
 
 d1 $ s "tt_fx*8" # n "3" # gain "1" # pan (rand)
 d1 $ degradeBy "0.75"  $ s "tt_fx*16" # n (irand 27) # gain "0.8" 
 
-d2 $ every 4 ((striate' 64 "1/4" ).(# gain "0.8")) $  s "auto:3" # gain "0" # pan (rand)
+d2 $ every 4 ((striate' 64 "1/4" ).(# gain "0.8")) $  s "asubkick:0" # gain "1.2" # pan (rand)
 
-d3 $ every 4 (# gain "1") $ s "jungbass:8" # gain "0"
+d3 $ every 4 (# gain "1") $ s "jungbass:6" # gain "0"
 
 -- NEW:1
-d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2"  # gain "1"
+d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2*4"  # gain "1"
 d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2" # lpf (slow 8 $ scale 100 3000 $ sine)
 d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2" # lpf (slow 8 $ scale 100 3000 $ sine) # pan (sine)
 
