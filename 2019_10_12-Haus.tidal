@@ -1,4 +1,4 @@
--- AGGRESSIVE
+-- AGGRESSIVE FEROX
 setcps 1.1
 
 d1 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
@@ -8,11 +8,64 @@ d1 $ every 8 ((const $ s "dr_few:1 dr_few:1*2 dr_few:1 dr_few:1*8" # gain 1).jux
 
 d1 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(iter 4)) $ s "dr_few:3 dr_few:1*2 bit1:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:2] ~" # gain "0"
 
-d2 $ every 8 (every 2 (striate (irand 256))) $ sound "auto:6*8" # gain 1
+d2 $ every 8 (every 2 (striate (irand 256))) $ sound "auto:6*8" # gain "1"
 d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
 
 d4 $ every 16 ((loopAt "0.01").(# pan "[0 1]")) $ sound "bit1*8?" # n (irand 40) # pan "[0 1]" # gain 1
 d5 $ every 4 (jux(rev)) $ sound "jungbass:5/8" # gain "0"
+
+---------------------------------------------------------------------------------------------------------
+-- ---------------------  EPHEMERAL  ------------------------------------------
+---------------------------------------------------------------------------------------------------------
+-- 4 2 5
+bpm 120
+d1 $ s "bd"
+
+bpm 120
+d4 $ whenmod 8 2 (striate 64) $  slow 4 $ s "aspeech" # n (irand 5) # gain "0"  
+
+-- 1
+xfadeIn 1 15 $ slow 4 $ up "[0 0 0 0]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100
+bpm 120
+-- 2
+d1 $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.25" # cut "1"  # hpf 100
+
+-- 3
+-- d1 $ sound "bass1" # up (choose [0,2,4,5]) # gain "1.1" # cut "1" # hpf 150
+
+-- 4
+xfadeIn 2 15 $ degradeBy "0.8" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound "defdo*4" # n (irand 18) # gain 0.65 -- # cut "2"
+
+-- 5
+d2 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain 0.85 # cut "2"
+
+xfadeIn 3 15  $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "0." # cut "3" 
+d3 $ degradeBy "0.5" $ s "ttm*8?" # n (irand 68) # gain "1.1" # cut "3" # pan "[0.5 0 1]"
+
+
+-- p1 channel p2 loop num
+xfadeIn 7 10 $ s "bd" # gain "0"
+
+d6 $ stack [
+    every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "4"  # hpf 100
+    ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 aset1:2*4? aset1:1*4 aset1:9*4>}}" # gain "1"
+    ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 tta:2*10 aset1:1 ttm:9*4>}}" # gain "1"
+    ,whenmod 8 7 ((jux(brak)).(degradeBy 0.1).(# n "4*4")) $ s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 ttm:23*4 aset1:1 ttm:9*4 tta:23*8>}}" # gain "1"
+    ,every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15").(# hpf 150)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "4"  # hpf 100
+    ,s "bit1*8" # n (irand 60) # cut "5" # gain "0.9" # pan "[0 0.5 1]"
+]
+
+
+xfadeIn 7 30 $ s "bd" # gain "0"
+
+
+ d8 $ whenmod 8 6 ((fast 4).(# pan "[0.5 0 1]")) $ s "tta*8" # n (irand 10) # lpf (range 200 5000 $ slow 2 $ sine) # hpf 100 # gain "1"
+
+ d7 $ whenmod 8 3 ((fast 2)) $ every 4 (striate 12) $ s "tt_fx:3 tt_clap:3*4" # gain "1" # pan "[0.3 0.5 0.84]"
+
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5")) $ every 4 (striate 32) $ s "tt_clap:6 tt_clap:3*4" # gain "1.05" 
+
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.8" # hpf 100
 
 
 -----------------------------------------------------------------
@@ -56,3 +109,15 @@ d3 $ loopAt "4" $ striate 64 $ s "arp:1" # gain "0.7" # speed "15.5"
 -- old riff - complex systems2 
 d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2"
 d1 $ slow 3 $jux (fast 4) $ striate' 16 (1/4) $ sound "vocad/2"
+
+
+------------------------------------------------------------------------------------
+-- SIGNAL
+------------------------------------------------------------------------------------
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.6" # crush 2 # speed "1" -- # cut "1"
+d5 $ n "1" # s "latibro" # gain "" # speed "-0.2"
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.6" # crush 2 # speed (0.5 + rand*0.5) -- # cut "1"
+d5 $ every 4 ((#up "<3 11>").(# speed "<-0.15 -0.1>")) $ n "<1>" # s "latibro" # gain "1.2" # speed "-0.2"
+d5 $ every 8 (#up "5") $ every 4 (#up "<3 3 2>") $ n "1" # s "latibro" # gain "1.2" # speed "-0.2"
