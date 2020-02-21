@@ -14,7 +14,9 @@ d3 $ whenmod 8 6 ((# s "bass1").(rev)) $ iter 4 $ up "0" # s "bass1:0" # cut "2"
 
 d2 $ chop 16 $ whenmod 8 6 ((# n "akuma1:8*2 akuma2:9*2").(# pan (slow 2 $ range 0 1 $ sine))) $ every 3 (iter 4) $ every 21 (iter 3) $ sound (samples "akuma1*8" (run 4)) # gain "1" # cut "3"
 
-d3 $ s "<tkick:1*2 tkick:1*8 tkick:2*2 tfx>" # gain "1.1"
+d3 $ s "<tkick:1*2 tkick:1*8 tkick:2*2 tfx>" # gain "1.1" # pan "[0 1]"
+
+d3 $ s "<tkick:1*3>" # gain "1.1" # pan "[0 0.5 1]"
 
 unsolo 2
 --------
@@ -76,20 +78,20 @@ xfadeIn 3 15 $ degradeBy "0.8" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound
 -- 5
 d3 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain 0.9 # cut "2"
 
-xfadeIn 1 15  $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "0.3" # cut "3" 
+xfadeIn 1 15  $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "0." # cut "3" 
 d1 $ degradeBy "0.5" $ s "ttm*8?" # n (irand 68) # gain "1.1" # cut "3" # pan "[0.5 0 1]"
 
 
 -- p1 channel p2 loop num
-xfadeIn 7 16 $ s "bd" # gain "0"
+xfadeIn 0 16 $ s "bd" # gain "0"
 
 d6 $ stack [
-    every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "4"  # hpf 100
-    ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 aset1:2*4? aset1:1*4 aset1:9*4>}}" # gain "1"
+    every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "4"  # hpf 100
+    -- ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 aset1:2*4? aset1:1*4 aset1:9*4>}}" # gain "1"
     ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 tta:2*10 aset1:1 ttm:9*4>}}" # gain "1"
-    ,whenmod 8 7 ((jux(brak)).(degradeBy 0.1).(# n "4*4")) $ s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 ttm:23*4 aset1:1 ttm:9*4 tta:23*8>}}" # gain "1"
-    ,every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15").(# hpf 150)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "4"  # hpf 100
-    ,s "bit1*8" # n (irand 60) # cut "5" # gain "1.4" # pan "[0 0.5 1]"
+    --,whenmod 8 7 ((jux(brak)).(degradeBy 0.1).(# n "4*4")) $ s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 ttm:23*4 aset1:1 ttm:9*4 tta:23*8>}}" # gain "1"
+    ,every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15").(# hpf 150)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "4"  # hpf 100
+    ,s "bit1*8" # n (irand 60) # cut "5" # gain "1" # pan "[0 0.5 1]"
 ]
 
 

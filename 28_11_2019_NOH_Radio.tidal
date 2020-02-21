@@ -1,0 +1,794 @@
+bpm 120
+
+d1 $ s "auto:3 auto:3 ~ auto:3*3 tt_fx:10"
+d1 $ s "aset1*4" # n pat6 # gain "1" # pan "[0 0.5 1]"
+d2 $ every 4 ((jux(rev)).(#speed "2").(iter 3)) $ s "tt_fx*4" # n (irand 30) # gain "0.65" # cut "2"
+d3 $ sometimesBy 0.5 (jux(rev)) $ s "tt_fx:12/4" # gain "0.8" # pan (range 0 1 $ slow 4 $ sine)
+unsolo 2
+-- AGGRESSIVE FEROX
+setcps 1.1
+
+d1 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+d1 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+
+xfadeIn 1 10 $ every 8 (jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+
+d1 $ every 8 ((const $ s "dr_few:1 dr_few:1*2 dr_few:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+
+d1 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(iter 4)) $ s "dr_few:3 dr_few:1*2 bit1:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:2] ~" # gain "1"
+
+d2 $ sound "auto:6*8" # gain "1.1"
+d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
+
+d4 $ every 16 ((loopAt "0.01").(# pan "[0 1]")) $ sound "bit1*8" # n (irand 100) # pan "[0 1]" # gain "1" # cut "1"
+d5 $ every 4 (jux(rev)) $ sound "jungbass:6/8" # gain "1.25"
+
+xfadeIn 5 10 $ s "bd" # gain "0"
+
+solo 3
+
+xfadeIn 6 20 $ randcat [
+    sound "bit1*16" # n (1 + (irand 2)) # pan "[0 0.5 1]" # gain "0.8" # cut "1",
+    sound "bit1*32" # n (irand 15) # pan (slow 8 sine) # gain "0.8" # cut "1.2",
+    sound "bit1*64" # n (5 + (irand 5)) # pan (slow 8 sine) # gain "0.8" # cut "1",
+    sound "bit1*32" # n (4 + (irand 2))  # pan (slow 8 sine) # gain "0.8" # cut "1.1",
+    sound "bit1*32" # n (5 + (irand 2))  # pan (slow 8 sine) # gain "0.7" # cut "3.1"
+]
+
+
+d6 $ randcat [
+    sound "bit1*16" # n (1 + (irand 2)) # pan "[0 0.5 1]" # gain "1"--  # cut "1",
+    ,sound "bit1*8" # n (irand 15) # pan (slow 8 sine) # gain "1" -- # cut "1.2",
+    ,sound "bit1*64" # n (5 + (irand 5)) # pan (slow 8 sine) # gain "1" -- # cut "1",
+    ,sound "bit1*32" # n (4 + (irand 2))  # pan (slow 8 sine) # gain "1" -- # cut "1.1",
+    sound "bit1*32" # n (5 + (irand 2))  # pan (slow 8 sine) # gain "1" -- # cut "3.1"
+]
+
+-------------------------------------------------------------------------------
+-- ---------------------  EPHEMERAL  ------------------------------------------
+-------------------------------------------------------------------------------
+-- 4 2 5
+bpm 120
+d1 $ s "bd"
+
+bpm 120
+xfadeIn 4 10 $ s "bd" # gain "0"
+
+-- 1
+xfadeIn 1 15 $ slow 4 $ up "[0 0 0 0]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100
+
+bpm 120
+-- 2
+d1 $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 150
+
+-- 3
+xfadeIn 2 15 $ degradeBy "0.75" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound "defdo*4" # n (irand 18) # gain 0.55 -- # cut "2"
+
+-- 5
+d2 $ degradeBy 0.6 $ every 4 (0.5 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain "0.77" # cut "2"
+
+xfadeIn 3 15  $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "1.0" # cut "3"
+
+d3 $ degradeBy "0.5" $ s "ttm*8?" # n (irand 47) # gain "0.8" # cut "4" -- # cut "3" # pan "[0.5 0 1]"
+
+
+-- p1 channel p2 loop num
+xfadeIn 6 25 $ s "bd" # gain "0"
+
+d6 $ stack [
+    every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "4"  # hpf 100
+    ,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 aset1:2*4? aset1:1*4 aset1:9*4>}}" # gain "0.8"
+    ---,s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 tta:2*10 aset1:1 ttm:9*4>}}" # gain "1"
+    ,whenmod 8 7 ((jux(brak)).(degradeBy 0.1).(# n "4*4")) $ s "{aset1:4*4, aset1*8 {aset1:2, <aset1:2 ttm:23*4 aset1:1 ttm:9*4 tta:23*8>}}" # gain "0.85"
+    -- ,every 4 ((0.25 <~).(striate' 32 (1/2)).(#gain "1.15").(# hpf 150)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1" # cut "5"  # hpf 100
+    ,s "bit1*8" # n (irand 100) # cut "6" # gain "1.0" # pan "[0 0.5 1]"
+]
+
+
+ d8 $ whenmod 8 6 ((fast 4).(# pan (rand))) $ s "tta*8" # n (irand 10) # lpf (range 300 5000 $ slow 2 $ sine) # hpf 100 # gain "0.8"
+
+ d7 $ whenmod 8 3 ((fast 2)) $ every 4 (striate 24) $ s "tt_fx:3 tt_clap:3*4" # gain "0.8" # pan "[0 0.5 1]"
+
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.44")) $ every 4 (striate 32) $ s "tt_clap:7 tt_clap:3*4" # gain "0.8" 
+
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:2 tt_clap:3*3" # gain "0.8" # hpf 100
+
+ xfadeIn 9 50 $ s "bd" # gain "0"
+
+unsolo 6
+
+-----------------------------------------------------------------
+--- EXPERIMENTEL
+d6
+-- $jux (iter 4)
+-- $jux (iter 8)
+$ stack[
+  -- sound "arpy(3,16,3)",
+  sound "fall(5,16,0)" # gain "0.8" #,
+  -- sound "fell2(5,16,8)"|+|up "-7 0 7 14",
+  --sound "procshort(3,16,4)",
+  --sound "procshort(2,15,3)",
+  sound "bass(3,16,2)" # gain "0.9",
+  -- sound "space(3,16,10)",
+  -- sound "glitch(3,16,5)",
+  ----sound "808bd(3,16,9)"
+  -- sound "click(3,16,3)",
+  sound "sine(3,16,3)" # gain "0.5"
+]
+#shape "0.5"
+#n (irand 1)
+#pan (rand)
+#up "{7 0 -7 0 5 -12 0 12 0 7 0 -7 0 12}%16"
+#cutoff (range 100 10800 $ slow 3 $ rand) -- #resonance "0.3"
+--- pad pad:1
+
+-------------------------------------------------------------------
+-- DARK AMBIENT DRONE 
+xfadeIn 1 2 $ s "bd" # gain "0"
+d5 $ every 4 (jux(rev).(striate 64).(# gain "1")) $ s "bd*2" # gain "1.1" # pan "[0 0.5 1.0]"
+xfadeIn 2 10 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "0"
+d2 silence
+d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo:2 sea/2 " # gain "0"
+d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0]" # pan (slow 0.3 $ saw)
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 8 $ saw) # gain "0"
+d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "0" # cut "1"
+
+d1 $ s "arp/4" # gain "1.2"  # cut "3"
+d2 $ up "4 5 6 7"  # s "arp" # gain "0" -- # speed rand
+d3 $ loopAt "4" $ striate 64 $ s "arp:1" # gain "1" # speed "25.5"
+
+-- old riff - complex systems2 
+d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2" # gain "1"
+d1 $ slow 3 $jux (fast 4) $ striate' 16 (1/8) $ sound "vocad:2/2" # gain "0.1"
+
+unsolo 8
+------------------------------------------------------------------------------------
+-- REHEARSE SIGNAL
+------------------------------------------------------------------------------------
+bpm 120
+
+
+xfadeIn 2 15 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.65" # crush 2 # speed "0.45" # cut "2"
+
+xfadeIn 2 15 $ s "bd" # gain "0"
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.6" # crush 2 # speed "0.45" # cut "2"
+
+d5 $ n "1" # s "latibro" # gain "1" # speed "-0.2"
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.7" # crush 2 # speed (0.5 + rand*0.5) -- # cut "1"
+
+d5 $ every 4 ((#up "<3 11>").(# speed "<-0.15 -0.1>")) $ n "<1 3 4>" # s "latibro" # gain "0.9" # speed "-0.2"
+
+d5 $ every 8 (#up "5 7 8") $ every 4 (#up "<3 3 2>") $ n "1" # s "latibro" # gain "1.3" # speed "-0.2"
+
+d6 $ sometimesBy 0.5 (#speed "-0.5") $ s "asubkick:0*4" # gain "1.25" # cut "5" # lpf 400
+d6 $ sometimesBy 0.5 ((#speed "2.5").(jux(rev))) $ s "asubkick:0*4" # gain "1.3" # cut "5" # lpf 600
+
+d6 $ every 4 (iter 4) $ sometimesBy 0.5 ((#speed "1.5").(jux(rev))) $ s "asubkick:0*4" # gain "1.1" # cut "5"  # lpf 500
+
+xfadeIn 2 15 $ s "bd" # gain "0"
+--------------------------------------
+-- intro 2
+xfadeIn 1 20 $ every 8 ((striate 64).(# gain "0.8")) $ up "[12 0]/2" # sound "bass1" # gain "1.1"
+
+d1 $ every 8 ((striate 64).(# gain "0.8")) $ up "[12 0]/2" # sound "bass1" # gain "1"
+
+d2 $ every 4 (jux(rev))  $ up "[4 4]/4" # sound "sax:2/4" # gain "0.75"
+xfadeIn 2 10 $ every 4 (jux(rev))  $ up "[4 4]/4" # sound "sax:2/4" # gain "0.8"
+
+d3 $ sound "<sax:20/4 sax:21/2 sax:19/8 sax18/4>" # gain "0.7"
+
+d4 $ sound "click*2" # n (irand 2) # gain "1"  # speed (rand) # pan "[0 0.5 1]" 
+d4 $ shuffle 8 $ sound "click*8" # n (irand 90) # gain "0.9"
+d5 $ sound "sine" # n (irand 6) # gain "0.85" # pan (rand)
+
+xfadeIn 6 10 $ s "bd" # gain "0"
+----------------
+---- TRIBAL
+
+let pat1 = "{0*2 ~ [0 ~] ~ 0*4 [~ 0] 0}%4"
+
+let pat2 = "{[~ 0] 0 ~ 0 [~ 0] ~ 0}%4"
+
+let pat3 = "{0 0*4 [~ 0] [~ 0] 0*2  0 ~ 0*4 ~ 0 -12 0 ~ [~ 0] [~ 0] ~ 0*2 -12}%8"
+
+let pat4 = "{0 0*2 [~ 0] [~ 0] 0 0 -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%8"
+
+let pat5 = "{[~ 0] 0 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0 -12 0*4 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
+
+let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~ 0*2 -12}%4"
+
+
+let pat9 = "{0*2 ~ [4 ~] ~ 3*4 [~ 1] 8}%2"
+
+xfadeIn 6 10 $ s "bd" # gain "0"
+
+xfadeIn 1 10 $ slow 4 $ striate' 32 (1/64) $ up pat6 # s "padlong" # cutoff (slow 4 $ range 100 4500 $ sine) # gain "0.9" # speed "0.3" 
+
+d1 $ slow 4 $ striate' 32 (1/64) $ up pat6 # s "padlong" # cutoff (slow 4 $ range 300 4500 $ sine) # gain "0.8" # speed "0.3" 
+
+d2 $ slow 4 $ s "aspeech" # n (irand 5) # gain "1" # cut "1"
+d4 $ every 4 ((striate' 12 "1/8").(#gain "1").(jux(rev))) $ s "jungbass:3" # gain "0.6" # cut "5" 
+d5 $ s "jungbass:4 jungbass:7" # gain "1.0" # cut "2"
+d5 $ s "jungbass:6/4" # gain "0.85" #lpf "200" # cut "1"
+
+solo 2
+unsolo 6
+
+xfadeIn 4 10 $ every 4 ((striate' 32 "1/16").(#gain "0.84")) $ s "jungbass:3" # gain "0.9" 
+unsolo 4
+d5 silence
+
+
+xfadeIn 1 10 $ s "bd" # gain "0"
+
+-- connects to
+
+d1 $  s "~ [bass2:2 bass2:3, bass2:7 bass8*2]" # gain "1" # pan "0.5" # lpf (slow 5 $ range 200 8500 $ sine) # cut "2"
+
+d2 $ s "auto*8" # n (irand 30) #gain "1"
+
+d3 $ s "auto:6*8" # gain "1" # pan (range 0 1 $ fast 2 $ sine)
+d4 $ s "auto:3*8" # n pat2 # gain "1.2" # pan (range 0 1 $ fast 2 $ sine)
+d5 $ s "tt_fx*8" # n (irand 30) # gain "0.85" # cut "7" # pan (range 0 1 $ slow 4 $ sine)
+
+unsolo 5
+
+xfadeIn 1 40 $ s "bd" # gain "0"
+
+unsolo 3
+
+unsolo 1
+
+
+bpm 120
+
+xfadeIn 2 30 $ s "bd" # gain "0"
+
+
+xfadeIn 2 30 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # lpf 600
+
+d2 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2?]" # gain "[0.9 0.9 0.9 1, 1 1.1 1.2]"
+
+d2 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2?]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # lpf "900"
+
+d2 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2?]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # lpf "100" # speed (range 0.5 1.0 $ sine)
+
+d2 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2?]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (range 0.5 1.0 $ sine)
+
+d2 $ brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2? glitch:5]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (fast 4 $ range 0.5 1.0 $ sine) # hpf "2000"
+
+d2 $ every 5 (striate' 32 (1/4)) $  brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2? glitch:5]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (fast 4 $range 0.5 1.0 $ sine) # hpf "2000"
+
+d2 $ every 5 (striate' (irand 64) (rand)) $  brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2? glitch:5]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (fast 4 $range 0.5 1.0 $ sine) # cut "1" # hpf "2000"
+
+d2 $ every 5 ((striate' 32 (1/2)).(# gain "1")) $  brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2? glitch:5]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (fast 4 $range 0.5 1.0 $ sine) # hpf "800" # lpf "1000"
+
+d2 $ every 5 ((striate' 32 (1/2)).(# gain "1")) $  brak $ every 4 (jux(rev)) $ sound "[click:10 click:5 click:4 click, bass1 . <psr:1 psr:12? psr:10>, glitch:2? glitch:5]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # speed (fast 4 $range 0.5 1.0 $ sine) # hpf "800" # lpf "1000" # gain "1"
+
+
+xfadeIn 2 20 $ s "bd" # gain "0"
+
+
+-- downtempo reggie
+d1 $ every 8 ((striate' 128 (1/16)).(every 4 (# gain 0.8))) $ s "jungbass:2" -- # speed (fast 1 $ scale 0 1 $ sine) 
+d1 $ every 8 ((striate' 128 (1/16)).(every 4 (# gain 0))) $ s "jungbass:2" # speed "-0.2"
+d2 $ n "1" # s "latibro" # gain "1" # speed "-0.25"
+
+xfadeIn 2 10 $ n "2 0 2 0" # s "bass2" # gain "1"
+d2 $ n "2 0 2 0" # s "bass2" # gain "1"
+d2 $ n "4 4 4 4 4 4 4 4" # s "bass2" # cut "1" # gain "1.1"
+d2 $ every 4 (# s "bass2:4" ) $ n "2 0 2 0" # s "bass2"
+d2 $ every 4 (striate 32) $ every 8 ((# s "bass2:6").(#cut "1")) $ n "2 0 2 0" # s "bass2" # gain "1"
+d4 $ degradeBy 0.25 $ s "yeah*8" # n (irand 1) # gain "1.1" # pan (rand) # lpf (slow 4 $ range 100 950 $ rand)
+
+d3 $ every 8 ((# s "bass2:6").(# cut "1")) $ every 4 ((# s "bass2:4").(# cut "1")) $ n "2 0 2 0" # s "bass2" # cut "1"
+
+d5 $ s "jungbass:5/4" # gain "1.5"
+
+unsolo 4
+
+xfadeIn 4 7 $ s "bd" # gain "0"
+
+
+d1 $ s "tt_fx*8?" # n (irand 40) # gain "0.8" # pan (rand) # cut "7"
+d1 $ degradeBy "0.75"  $ s "tt_fx*8" # n (irand 27) # gain "0.9" # cut "8" 
+
+d2 $ every 4 ((striate' 32 "1/4" ).(# gain "0.8")) $  s "auto:3" # gain "0.8" # pan (rand)
+
+d3 $ every 4 (# gain "1.3") $ s "jungbass:8" # gain "0"
+
+xfadeIn 2 7 $ s "bd" # gain "0"
+
+
+-- NEW:1
+d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2"  # gain "1"
+d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2" # lpf (slow 8 $range 100 3000 $ sine)
+d4 $ n (choose [2,3,4,2,4,1,9,5]) # s "bass2" # lpf (slow 8 $range 100 3000 $ sine) # pan (sine)
+
+-- NEW:2
+d2 $ zoom(0.2, 0.3) $ striate 16 $ s "made2" # gain "0.6" # cut "1"
+d3 $ zoom(0.5, 0.6) $ striate 12 $ s "made2:2" # gain "0.8"
+
+d4 $ every 4 (#n (irand 8)) $ s "yeah*8" # gain "1" # n (irand 8) # speed "3" # pan "[0 0.5 1]"
+
+--- RYTHIM - play squentially
+
+d1 $ n "4 4 4 4" # s "bass2" # gain "1.05" # lpf (slow 8 $ range 80 800 $ sine)
+
+d1 $ n "4 4 4 4" # s "bass2" # gain "1"  
+
+d1 $ every 4 (jux(rev)) $ s "bass2"# n "4 4 4 4"  # lpf (slow 8 $ range 80 800 $ sine)
+
+d1 $ every 8 ((# s "bass2:6").(# cut "1")) $ every 4 ((# s "bass2:4").(# cut "1")) $ n "2 0 2 0" # s "bass2" # cut "1" # lpf (slow 16 $ range 100 10800 $ sine)
+
+d1 $ every 8 ((striate 32).(#gain "0.85").(#pan (rand))) $ sometimesBy 0.25 ((jux(rev)).(#speed "-0.15").(#gain "0.7")) $ s "thh*8" # gain "0.95" # lpf (range 800 15000 $ slow 4 $ sine) 
+
+d1 $ s "thh*2" # gain "1" # lpf 9000 
+
+--------------------------------------------------------------------------
+-- 
+--------------------------------------------------------------------------
+d1 $ stack [
+    s "bd" # gain "1.1" -- 
+    ,s "~ auto:3" # gain "1.15" -- 2
+    ,s "~ ~ ~ auto:3*2" # gain "1.1"
+    ,s "~ toys?" # n (irand 19) # gain "1.1"
+    ,s "latibro:6" # speed "1.5" # gain "0.9"-- 1
+    ,s "latibro*4" # n (irand 19) # gain "1"
+    ,zoom(0.3,0.55) $ striate 64 $ s "if" # speed "1" # gain "1"
+] 
+
+d2 $ s "tt_fx*8" # n (irand 6) # gain "0.9" # pan "[0 0.5 1]" # cut "5"
+d4 $ s "tt_kick:3*4" # gain "1.2"
+
+xfadeIn 4 20 $ s "bd" # gain "0"
+
+
+cps 1
+
+
+d1 $ stack [
+    randcat [
+        --s "drum*8" # n (irand 32) # lpf (fast 2 $ range 100 4000 $ sine)
+        --,striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1"
+        -- ,s "drum*8" # n (irand 2) # speed "-1"
+        s "auto*8" # n (irand 4)
+        ,degradeBy "0.5" $ s "tt_fx*32" # n (irand 32) #cut "1"
+        ,s "drum*16?" # n "1" # speed "30" # gain "0.8" # cut "1"
+        ,s "tt_fx:12" # gain "1.2" # pan (slow 2 $ range 0 1 $ sine)
+    ],
+    s "auto:6*8" # pan (rand)
+    , s "auto:3*8?" # pan (rand)
+    --,zoom(0.4,0.6) $ striate 12 $ s "tt_fx:5" # speed "0.05" # gain "1.4" -- # cut "1" 
+    --s "moog"
+] 
+
+
+---- DARK DAYS -- NEW: 4
+cps 1
+
+
+xfadeIn 1 10 $ slow 3 $ jux (rev) $ every 8((striate' 64 (1/2)).(#gain "0.7").(# speed ("0.4" + rand))) $ sound "speechdark" # gain "0.9"
+
+d1 $ slow 3 $ jux (rev) $ every 8((striate' 64 (1/2)).(#gain "0.85").(# speed ("0.4" + rand))) $ sound "speechdark" # gain "1.2" # cut "6"
+
+d2 $ striate 16 $ s "speechdark" # gain "1"
+d2 $ up pat2 # sound "arp"  # cut "1" # gain "1.3" -- # lpf 600
+d1 $ slow 32 $ jux ((# speed "0.5") . rev) $ striate' 18 (1/8) $ sound "speechdark:2" # gain "0.8"-- # cut "5"
+d2 $ every 4 (jux (rev)) $ sound "[bd:10*4 dr_few:4*4,sn auto:9]" # gain "[[1 0.8]*2-0.5 [0.5-0.2 0.8-0.2]]/2"
+d3 $ every 4(jux(rev)) $ sound "[click:3 click:4*2 click:1*3]" # gain "[[1 0 0 0.9 0]]"
+d4 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3, every click:5/4]]" # gain "0.85"
+
+xfadeIn 5 20 $ every 4 ((# sound "akuma1*4" )) $ every 8 ((# sound "auto*8" )) $ up pat2 # sound "" # gain "1"-- pat6
+
+d5 $ every 4 ((# sound "akuma1*4" )) $ every 4 ((# sound "auto*8" )) $ up pat6 # gain "1.2"-- pat6
+
+d6 $ s "tt_fx*8" # n (irand 300) # gain "0.8" # pan "[0 1]" # cut "4"
+
+xfadeIn 7 30 $ s "bd" # gain "0"
+
+unsolo 6
+
+-- AP TN REMIX
+
+d1
+-- $ every 4 (iter 4) $ e 8 8 
+$ stack [
+  ---sound (samples "bass1:0*4" (run 10)) # gain 1 # cut "0.3 0.5",
+  every 4 (const $ s "ifdrums:2*2 ~ ifdrums:6 ifdrums:3" # gain 0.95) $ sound "ifdrums:10*4" # gain "1",
+  slowcat [
+  sound (samples "ul*8?" (irand 50)) # accelerate "-1" # sustain "0.05" # speed (irand 100) # pan "[0 0 1 1 0.5 0.4 0.2 0.8 0 0 1 1]"
+  ,sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
+  ,sometimesBy 0.9 ((# sustain "10").(# pan "0.5")) $ sound (samples "print*4?" (irand 13)) # pan "[0 1]" # gain "0.95" # sustain "0.1" # speed (rand*7)
+  ] |+| unit "c" |+| speed "2"
+  ,every 4 ((# n (irand 18)).(# hpf (slow 8 $ range 200 8000 $ sine))) $ s "akuma1*8" # n (irand 18) # gain "0.9"
+]
+
+
+----------------------------------------------------------------------------------------
+-- FUCK BUTTONS 
+----------------------------------------------------------------------------------------
+d2 $ every 4 (# speed "0.5") $ s "gabba*8" # gain "1.05"
+d3 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.65" # crush 2 # speed "0.45" # cut "2"
+d4 $ s "auto:3*8?" # gain "1.1"
+
+unsolo 4
+
+--- AMBIENT SOMETIMES
+d6 $ randcat [
+    s "cosmicg*8?" # n (irand 13) # gain "0.7" # speed (rand) # cut "1",
+    s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "1",
+    s "subroc3d*4" # n (irand 22) # pan (sine) # gain "0.8" # cut "1",
+    s "toys" # n (irand 34) # gain 0.9 # lpf "500" # speed "-0.3" # resonance (range 0.02 0.2 $ slow 4 $ sine),
+    s "auto:3*8"
+] 
+
+xfadeIn 4 20 $ s "bd" # gain "0"
+
+d1 $ every 2 (#gain "1") $ s "jungbass:3" # gain 0
+
+d6 $ every 4 ((striate 64).(#gain "1.25")) $ s "auto:5*8" # gain "1.1" # pan rand-- # speed (choose [0.4,2,5,2,7,8,10])
+
+-- Ambient 1 
+d4 $ slow 19 $ striate 19 $ sound "sheffield" # gain "1" # speed "0.3" # lpf (fast 2 $ range  300 5000 $ sine)
+d2 $ slow 4.5 $ every 4 (# speed (rand)) $ sound "defdo sea/2 " # n (irand 12) # gain "1 0"
+d5 $ sound "[ade:5 ade:10]" # gain "[0.8 0.5]" # pan (slow 0.3 $ saw) -- [0.8 0.5]
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:0"  # pan (slow 4 $ saw) # gain "1"
+d4 $ every 4 (# speed (-1*rand)) $ s "pad" # gain "1" # cut "1"
+d3 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "0.85" # speed (rand)
+
+
+-- Ambient 2 #size matters stay under 2
+t8 (xfadeIn 10) $ s "bd" # gain 0
+
+d1 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
+# accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
+# attack "1" # release "20" # room "1.9" # size "0.9" # orbit "1" # gain "0.8"
+
+d1 $ s "supernoise/5" # midinote ((irand 30)) # sustain "8"
+# accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
+# attack "1" # release "20" # room "1" # size "2" # orbit "1" # gain "0.9"
+
+d1 $ s "supernoise/5" # midinote ((irand 130)) # sustain "0.1"
+# accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
+# attack "1" # release "8" # room "1" # size "1" # orbit "1" # gain "0.8"
+
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3"
+d2 $ slow 8 $ striate' 64 1.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3" # cut "1"
+d2 $ slow 8 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
+d2 $ slow 5 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
+d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "1" # speed "1" # cut "1"
+
+d3 $ s "procshort*5?" # n (irand 6) # gain "1" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
+d3 $ s "procshort*5?" # n (irand 16) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ every 4 (jux(rev)) $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+
+d2 silence
+d4 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "aset1:1*2 aset1:2 aset1:4 ~ aset1:3" # gain 1
+
+
+
+-- Ambient 3 
+-- play with scale/100-20000 with 100-800 with 100-8000 with dark:0:1:2
+d1 $ every 4 (0.11 <~) $ every 16 (degradeBy 0.01) $ shuffle 4 $ s "dark*8 noise2:1/2 <noise2,noise:3,noise:5,noise:6> noise:4" # unit "c" # speed 0.4 # cutoff (scale 100 8000 $ sine) # shape "0.4" # gain "0.9 1 1 1"
+
+-- Ambient 4
+d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
+|+| sustain "0.25"
+|+| delay "0.5" # delaytime "0.375" # delayfeedback "0.75"
+|+| cutoff (scale 100 1000 $ slow 4 $ sine1) # resonance (scale 0.02 0.2 $ slow 4 $ sine1) # gain 0.8
+
+
+d1 $ s "tt_fx" # n (irand 19) # gain "1" # cut "1" # pan "[0 0.5 1]"
+-- FEROX II
+cps (1.1)
+d2 $ degradeBy "0.05" $ s "drum*8" # n (irand 23) # gain "1" -- # lpf "1500" -- # cut "1" 
+d3 $ every 4 ((# gain 1).(stut 2 8 20).(every 8 (striate 32))) $ s "fall2" # gain 0 # lpf "2000"
+d4 $ slow 4 $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" # gain "0"
+d5 $ s "chin*3 chink*2? click*2 casio?" # n (irand 12) # pan (slow 5 sine) # gain "1" 
+d6 $ s "cosmicg*8?" # n (irand 13) # gain "0" # speed (rand) # cut "1"
+d7 $ sometimesBy 0.15 (# gain 1) $zoom (0.1, 0.8) $ striate 40 $ s "dark/8" # n "2" # gain "1"
+d7 $ striate 16 $ s "dark/16" # n "2" # gain "1"
+
+
+cps(1)
+d2 $ every 5 ((# n "1").(jux(rev)).(#speed "-0.5").(#gain 0.9)) $ every 4 (# gain 0) $ s "drum*8" # n (irand 8) # gain "1" -- # cut "1" 
+d3 $ every 4 ((# gain 1).(stut 2 (irand 10) (irand 20))) $ s "fall2" # gain 0 # lpf "2000"
+
+d7 $ sometimesBy 0.15 (# gain 1) $zoom (0.2, 0.6) $ striate 40 $ s "dark/8" # n "2" # gain "1"
+
+
+d2 $ randcat [
+    every 5 ((# n "1").(jux(rev)).(#speed "-0.5").(#gain 0.85)) $ every 4 (# gain 0) $ s "drum*8" # n (irand 8) # gain "1",
+    every 5 ((# n "1").(jux(rev)).(#speed "-0.1").(#gain 0.85)) $ every 4 (# gain 0) $ s "auto*8" # n (irand 8) # gain "1",
+    every 4 (# gain 0) $ s "drum*8" # n (irand 2) # gain "1",
+    s "drum*8" # n "5" # gain "1",
+    s "drum*8" # n (irand 6) # gain "1"
+] -- # lpf (slow 4 $ scale 80 5900 $ sine)
+
+
+-- set 2 8 BIT CRUSH WAR
+d1 $ off 0.125 (# crush 0.55)
+   $ n (shuffle 4 "0 [3 6] [~ 2] 4") # sound "sine" # gain "0.1"
+
+d2 $ off 0.125 (# crush 1.1)
+   $ n (shuffle 4 "3 [3 6] [0] 11") # sound "auto" # gain "1"
+
+
+d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand 30)) # gain "1" #lpf 300
+
+
+-- set 3 NOISY BAG
+d2 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "bass*4 proc ade:4" |=| n "8" # gain 0.8
+
+
+-- set 4 --- Glitchy noises
+d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 1
+d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
+d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
+
+-- set 5 BOT
+d2 $ slow 0.01 $ s (randcat["bass1","bass*2","bass*3","bass*4"])# end(slow 4 $ tri)# speed(slow 999 $scale 99 0 sine) # pan(slow 3 $ sine)
+
+d3 $ degradeBy "0.25" $ fast 2 $ up pat3 # sound "bass2:8" # cut "1"
+
+-- set 6 EASY RIDER LOW PASS FILTER GAMES
+d2 $ every 4 (striate (irand 28)) $ s "nau*8" # n (run (irand 30)) # gain "1" #lpf 300
+
+-- set 7 BASS DARK
+d1 $
+stack [
+  sound (samples "bass1:0*4?" (run 10)) # gain 0 # cut "1"
+  --,sound "ifdrums:10" # gain "1"
+  ,slowcat [
+    --sound (samples "drum*16?" (irand 50)) # accelerate "-1" # gain "1"
+    --,sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.2 $ run 150)) # pan "[0 0.5 1]"
+    --,sound (samples "print*8?" (irand 13)) # pan "[0 1]*4" # gain "0.3"
+  ]  |+| unit "c" |+| speed "2"
+] # gain "1"
+
+-- set 8 BASS DARK 2
+d5 $ sound "jungbass:5/8" # gain "1"
+d5 $ sound "[[[bass1/2] bass1 bass1 bass1], [click:3,click:5/4 ] click:1]" #gain 1 # pan (slow 1 sine)
+d1 $ every 4 brak $ every 4 (jux (rev)) $ every 6(striate 4) $ sound "<psr:25 ~ newnotes:2 psr:18 psr:20*2>" # gain "1"
+d4 $ sound "[click:3,click:5/4 ] click:1,click:2,sine sine*5]" #gain "1.2" # pan (slow 1 sine1)
+
+d5 $ loopAt 2 $ s "bass1" # gain 1.1
+
+-- set 9 DARK 2 CHORUS
+d3 $
+stack [
+sound "[[bd] [bd sn:1]]/2" # gain 1 , -- |+| cutoff "50",
+sound "beacch*2" # accelerate (rand) # gain "1" # shape "-0.3",
+sound "ade/4*2" # n 2 # up "[0 2]" # gain "0.9",
+up "0 ~ 1 ~" # s "bass1",
+slow 8 $ sound "sine*4" # gain 1
+] |+| resonance "1"
+
+--- Replikas Replika
+d1 $ smash 2 [3,2,8,1,9] $ stack [every 3 (0.25 <~) $ every 4 rev $ every 2 (0.25 <~) $ striate 128 $ sound "[akuma2]" |+| speed "0.7", every 2 rev $ every 5 (0.25 <~) $ every 3 rev $ every 2 (0.25 <~) $ sound "[[auto/3]*16 [~ auto:2/3]*24 [auto:5/3 ~]*8 [auto:8/3]*32]" |+| shape "-0.3" |+| cutoff "0.1" |+| resonance "0.2" |+| speed "[[1.0 0.8] [1.0 1.5 0.8] [0.5] [0.8 1.2]]"]
+# gain 0.7
+
+
+-- BREAK ME ONE MORE TIME
+cps 0.25
+
+d6
+$jux (iter 16)
+-- $every 2 (#gain "0")
+$stack [
+  s "auto(3, 16, 5)",
+  s "drum(2, 16, 2)",
+  s "psr(4,16)",
+  s "glitch(2, 16)"
+]
+#n (irand 64)
+#gain "1"
+#pan (rand)
+
+d6
+$ fast 2
+$jux (iter 8)
+$ stack [
+ s "ifdrums(2, 16, 1)",
+ s "bd(3, 16, 0)",
+ s "glitch(3, 16, 2)",
+ s "bass(2, 16, 3)",
+ s "dr55(2,16,5)}"
+]
+#pan (rand)
+#n (irand 64)
+#gain "0.8"
+#shape "0.5"
+
+-- FEROX 
+cps(-1)
+setcps(1.1)
+
+d2 $ s "auto:1*110" # gain "0"
+d1 silence 
+
+d1 $ every 8 (#gain "1") $ fast 8 $ spaceOut ([1,0.98..0.0]) $ s "auto:3*12" # gain "0" # sustain "1"
+-- todo fix
+d1 $ ((striate' (43) (1/2)).(# gain "0.75").(# speed (-0.05))) $ s "auto:4" # gain "1"
+--
+
+d2 $ every 8 (# gain "1") $ sound "jungbass:8" # speed 1 # gain "0" -- # lpf (slow 4 $ scale 20 450 $ sine)
+-- hh 1
+d3 $ sound "auto:6*8" # gain "1.1" # hpf (slow 8 $ range 1000 8500 $ sine)
+-- drum 2
+d4 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
+-- filler 3
+d5 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0" 
+-- drum 4
+
+d4 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(0.25 ~>)) $ s "dr_few:1 dr_few:1*2 bit1:1 dr_few:1*8" # gain "1.1").jux(rev).(every 2 (striate (irand 128)))) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "0" --  # lpf (slow 4 $ scale 20 6080 $ sine)
+
+3
+-- glitches 5
+d6 $ every 8 ((# gain "0")) $ sound "bit1*8" # n "2" # gain "1.1" # cut "1.6"
+d6 $ every 8 ((# gain "0")) $ sound "bit1*8" # n (irand 89) # pan (rand) # gain "1" # cut "1"
+
+-- rest 6
+t1 (xfadeIn 20) $ s "bd" # gain "0"
+t2 (xfadeIn 20) $ s "bd" # gain "0"
+t3 (xfadeIn 20) $ s "bd" # gain "0"
+t4 (xfadeIn 20) $ s "bd" # gain "0"
+t5 (xfadeIn 20) $ s "bd" # gain "0"
+t6 (xfadeIn 20) $ every 8 ((# speed "-0.5").(degrade).(jux(rev))) $ every 2 (# speed "-0.5") $ sound "auto:8*30" # gain "1" #cutoff 300 #resonance "0.1"
+
+-- after rest
+t6 (xfadeIn 5)  $
+stack[
+    every 8 (# gain "1") $ sound "jungbass:8" # speed 1 # gain "0"
+    ,every 8 ((const $ every 16 ((jux(rev)).(#gain "0.5").(0.25 ~>)) $ s "dr_few:1 dr_few:1*2 bit1:1 dr_few:1*8" # gain "0.5").jux(rev).(every 2 (striate (irand 128)))) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "1" -- # 
+    ,sound "auto:6*8" # gain "0.7" # hpf (slow 8 $ scale 1000 8500 $ sine)
+    ,every 2 (#gain "0") $ sound "auto:8*30" # gain "1.1"
+    --,every 8 ((# gain "0")) $ sound "bit1*8" # n (choose [3]) # gain "1.1" # cut "1.6"
+    ,every 8 ((# gain "0")) $ sound "bit1*8" # n (irand 89) # pan (rand) # gain "1.1" # cut "1"
+] -- # lpf (slow 8 $ scale 20 180 $ sine)
+     
+
+t6 (xfadeIn 20) $ randcat [
+    sound "bit1*16" # n (1 + (irand 2)) # pan "[0 0.5 1]" # gain "1" # cut "1",
+    sound "bit1*32" # n (irand 15) # pan (slow 8 sine) # gain "1" # cut "1.2",
+    sound "bit1*64" # n (5 + (irand 5)) # pan (slow 8 sine) # gain "1" # cut "1",
+    sound "bit1*32" # n (6 + (irand 8))  # pan (slow 8 sine) # gain "1" # cut "1.1",
+    sound "bit1*32" # n (5 + (irand 2))  # pan (slow 8 sine) # gain "1" # cut "3.1"
+]
+
+
+
+--------------------- LOOOOOONG NICE ONE
+cps 1
+
+d2
+$ jux (iter 4)
+$ every 4 (gap 4)
+$ every 5 (chop 4)
+$ stack[
+  up pat6 |=| sound "auto:4" # speed (scale 1.0 5.0 $ rand),
+  up pat4 |=| sound "auto:6" # speed (scale 1.0 5.0 $ rand),
+  up pat5 |=| sound "auto:2" # speed (scale 1.0 5.0 $ rand)
+]
+|=| cutoff (scale 1000 12000 $ slow 3 $ sine1) # resonance (scale 0.1 0.4 $ rand)
+|=| delay "0.5" # delaytime "0.375" # delayfeedback "0.8"
+
+d1 $ s "tt_fx:18*2" # gain "1" # pan (rand) # speed (choose [1,5,7,2,4])
+d1 $ s "tt_fx:1*8" # gain "1" # pan (rand) # speed (choose [1,5,7,2,4]) # lpf (slow 4 $ scale 100 5000 $ rand)
+
+d2 $ s "auto:3*2" # gain "0"
+d3 $ s "ga"
+
+d3
+$ jux (iter 8)
+$ stack[
+ up pat5 |=| sound "drum:3",
+ up pat6 |=| sound "drum:0",
+ up pat4 |=| sound "drum:6"
+]
+|+| delay "0.25" |+| delaytime "0.375" |+| delayfeedback "0.5"
+|=| gain "1.3"
+
+
+d4
+-- $ jux (iter 32)
+-- $ every 3 (chop 8)
+$ stack[
+ up pat5 |=| sound "akuma1:1" |=| speed "0.5 0.25 1.0 -1.0",
+ up pat2 |=| sound "akuma1:0" |=| speed "1.0 0.5 0.25 1.0 -1.0",
+ up pat3 |=| sound "akuma1:3" |=| speed "1.0 -0.5 0.25 1.0 -1.0 1.0 1.5",
+ up pat4 |=| sound "akuma1:2" |=| speed "0.5 0.25 -1.5 1.0 -0.75 1.0 -0.25"
+]
+|*| speed "1.0" |*| speed "1.25"
+|+| delay "0.5" # delaytime "1.375" # delayfeedback "0.8"
+|+| cutoff (scale 100 8000 $ slow 1 $ sine1) # resonance (scale 0.1 0.8 $ slow 8 $ sine1)
+|=| gain "0.85"
+
+hush
+
+d5
+-- $ jux rev
+$ n "[c2 [[~ b2] g2] b1 [d2 g2]] ~" # s "supersaw" # pan (rand)
+|+| sustain "0.25"
+|+| resonance "0.2" # lfo "6"
+|+| cutoff (scale 800 1000 $ slow 4 $ sine1) # resonance (scale 0.01 0.2 $ slow 4 $ sine1)
+|+| delay "0.5" # delaytime "0.375" # delayfeedback "0.9"
+|+| gain "1"
+
+
+
+------------------- LOOOOOOONG 2
+------------------- LOOOOOOONG 2
+------------------- LOOOOOOONG 2
+cps 0.25
+
+d2
+$s "akuma3(3,16,5)"
+#sustain "1.0"
+#gain "1.0"
+
+d3
+$s "akuma4(3,16,9)"
+#sustain "1.0"
+#gain "1.0"
+
+
+d4
+$stack[
+  s "sine(5,16)" # n "{c5, e5, f5, g5, a5}"
+]
+#cutoff (scale 800 15000 $slow 4 $sine1) #resonance "0.2"
+#sustain "0.08"
+#gain "0.9"
+
+
+d1
+$stack[
+  s "supersaw(7,16,13)" #n "{0, 7, 10, 17, 19}" #speed "1.5" #pan (rand),
+  s "supersaw(7,16,11)" #n "{0, 7, 10, 17, 19}" #speed "1.0" #pan (rand),
+  s "supersaw(3,16,7)" #n "{0, 7, 10, 17, 19}" #speed "0.75" #pan (rand),
+  s "supersaw(3,16,5)" #n "{0, 7, 10, 17, 19}" #speed "0.5" #pan (rand),
+  s "supersaw(3,16,3)" #n "{0, 7, 10, 17, 19}" #speed "0.25" #pan (rand)
+]
+|+|n "0 7 -7 0 0 -5 5"
+#cutoff (scale 800 18000 $slow 16 $sine1) #resonance "0.1"--(rand)
+#sustain "0.5"
+#gain "0.4"
+#shape "0.5"
+#room "1.0"
+
+d5
+$jux (iter 16)
+$s "supersaw(7, 16, {3, 4})" # n "{c7, e7, f7, g7, a7, d8}" |+| up "5 0 -5 0 -12 12 7 0 -7 0"
+#sustain "0.05"
+#cutoff (scale 2000 15000 $slow 5 $sine1) #resonance "0.3"
+#gain "0.4"
+#shape "0.5"
+
+d6
+$jux (iter 4)
+$jux (iter 8)
+$ stack[
+  -- sound "arpy(3,16,3)",
+  -- sound "felld(5,16,0)",
+  -- sound "fell2(5,16,8)"|+|up "-7 0 7 14",
+  --sound "procshort(3,16,4)",
+  --sound "procshort(2,15,3)",
+  sound "bass(3,16,2)",
+  -- sound "space(3,16,10)"
+  sound "glitch(3,16,5)",
+    sound "808bd(3,16,9)",
+  sound "click(3,16,3)"
+  -- sound "sine(3,16,3)"
+]
+#n (irand 128)
+#gain "1"
+#shape "0.3"
+#pan (rand)
+#up "{7 0 -7 0 5 -12 0 12 0 7 0 -7 0 12}%16"
+#cutoff (scale 100 15000 $slow 3 $rand) #resonance "0.3"
+--- pad pad:1
