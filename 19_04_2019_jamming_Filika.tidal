@@ -23,3 +23,11 @@ d6 $ stack [
 
 xfadeIn 6 32 $ s "bd" # gain "0"
 
+
+
+d6 $ stack [
+    every 4 (# gain "0") $ s "akuma6" # n (irand 78)
+    , every 4 ((# n "5").(fast 16)) $ s "~ bass2" # n "5"
+    -- , s "bass2:7"
+]
+
