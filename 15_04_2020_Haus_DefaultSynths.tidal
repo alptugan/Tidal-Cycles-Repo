@@ -1,0 +1,71 @@
+bpm 120
+
+d2 $ s "01piano" # n (range 2 8 rand) # gain "1"
+
+d1 $ striate 16 $ s "01ambi/4" # unit "r" # speed 1
+
+d1 $ slow 8 $ s "01ambi" # begin "<0>"  # end "<1>" # unit "r" -- # speed 1
+
+d1 $ slow 4 $ striate' "32" "1/32" $ s "atrip1:2" # begin "0" # end "0.5" # cut "1"-- # unit "c" # speed "0.1" # cut "1" 
+
+once $ s "atrip1:2" 
+
+d1 $ every 4 (0.1~>) $ n "[d f e a <2 4 1*4>]" # s "gabba"
+
+d1 $ n "[d1 f1 e1 a1]" # s "superpiano"
+d1 $ n "[d1 f1 e1 a1]" # s "supergong"
+d1 $ n "[d1 f1 e2 a8*70]" # s "superhex"
+d1 $ n "[d1 f1 e2 a4]" # s "superkick"
+d1 $ n "[1 5 2 [e 12]]" # s "super808" # legato "4"-- # voice  "1"
+d1 $ n "[1 5 2 [e 12]]" # s "superhat" # legato "4" # sustain (slow 8 $ range 1 6 sine)
+d1 $ n "[d1 f1 e1 a1]" # s "supersnare"
+d1 $ n "[d1 f1 e1 a1]" # s "supersnare"
+d1 $ n "[d1 f1 e1 a1]" # s "supersiren"
+d1 $ n "[d2 f1 e1 a1]" # s "supersquare" # voice "0.1"
+d1 $ n "[d1 f1 e1 a1]" # s "supersaw"
+d1 $ n "[d1 f1 e1 a1]" # s "superpwm"
+d1 $ every 4 (0.25<~) $ n "[d2 f2 e3 a2]" # s "supercomparator"
+
+d1 $ every 4 (0.25<~) $ n "[d3 f1 e2 a1]" # s "superhammond" # gain "1.2" -- # sustain "[0. 0.4 0.4 0.4]" -- # cut "3"
+
+d2 $ stack [
+    every 4 (0.25<~) $ n "[d2 f2 e3 a2]" # s "superchip" 
+    -- # slide 0.05
+    -- # speed 2
+    -- # accelerate 0.2 
+    # pitch2 (slow "<4 8>" $ range 2 8 square)
+    -- #pitch3, #voice
+    ,n "<f5*4 f4*8 e4*4 [e5*2 d5*2]>" # "superchip" # gain "1" # cut "1" # sustain "0.1"
+    -- ,n "<f3 e3>" # s "superchip" # sustain "1"
+] 
+
+d1 $ n "[d1 f1 e1 a1]" # s "superfork"
+
+-- #supervibe parameters: #decay, #velocity, #accelerate, #modamp, #modfreq, #detune)
+d1 $ n "[d1 f1 e1 a1]" # s "supervibe" # decay "0.05" # velocity "2"
+
+
+-- (#superhoover parameters: #slide, #decay, #accelerate)
+d1 $ n "[d4 f3 e3 a4]" # s "superhoover"
+
+
+-- (#superzow parameters: #decay, #accelerate, #slide, #detune)
+d1 $ n "[d1 f1 e1 a1]" # s "superzow"
+
+-- (#superstatic parameters: #sustain)
+d1 $ n "[d1 f1 e1 a1]" # s "superstatic"
+
+-- (#supergrind parameters: #accelerate, #detune, #voice, #speed) !!!!!NOT WORKING
+d1 $ n "[d1 f1 e1 a1]" # s "supergrind"
+
+-- (#superprimes parameters: #accelerate, #detune, #voice, #spee !!!!!NOT WORKING
+d1 $ n "[d1 f1 e1 a1]" # s "superprimes"
+
+-- (#superwavemechanics parameters: #accelerate, #detune, #voice, #resonance) !!!!!NOT WORKING
+d1 $ n "[d1 f1 e1 a1]" # s "superwavemechanics" 
+
+-- (#supertron parameters: #accelerate, #detune, #voice) !!!!!NOT WORKING
+d1 $ n "[d1 f1 e1 a1]" # s "supertron" 
+
+-- (#parameters: #accelerate, #voice, #detune) !!!!!NOT WORKING
+d1 $ n "[d1 f1 e1 a1]" # s "superreese" 
