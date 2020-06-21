@@ -147,9 +147,9 @@ cps 1
 
 d1 $ stack [
     randcat [
-        s "drum*8" # n (irand 32) # lpf (fast 2 $ scale 100 4000 $ sine),
-        -- striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1",
-        --s "drum*8" # n (irand 2) # speed "-1",
+        s "drum*8" # n (irand 32) # lpf (fast 2 $ range 100 4000 $ sine),
+        striate 16 $ zoom(0.1,0.7) $ s "drum*8" # n (irand 32) # cut "1"
+        s "drum*8" # n (irand 2) # speed "-1",
         -- s "auto*8" # n (irand 4),
         -- degradeBy "0.5" $ s "tt_fx*32" # n (irand 32) #cut "1",
         -- s "drum*16?" # n "1" # speed "30" # gain "0.8" # cut "1",
