@@ -1,0 +1,33 @@
+setcps 1
+hush
+
+d1 $ s "bd"
+
+d1 $ stack [
+    whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "auto:1*2 auto auto" # gain 1
+    ,s "chin*8?" # n (irand 6) # gain "1.1" # pan "[0 0.5 1]" # speed (-0.5 + (rand))
+    ,s "supermandolin*8" # n (irand 10) # gain "0.8" -- ,50,10,23 "{9,2,30}"
+]
+
+d4 $ whenmod 8 6 ((#n "<-10 -20>").(striate' 4 (1/8))) $ s "supersaw*8" # n (-30 + (irand 1)) #gain 0
+d1 $ every 8 ((slow 1).(#room "0.4")) $ s "{glitch, tt_fx}" # gain "0" #n (cycleChoose [15..23]) # cut "1"
+
+
+d4 $ n "<[a5, cs5, e5, g5]*3 [d5, fs5, g5, c5]>" # s "supermandolin" # gain "1"
+
+d4 $ jux (#accelerate "-0.1") $ s "supermandolin*8" # midinote "[80!4 78]/8" # sustain "1 0.25 2 1" 
+
+d4 $ midinote (slow 2 $ (run 8) * (10) + 50) # s "superpiano" # decay "[1 0.2]/8" # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "22"
+
+let pati = "c e g g2"
+
+d1 $ stack [
+    midinote (slow 2 $ (pati) * (7) + 50) # s "supersaw" # decay "[1 0.2]/8" # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "2" # gain "0.8"
+    , whenmod 4 2 (jux(rev)) $ s "<super808*2 tt_kick> superclap*8 ~ superkick*2" # gain "1.5" -- # sustain "4"
+    , slow 4 $ midinote (slow 2 $ (pat1) * (7) + 50) # s "supercomparator" # gain "1.1"
+    , s "bit1" # gain "0.8" # n "12"
+]
+
+
+
+d1 $ every 8 ((slow 3).(#n (cycleChoose [15..23])).(#room "0.4").(#s "{glitch, tt_fx}").(#gain "0.85").(#pan (range "0" "1" $ rand))) $ sometimesBy 0.25 ((jux(rev)). (#speed (range "4.0" "0.1" $ slow 2 sine)). (#cut "1"). (#gain "1"). (#room 0.3)) # repeatCycles 4 $ sound "<aset1(16,18) drum(16,18)>" # n (irand 18) # gain "<1.1 1>"
