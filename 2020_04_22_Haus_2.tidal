@@ -1,0 +1,150 @@
+
+d7 $ stack [
+    whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~" # gain 1
+    ,s "chin*8?" # n (irand 6) # gain "1.3" # pan "[0 0.5 1]" # speed (-0.5 + (rand))
+    , s "superimpose*8" # n "{9,2,30}" 
+]
+
+d1 $ whenmod 8 6 ((#n "-10").(striate' 4 (1/8))) $ s "supersaw*8" # n (-20 + (irand 10))
+d1 $ n "<[a5,cs5,e5,g5]*3 [d5,fs5,g5,c5]>" # s "supermandolin" # gain "1"
+
+d1 $ jux (# accelerate "-0.1") $ s "supermandolin*8" # midinote "[80!6 78]/8"
+  # sustain "1 0.25 2 1"
+
+d1 $ midinote (slow 2 $ (run 8) * (10) + 50) # s "superpiano" # decay "[1 0.2]/8"
+  # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "22"
+
+
+let pati = "c e g g2" 
+
+d1 $ stack [
+    midinote (slow 2 $ (pati) * (7) + 50) # s "supersaw" # decay "[1 0.2]/8"
+  # voice "[0.5 0]/8" # sustain (slow 20 $ range 16 8.5 $ saw) # release "2" # gain "0.9"
+  ,whenmod 4 2 (jux(rev)) $ s "<super808 tt_kick> superclap ~ superkick*2" # gain "1.2" # sustain "4" 
+  , slow 4 $ midinote (slow 2 $ (pat1) * (7) + 50) # s "supercomparator" # gain "1"
+  -- ,whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~" # gain 1
+  -- ,s "chin*8?" # n (irand 6) # gain "1.3" # pan "[0 0.5 1]" # speed (-0.5 + (rand))
+  -- ,s "superimpose*8" # n "{9,2,30}" 
+]
+
+bpm 120
+d1 silence
+d1 $ every 4 ((#sustain "0.1").(fast "4").(#cut "2")) $ n "[d4 f3 e3 <a4 g4 f4>]" # s "superhoover" # sustain "1" -- # cut "1"
+d2 $ s "tt_kick" # gain "1.4"
+
+d1 $ s "bd*2 hh"
+d1 $ s "bd!2 hh"
+d1 $ s "{bd hh tt_fx:2}%5"
+
+d1 $ sound "bd*8" # pan cosine # speed (sine + 0.5)
+d1 $ sound "bd*8" # pan (cat [square, sine])
+d1 $ sound "bd*16" # speed (slow 2 $ range 0.5 2 tri)
+d1 $ sound "bd*8" # pan (slow 2 saw)
+d1 $ sound "bd*8" # pan (slow 2 isaw)
+
+d1 $ sound "akuma1*16" # n (choose [1,2,3,4,5,0])
+d1 $ sound "akuma1*16" # n (wchoose [(1,0.2),(2,0.15),(3,0.25),(4,0.1),(5,0.25),(0,0.1)])
+
+-- similar to choose, but only picks once per cycle
+d1 $ sound "akuma1*16" # n (cycleChoose [0,1,3])
+
+
+setcps 0.5
+
+d1 $ every 8 ((slow 3).(#n (cycleChoose [15..23])).(#room "0.4").(# s "{glitch,tt_fx}").(#gain "0.85").(# pan (range "0" "1" $ rand))) $ sometimesBy 0.25 ((jux(rev)). (#speed (range "4.0" "0.1" $ slow 2 $ sine)). (#cut "1"). 
+(#gain "1") .(#room 0.3)) $ repeatCycles 4 $ sound "<aset1(16,18) drum(16,18)>" # n (irand 18) # gain "<1.1 1>"
+
+d2 $ s "bass1(8, 18)" # up "<0 4 1 5>" # gain "1.1" # cut "2" # hpf "20"   
+
+d3 $ every 4 (#n (irand 9)) $ n (run 9) # s "<nau procshort psr>"  # gain "<0.7 0.9 0.9>" # room (range "0" "0.7" $ slow 5 $ tri)-- # accelerate (range "0" "1" $ slow 2 $ sine)
+
+unsolo 2
+
+
+d1 $ n (run 8) # sound "akuma1"
+d1 $ n (run "<4 8 4 16>") # sound "akuma1"
+d1 $ n (scan 16) # sound "akuma1"
+
+-- rotL starts the sequence from specified cycle
+do
+{
+  resetCycles;
+  d1 $ rotL 0 $ seqP [ 
+    (0, 12, sound "bd bd*2"), 
+    (4, 12, sound "hh*2 [sn cp] cp future*4"), 
+    (8, 12, sound (samples "if*8" (run 16)))
+  ]
+}
+
+-------------------------------------------------------------------------------------------------------------------
+-- UA TRACK --
+-------------------------------------------------------------------------------------------------------------------
+bpm 120
+setcps 1
+
+
+d1 $ s "ua" # n 0 # begin (choose [0.7, 0.1]) # end (choose [0.77, 0.12]) # cut "1" # gain "1.4"
+d1 $ s "ua" # n 0 # begin "<0.7 0.1 0.3 0.7 0.89>" # end "<0.72 0.12 0.32 0.71 0.9>" # gain "1.4" # cut "2"
+
+once $ sound "ua" # gain "1.4"
+
+do 
+resetCycles;
+d1 $ loopAt 224 $ chop 224 $ sound "ua" # gain "0"
+
+d2 $ stack [
+  slow 1 $ loopAt 2 $ s "jungbass:5" # gain "1.1" 
+  ,slow 2 $ every 8 ((slow 1).(#n (cycleChoose [22..23])).(#room "0.4").(#gain "0.85").(# pan (range "0" "1" $ rand))) $ s "{glitch(16,18),tt_fx}" # gain "1" # n (cycleChoose [0..22])
+  ,s "ua" # n 0 # begin "<0.4 0.4 0.4 0.1 0.5 0.9>" # end "<1.0>" # gain "1.4" # cut "1" -- # speed "0.2"
+]
+
+d3 $ slow 2 
+$ every 8 ((slow 3).(#n (cycleChoose [15..23])).(#room "0.4").(# s "{glitch,tt_fx}").(#gain "0.85").(# pan (range "0" "1" $ rand))) 
+$ sometimesBy 0.25 ((jux(rev)). (#speed (range "4.0" "0.1" $ slow 2 $ sine)). (#cut "1"). 
+(#gain "1") .(#room 0.3)) $ repeatCycles 4 $ sound "<aset1(16,18) drum(16,18)>" # n (irand 18) # gain "<1.1 1>"
+
+
+d1 $ zoom (0.1, 0.75) $ sound "ua"
+d1 $ slow 64 $ striate 64 $ sound "ua" # gain "1.4" -- # cut "1" 
+d1 $ zoom (0.1, 0.75) $ slow 64 $ striate 64 $ sound "ua" # gain "1.4" -- # cut "1" 
+
+
+-------------------------------------------------------------------------------------------------------------------
+-- ARPEGIATOR & CHORDS --
+-------------------------------------------------------------------------------------------------------------------
+d1 $ n (arpg "'major7 [0,4,7,11]") # sound "superpiano"
+
+d1 $ n (arp "<up down diverge>" "<a'm9'8 e'7sus4'8>") # sound "superpiano"
+
+
+-- MODES
+-- up down updown downup up&down down&up converge
+-- diverge disconverge pinkyup pinkyupdown
+-- thumbup thumbupdown
+
+-- CHORDS
+-- 6by9 7f10 7f5 7f9 7s5 7s5f9 7sus2 7sus4 9s5 9sus4 aug dim dim7 dom7 eleven elevenSharp five m11 
+-- m11s m11sharp m13m6 m6by9 m7f5 m7f9 m7flat5 m7flat9 m7s5 m7s9 m7sharp5 m7sharp5flat9 m7sharp9 m9 
+-- m9s5 m9sharp5 maj maj11 maj7 maj9 major major7 min min7 minor minor7 msharp5 nine nineSharp5 
+-- nineSus4 ninesus4 one plus sevenFlat10 sevenFlat5 sevenFlat9 sevenSharp5 sevenSharp5flat9 sevenSus2 
+-- sevenSus4 sharp5 six sixby9 sus2 sus4 thirteen
+
+
+
+-- The list above can be combined with a root using the ' to use with the synths in Super Dirt like this:
+d1 $ n "c'maj e'min" # s "supermandolin"
+
+
+-- The root can be set as 'sharp' or 'flat' with s or f respectively:
+d1 $ n "cf'maj c'maj cs'maj" # s "supermandolin"
+
+-- The octave can be set with a number. The default is 5:
+d1 $ n("c4'maj c5'maj c6'maj") # s "supermandolin"
+
+-- The chords can be patterned using the |+ operator:
+d1 $ n ("c e f" |+ "<'maj 'min>") # s "supermandolin"
+-- Equivalent to:
+d1 $ n ("c'maj e'maj f'maj, c'min e'min f'min") # s "supermandolin
+
+
+

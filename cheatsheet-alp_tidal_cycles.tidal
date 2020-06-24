@@ -6,9 +6,23 @@ striate (100 + irand 64)
 d1 $ every 4 (const $ sound "dr_few") $ sound "co:3"
 
 -- play a long sample file without waiting. The parameter of the slow func. is defined by the length of the sound file
+setcps 1
 d1 $ slow 16 $ striate 16 $ sound "bev" -- # loop  "1"
 
--- play part of a long sample file
+-------------------------------------------------------------------------------------------------------------------
+-- PLAY LONG SAMPLES WITHOUT WAITING --
+-------------------------------------------------------------------------------------------------------------------
+-- beat per sec should be 1, shop and loopAt values should be equal to the exact length of the sample in seconds
+setcps 1
+do 
+resetCycles;
+d1 $ loopAt 224 $ chop 224 $ sound "ua" # gain "1.4"
+
+-------------------------------------------------------------------------------------------------------------------
+-- PLAY PART OF A SAMPLE
+-------------------------------------------------------------------------------------------------------------------
+d1 $ s "bev" # n 0 # begin (choose [0.1, 0.2, 0.3]) # end (choose [0.2,0.3,0.6])
+-------------------------------------------------------------------------------------------------------------------
 d1 $ zoom (0.6, 0.65) $ striate 32 $ sound "bev" # cut "1"
 
 -- fade In
@@ -22,6 +36,29 @@ d1 $ stack [
 
 -- play tons randomly
 d1 $ randcat [
-    s "tt_fx" # gain "0.8",
-    s "tt_kick" # gain "1"
+    s "tt_fx*8" # n (range 1 15 $ rand) # gain "0.8",
+    s "tt_kick(2,1,4)" # gain "1.1"
 ]
+
+
+d1 $ s "tt_kick(6,2)" # gain "1.1" # cut "1"
+
+-------------------------------------------------------------------------------------------------------------------
+-- ARPEGIATOR & CHORDS --
+-------------------------------------------------------------------------------------------------------------------
+d1 $ n (arpg "'major7 [0,4,7,11]") # sound "superpiano"
+
+d1 $ n (arp "<up down diverge>" "<a'm9'8 e'7sus4'8>") # sound "superpiano"
+
+
+-- MODES
+-- up down updown downup up&down down&up converge
+-- diverge disconverge pinkyup pinkyupdown
+-- thumbup thumbupdown
+
+-- CHORDS
+-- 6by9 7f10 7f5 7f9 7s5 7s5f9 7sus2 7sus4 9s5 9sus4 aug dim dim7 dom7 eleven elevenSharp five m11 
+-- m11s m11sharp m13m6 m6by9 m7f5 m7f9 m7flat5 m7flat9 m7s5 m7s9 m7sharp5 m7sharp5flat9 m7sharp9 m9 
+-- m9s5 m9sharp5 maj maj11 maj7 maj9 major major7 min min7 minor minor7 msharp5 nine nineSharp5 
+-- nineSus4 ninesus4 one plus sevenFlat10 sevenFlat5 sevenFlat9 sevenSharp5 sevenSharp5flat9 sevenSus2 
+-- sevenSus4 sharp5 six sixby9 sus2 sus4 thirteen

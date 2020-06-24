@@ -19,7 +19,6 @@ d1 $ n "[d1 f1 e2 a4]" # s "superkick"
 d1 $ n "[1 5 2 [e 12]]" # s "super808" # legato "4"-- # voice  "1"
 d1 $ n "[1 5 2 [e 12]]" # s "superhat" # legato "4" # sustain (slow 8 $ range 1 6 sine)
 d1 $ n "[d1 f1 e1 a1]" # s "supersnare"
-d1 $ n "[d1 f1 e1 a1]" # s "supersnare"
 d1 $ n "[d1 f1 e1 a1]" # s "supersiren"
 d1 $ n "[d2 f1 e1 a1]" # s "supersquare" # voice "0.1"
 d1 $ n "[d1 f1 e1 a1]" # s "supersaw"
@@ -27,6 +26,8 @@ d1 $ n "[d1 f1 e1 a1]" # s "superpwm"
 d1 $ every 4 (0.25<~) $ n "[d2 f2 e3 a2]" # s "supercomparator"
 
 d1 $ every 4 (0.25<~) $ n "[d3 f1 e2 a1]" # s "superhammond" # gain "1.2" -- # sustain "[0. 0.4 0.4 0.4]" -- # cut "3"
+
+bpm 120
 
 d2 $ stack [
     every 4 (0.25<~) $ n "[d2 f2 e3 a2]" # s "superchip" 
@@ -36,17 +37,17 @@ d2 $ stack [
     # pitch2 (slow "<4 8>" $ range 2 8 square)
     -- #pitch3, #voice
     ,n "<f5*4 f4*8 e4*4 [e5*2 d5*2]>" # "superchip" # gain "1" # cut "1" # sustain "0.1"
-    -- ,n "<f3 e3>" # s "superchip" # sustain "1"
+    --,n "<f3 e3>" # s "superchip" # sustain "1"
 ] 
-
+ 
 d1 $ n "[d1 f1 e1 a1]" # s "superfork"
 
 -- #supervibe parameters: #decay, #velocity, #accelerate, #modamp, #modfreq, #detune)
-d1 $ n "[d1 f1 e1 a1]" # s "supervibe" # decay "0.05" # velocity "2"
+d4 $ n "[d1 f1 e1 a1]" # s "supervibe" # decay "0.05" # velocity "2"
 
 
 -- (#superhoover parameters: #slide, #decay, #accelerate)
-d1 $ n "[d4 f3 e3 a4]" # s "superhoover"
+d1 $ n "[d4 f3 e3 a4]" # s "superhoover" # sustain "1" -- # cut "1"
 
 
 -- (#superzow parameters: #decay, #accelerate, #slide, #detune)
@@ -69,3 +70,41 @@ d1 $ n "[d1 f1 e1 a1]" # s "supertron"
 
 -- (#parameters: #accelerate, #voice, #detune) !!!!!NOT WORKING
 d1 $ n "[d1 f1 e1 a1]" # s "superreese" 
+
+
+-------------------------------------------------------------------------------------------------------------------
+bpm 70
+
+d1 
+$ whenmod 16 4 (|+ 3)
+-- $ every 4 (jux(rev.(# s "tta").chunk 4 (iter 4)))
+$ off 0.125 (|+ 12)
+$ off 0.25 (|+ 7)
+$ n "[d2(3,8) f2(3,8) e2(3,8,2) a2(3,8,2)]/2" # s "superchip" -- # legato 1 -- # cut "3"
+# room 0.3 # size 0.4 
+# lpf (range 200 8000 $ slow 2 $ sine) 
+# resonance (range 0.03 0.6 $ slow 2.3 $ cosine)
+# pan (range 0.1 0.9 $ rand) # cut "1"
+
+d2 $ s "[gabba*4, hh*8, [~ tclap]*2]" # gain "1.1" -- # room 0.5
+
+-------------------------------------------------------------------------------------------------------------------
+
+d1 
+$ sometimesBy 0.01 (degradeBy 0.125) 
+$ s "akuma1*16" 
+# n (irand(16)) 
+# speed (range 0.9 1.2 $ slow 2 $ rand)
+
+
+-------------------------------------------------------------------------------------------------------------------
+-- ARRAY OPERATIONS --
+-------------------------------------------------------------------------------------------------------------------
+-- choose random n value on every 16th cycle
+d1 $ s "akuma1*16" # n (choose [0,1,2,3,4,5])
+
+-- choose random n value on every 16th cycle (..) means list the numbers from 0 to 5
+d1 $ every 4 ((fast 2).(rev).(degradeBy 0.25)) $ s "akuma1*16" # n (choose [0..5])
+
+-- wchoose
+d1 $ every 4 ((fast 2).(rev).(degradeBy 0.25)) $ s "akuma1*16" # n (wchoose [(10, 0.5), (20, 0.25),(60,0.25)])
