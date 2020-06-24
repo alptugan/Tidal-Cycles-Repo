@@ -9,6 +9,11 @@ d5 $ sound "sine" # n (irand 6) # gain "0.65"
 t5 (xfadeIn 10) $ s "bd" # gain 0 
 
 
+espgrid tidal
+cpsEsp 1
+
+
+bpm 400
 
 d1 $ s "bd"
 
@@ -63,7 +68,7 @@ d3 $ n "2 0 2 0" # s "bass2" # gain "1.1"
 d3 $ n "4 4 4 4 4 4 4 4" # s "bass2" # cut "1" # gain "1.1"
 d3 $ every 4 (# s "bass2:4" ) $ n "2 0 2 0" # s "bass2" # gain "1.2"
 d3 $ every 4 (striate 12) $ every 8 ((# s "bass2:6").(#cut "1")) $ n "2 0 2 0" # s "bass2" # gain "1"
-d4 $ s "tfa*4" # n (irand 32) # gain "1" # pan (rand) # lpf (slow 4 $ range 100 5000 $ rand)
+d4 $ s "tt_fx*4" # n (irand 32) # gain "1" # pan (rand) # lpf (slow 4 $ range 100 5000 $ rand) # cut "3"
 
 solo 2
 
@@ -84,15 +89,15 @@ d3 $ n "1" # s "latibro" # gain "1" # speed "-0.25"
 
 d3 $ s "melt" # gain "1"
 
-d4 $ s "noise:10"
-d4 $ s "noise2*8" # n (irand 6) # gain "1" # speed "1" # cut "1" 
+d4 $ s "noise:10" 
+d4 $ s "noise2" # n (irand 6) # gain "1" # speed "1" # cut "1" 
 d5 $ s "outdoor:4" # gain "1" -- # speed (slow 4 $ scale 0 2 $ sine)
 d6 $ s "square" # gain "0.7"
 d4 $ every 4 (#n (irand 8)) $ s "yeah*8" # gain "1" # n (irand 8) # speed "3" # pan "[0 0.5 1]"
 
 -- Somethings happening
 d1 $ n "4 4 4 4" # s "bass2"
-d1 $ every 4 (jux(rev)) $ n "4 4 4 4" # s "bass2" # lpf (slow 8 $ scale 80 800 $ sine) 
+d1 $ every 4 (jux(rev)) $ n "4 4 4 4" # s "bass2" # lpf (slow 8 $ range 80 800 $ sine) 
 d3 $ every 8 ((# s "bass2:6").(# cut "1")) $ every 4 ((# s "bass2:4").(# cut "1")) $ n "2 0 2 0" # s "bass2" # cut "1"
 
 --- RYTHIM - play squentially
@@ -104,7 +109,8 @@ d2 $ stack [
     --s "latibro:6" # gain "0.7" -- 1
     -- s "latibro*4" # n (irand 19) # gain "7"
     --zoom(0.3,0.35) $ striate 12 $ s "melt" # speed "1" # gain "0.1"
-] # gain "1" -- # lpf "7060"
+] # gain "1" # lpf "16360"
+-- ] # gain "1" -- # lpf "7060"
 
 
 d2 $ stack [
@@ -138,7 +144,7 @@ d1 $ stack [
 ---- DARK DAYS
 cps 1
 d1 $ slow 32 $ jux (rev) $ every 4(striate' 64 (1/8)) $ sound "dark" # gain "1"
-d1 $ striate 16 $ s "dark2" # gain "1"
+d1 $ striate 16 $ s "dark" # gain "1"
 d2 $ sound "[auto:5 auto:5 ~ ~] ~ auto:2"
 d1 $ slow 32 $ jux ((# speed "0.5") . rev) $ striate' 32 (1/8) $ sound "dark" # gain "1.1"
 d2 $ every 4 (jux (rev)) $ sound "[bd:10*4 dr_few:4*4,sn auto:9]" # gain "[[1 0.8]*2-0.5 [0.5-0.2 0.8-0.2]]/2"
@@ -197,11 +203,11 @@ d1 $ s "supernoise/5" # midinote ((irand 130)) # sustain "0.1"
 # accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
 # attack "1" # release "8" # room "1" # size "1" # orbit "1" # gain "0.8"
 
-d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3"
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3" 
 d2 $ slow 8 $ striate' 64 1.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3" # cut "1"
 d2 $ slow 8 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
 d2 $ slow 5 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
-d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "1" # speed "1" # cut "1"
+d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "1" # speed "1" # cut "5"
 
 
 
@@ -217,7 +223,7 @@ d4 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlki
 
 -- Ambient 3 
 -- play with scale/100-20000 with 100-800 with 100-8000 with dark:0:1:2
-d1 $ every 4 (0.11 <~) $ every 16 (degradeBy 0.01) $ shuffle 4 $ s "dark*8 noise2:1/2 <noise2,noise:3,noise:5,noise:6> noise:4" # unit "c" # speed 0.4 # cutoff (scale 100 4000 $ sine) # shape "0.4" # gain "0.9 1 1 1"
+d1 $ every 4 (0.11 <~) $ every 16 (degradeBy 0.01) $ shuffle 4 $ s "dark*8 noise2:1/2 <noise2,noise:3,noise:5,noise:6> noise:4" # unit "c" # speed 0.4 # cutoff (range 100 4000 $ sine) # shape "0.4" # gain "0.9 1 1 1"
 
 -- Ambient 4
 d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
