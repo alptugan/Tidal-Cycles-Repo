@@ -1,7 +1,6 @@
   
 :set -XOverloadedStrings
 :set prompt ""
-:set prompt-cont ""
 
 import Sound.Tidal.Context
 
@@ -10,7 +9,7 @@ import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
 -- total latency = oLatency + cFrameTimespan
-tidal <- startTidal (superdirtTarget {oLatency = 0.3, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
+tidal <- startTidal (superdirtTarget {oLatency = 0.5, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
 
 
 :{
@@ -57,10 +56,10 @@ let p = streamReplace tidal
     d10 = p 10 . (|< orbit 9)
     d11 = p 11 . (|< orbit 10)
     d12 = p 12 . (|< orbit 11)
-    d13 = p 13
-    d14 = p 14
-    d15 = p 15
-    d16 = p 16
+    d13 = p 13 . (|< orbit 12)
+    d14 = p 14 . (|< orbit 13)
+    d15 = p 15 . (|< orbit 14)
+    d16 = p 16 . (|< orbit 15)
 :}
 
 :{
@@ -72,8 +71,8 @@ let setI = streamSetI tidal
 :}
 
 -- custom function
-let bpm x = setcps(x/120)
-let xfadeOut i t = xfadeIn i t $ s "bd" # gain "0"
+-- let bpm x = setcps(x/120)
+let bpm x = setcps(x/60/4)
 
 -- fadeout function
 let xfadeOut i t = xfadeIn i t $ s "bit1" # gain "0"
@@ -100,4 +99,4 @@ let pat7 = "{2 0 4 5}"
 let pat9 = "{0*2 ~ [4 ~] ~ 3*4 [~ 1] 8}%2"
 
 :set prompt "tidal> "
-
+:set prompt-cont ""
