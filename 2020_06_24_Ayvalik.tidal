@@ -11,20 +11,20 @@ xfadeIn 1 20 $ stack [
 ]
 
 --- AYVALIK 1 AMBIENT SONG 
-xfadeIn 1 25 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.0>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
+xfadeIn 1 35 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.0>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
 solo 1
 
-xfadeIn 2 35 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 5000 $ sine)  
+xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 5000 $ sine)  
 # cut "1" 
 
-xfadeIn 3 35 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
+xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
 
 xfadeIn 4 55 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.68"
 
 
 
 
-d1 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.7>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
+d1 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.77>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
 unsolo 1
 
 d2 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 5000 $ sine)  
@@ -37,9 +37,9 @@ d4 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" #
 
 
 xfadeOut 4 40
-xfadeOut 2 60
-xfadeOut 3 40
-xfadeOut 1 50
+xfadeOut 2 3
+xfadeOut 3 4
+xfadeOut 1 1
 
 
 d1 $ whenmod 8 6 ((#n "-10").(striate' 4 (1/8))) $ s "supersaw*8" # n (-20 + (irand 10))

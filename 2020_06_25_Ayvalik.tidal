@@ -1,0 +1,60 @@
+-- Ayvalik - Song 2
+
+xfadeIn 2 15 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.65" # crush 2 # speed "0.45" # cut "2"
+
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.55" # crush 2 # speed "0.45" # cut "2"
+
+d5 $ n "1" # s "latibro" # gain "0.57" # speed "-0.2"
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.54" # crush 2 # speed (0.5 + rand*0.5) # cut "1"
+
+d2 $ zoom(0.2, 0.3) $ striate 4 $ s "made2" # gain "0.5" # crush (slow 4 $ range 1 2 $ tri) # speed (0.5 + rand*0.5) # cut "1"
+
+unsolo 2
+
+
+d5 $ every 8 ((#up "5")) $ every 4 (#up "<3 3 2>") $ n "<1>" # s "latibro" # speed "-0.2" # gain "1.1" 
+
+d5 $ every 8 ((#up "5 7 8")) $ every 4 (#up "<3 3 2>") $ n "<1>" # s "latibro" # speed "-0.2" # gain "1.1" 
+
+unsolo 5
+
+d6 $ sometimesBy 0.5 (#speed "-0.5") $ s "asubkick:0*8" # n pat7 # gain "1" # cut "5" # lpf 400
+d6 $ every 4 (iter 4) $ sometimesBy 0.5 ((#speed "1.5").(jux(rev))) $ s "asubkick:0*4" # gain "1" # cut "5"  # lpf 600
+
+d7 $ s "tt_fx*4?" # n (6 + (irand 183)) # gain "0.82" # cut "4" 
+
+d8 $ sometimesBy 0.15 ((#speed (rand)).(jux(rev))) $ s "<glitch2:0*8 hardkick:0*8>" # n pat7 # gain "0.9" # cut "6" # lpf (slow 8 $ range 500 4000 $ sine)
+
+
+-------------------------------------
+-- Ayvalık - song 3
+d2 $ zoom(0.2, 0.3) $ striate 16 $ s "made2" # gain "0.6" # cut "1"
+d2 $ every 4 ((zoom(0.2, 0.35)).(striate 32)) $ zoom(0.2, 0.3) $ striate 16 $ s "made2" # gain "0.6" # cut "1"
+
+d2 $ every 4 (#speed "0.05") $ zoom(0.2, 0.3) $ striate 16 $ s "made2" # gain "0.6" # cut "1"
+d2 $ zoom(0.2, 0.31) $ striate 16 $ s "made2" # gain "0.6" # cut "1" 
+
+d4 $ every 4 (#n (irand 8)) $ s "yeah*8" # gain "1" # n (irand 8) # speed "3" # pan "[0 0.5 1]"
+d4 $ every 4 (#n (irand 8)) $ s "yeah*8" # gain "1" # n (irand 38) # speed (slow 8 $ range 0.1 2 $ sine) # pan "[0 0.5 1]"
+d4 $ whenmod 8 4 (#n (irand 108)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "yeah*8" # n (irand 38) # speed (slow 8 $ range 0.1 2 $ sine) # pan "[0 0.5 1]" # gain "1"
+
+d1 $ every 8 ((striate 32).(#gain "0.85").(#pan (rand))) $ sometimesBy 0.25 ((jux(rev)).(#speed "-0.15").(#gain "0.7")) $ s "thh*8" # gain "0.95" # lpf (range 800 15000 $ slow 4 $ sine) 
+
+d1 $ every 8 ((striate 64).(#gain "0.85").(#pan (rand))) $ sometimesBy 0.25 ((jux(rev)).(#speed "-0.15").(#gain "0.7")) $ s "<thh*8 pad?>" # gain "0.95" # lpf (range 800 13000 $ slow 4 $ sine) 
+
+d3 $ up "[0 6 0 8] / 8" # s "jungbass:6" # gain "1.4"
+
+-------------------------------------
+d3 $ s "procshort*3?" # n (irand 6) # gain "1" # pan "[0 0.5 1]" # speed "1" # lpf 3000-- # cut "1" 
+d3 $ s "procshort*5?" # n (irand 16) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ s "procshort" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ every 8 ((fast 4).()) $ every 4 (jux(rev)) $ s "procshort" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+
+d4 $ slow 1 $ every 8 ((fast 2).(#n (irand 90))) $ every 4 ((jux(rev)).(iter 2).(#n (irand 90))) $ s "aset1:1*2 aset1:2 aset1:4 ~ aset1:3" # gain 1 # lpf "3000"
+
+d4 $ slow 1 $ every 8 ((fast 2).(#n (irand 90))) $ every 4 ((jux(rev)).(iter 2).(#n (irand 90))) $ s "aset1:1*2? hardkick:2 aset1:4 hardkick psr:0" # gain 1 # lpf "3000" # cut "1"
+
+d5 $ every 4 ((# n pat7)) $ s "bit1:10" # pat1 # gain "1"
+

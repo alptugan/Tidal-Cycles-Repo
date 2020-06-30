@@ -16,7 +16,7 @@ tidal <- startTidal (superdirtTarget {oLatency = 0.5, oAddress = "127.0.0.1", oP
 let p = streamReplace tidal
     hush = streamHush tidal
     list = streamList tidal
-    mute = streamMute tidal
+    mute = streamMute tidal 
     unmute = streamUnmute tidal
     solo = streamSolo tidal
     unsolo = streamUnsolo tidal
@@ -27,10 +27,10 @@ let p = streamReplace tidal
     all = streamAll tidal
     resetCycles = streamResetCycles tidal
     setcps = asap . cps
-    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
-    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
-    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
-    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i
+    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i  
+    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i 
+    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i 
+    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i 
     waitT i f t = transition tidal True (Sound.Tidal.Transition.waitT f t) i
     jump i = transition tidal True (Sound.Tidal.Transition.jump) i
     jumpIn i t = transition tidal True (Sound.Tidal.Transition.jumpIn t) i
@@ -70,6 +70,9 @@ let setI = streamSetI tidal
     setB = streamSetB tidal
 :}
 
+
+
+
 -- custom function
 -- let bpm x = setcps(x/120)
 let bpm x = setcps(x/60/4)
@@ -96,7 +99,9 @@ let pat6 = "{~ 0 ~ 0 -12 0*4 0 0*2 [~ 0] -12 0*4 ~ 0 ~ 0 -12 0*2 ~ [~ 0] [~ 0] ~
 
 let pat7 = "{2 0 4 5}"
 
-let pat9 = "{0*2 ~ [4 ~] ~ 3*4 [~ 1] 8}%2"
+let pat8 = "{0*2 ~ [4 ~] ~ 3*4 [~ 1] 8}%2"
+
+let pat9 = "{2 0 4 5}%8"
 
 :set prompt "tidal> "
 :set prompt-cont ""
