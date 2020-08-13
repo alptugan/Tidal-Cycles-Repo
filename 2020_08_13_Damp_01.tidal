@@ -1,0 +1,1 @@
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 32)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # speed "[0.1 -2 0.3 -4 30]" # cutoff (slow 4 $ range 100 9000 $ sine) # gain "1"

@@ -234,20 +234,23 @@ d2 $ every 4 (# speed (rand)) $ zoom(0.5,0.6) $ striate 45 $ s "dark:1" # speed 
 
 -- Minimal
 d3 $ s "procshort*5?" # n (irand 6) # gain "1" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
+
+
 ---- APHEX TWIN
-d1 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~ mlkick:3" # gain 1
+d1 $ slow 1 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "aset1:1*2 aset1 aset1 ~ aset1:3" # gain 1
 
 
 
 -- Alone in myself - prova -- AP TN REMIX
-d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # speed "[0.1 -2 0.3 -4 30]" # cutoff (scale 0 5000 $ sine) # gain "0.9"
+
+d2 $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 32)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # speed "[0.1 -2 0.3 -4 30]" # cutoff (slow 4 $ range 100 9000 $ sine) # gain "1"
 
 t2 (xfadeIn 5) $ every 4 (jux(rev)).(jux(brak)) $ every 2 (striate (irand 64)) $ s "bit1:4*8 bit1:4 dr_few:1*2 bit1:1 dr_few:1*8?" # speed "[0.1 -2 0.3 -4 30]" # cutoff (scale 0 5000 $ sine) # gain "1"
 
 
 solo $ d1 -- $ every 4 (iter 4) $ e 8 8 
 
-$ stack [
+d1 $ stack [
   --sound (samples "bass1:0*4" (run 10)) # gain "1" # cut "1",
   every 4 (const $ s "ifdrums:10*4 ~ ifdrums:10*2 ifdrums:3" # gain 0.95) $ sound "ifdrums:10" # gain "1",
   slowcat [
