@@ -62,7 +62,7 @@ unsolo 2
 
 
 d1 $ n (run 8) # sound "akuma1"
-d1 $ n (run "<4 8 4 16>") # sound "akuma1"
+d1 $ n (run "<8 12 8 16 8>") # sound "akuma1"
 d1 $ n (scan 16) # sound "akuma1"
 
 -- rotL starts the sequence from specified cycle
