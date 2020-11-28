@@ -1,0 +1,85 @@
+-- melody
+d1 $ "c" # s "supermandolin"
+
+d1 $ "c a f e" # sound "supermandolin" # legato 4
+
+d1 $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ off 0.125 (|+ n 7) $ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" 
+# sound "supermandolin" # legato 4
+# room 0.6 # size 0.9
+
+-- define array to create melodic dynamism
+let melody = [12] 
+
+d1 $ jux rev $ off 0.25 (|+ n (choose melody)) $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+# room 0.8 # size 0.8
+# gain "0.8"
+
+d1 $ jux rev $ off 0.25 (|+ n "12") $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) <a*2 g*2 e*4> f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+# room 0.8 # size 0.8
+# gain "0.8"
+
+-- Drums
+d2 $ chunk 4 (hurry 2) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ every 3 (#crush 2) $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ chunk 4 (hurry 2) 
+$ every 3 (#crush 2) $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> [~ drum:1] dr_few:1*4" 
+# gain "1.12"
+
+--
+d3 $ jux rev $ iter 4 $ chop 1 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 8 (hurry 2) $ jux rev $ iter 4 $ chop 1 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 4 (#crush 2) $ jux rev $ iter 4 $ chop 2 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 4 (#crush 2) $ jux rev $ iter 4 $ s "akuma1*16" # n (irand 10) # gain "1.1"
+
+-- melody
+
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n "<12 12 14 14 16 10>") $ off 0.25 (|+ n 8) 
+$ n "<<a*2 g*2 e*4> <a(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "keys2" # legato 1
+# room 0.4 # size 0.9
+# gain "0.99"
+
+
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n "<12 12 14 14 16 10>") $ off 0.25 (|+ n 8) 
+$ every 2 (#speed "<0.5 1 0.25 2>") $ n "<<a*2 g*2 e*4> <a(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "keys2" # legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+
+unsolo 1
+
+d1 $ jux rev $ off 0.25 (|+n 12) $ off 0.125 (|+ n 7) $ n "<c(3,8) <a*2 g*2 e*2> f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+#room 0.8 # size 0.9
+# gain "0.9"
+
+d2 $ every 4 (iter 4) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 ((iter 4).(fast 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 (iter 4) $ every 2 ((repeatCycles 4).(iter 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+
+d3 $ jux rev $ iter 4  $ chop 2 $ s "akuma1*8" # n (irand 19) # gain "1.1"
