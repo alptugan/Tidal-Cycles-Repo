@@ -1,0 +1,50 @@
+let arro = [12,9,14,16,10,8]
+
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n (choose arro)) $ off 0.25 (|+ n 4) 
+$ every 2 (#speed "<0.5 1 0.25 2>") $ n "<<a*2 g*2 e*4> <a5(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "01piano" 
+# legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+
+d1 $ every 16 ((iter 4).(#legato 4)) $ jux rev $ off 0.125 (|+ n (choose arro)) $ off 0.25 (|+ n 8) 
+$ every 2 (#speed "<0.5 1 0.25 2 0.01>") $ n "<<a*2 g*2 e*4> <a5(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "01piano" 
+# legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+-- Last d1
+let arro = [12,9,14,16,10,8]
+
+d1 $ every 16 ((iter 4).(#legato (irand 6))) $ jux rev $ off 0.125 (|+ n (choose arro)) $ off 0.25 (|+ n 8) 
+$ every 2 (#speed "<0.5 1 0.25 2 0.01>") $ n "<<a*2 g*2 e*4> <a5(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "01piano" 
+# legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+d2 $ s "<[aset1(8,16)] bit1(4,1) [aset1(8,16), birds(16,4)?] >" 
+# n (irand 10)
+# legato "<1 0.2 0.9 0.3 0.1 0.1 2>"
+# gain "<1 1.15 1>"
+
+d2 $ sometimesBy 0.25 (hurry 2) $ s "<aset1(8,16) bit1(4,1) [aset1(8,16)] >" 
+# n (irand 10)
+# legato "<1 0.2 0.9 0.3 0.1 0.1 2>"
+# gain "<1 1.15 1>"
+
+-- Last d2
+d2 $ sometimesBy 0.25 (hurry 2) $ s "<[aset1(8,16), akuma1(4,8)] bit1(4,1) [aset1(8,16)] >" 
+# n (irand 10)
+# legato "<1 0.2 0.9 0.3 0.1 0.1 2>"
+# gain "<1 1.15 1>"
+
+d3 $ sometimesBy 0.2 (# gain 1) $ s "birds(4,4)" # n (irand 10) # gain 0-- # legato 1
+
+-- Last d3
+d3 $ jux(rev) $ sometimesBy 0.09w (# gain 1) $ s "birds(4,4)" # n (irand 10) # gain 0-- # legato 1
