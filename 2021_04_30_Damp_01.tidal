@@ -1,0 +1,40 @@
+
+d1 $ sound "bd*4"
+
+
+let fastArr = [2,4,8]
+
+d1 
+    -- $ every 4 (# speed "1 4.5").(fast (choose fastArr))
+    $ every 4 (#speed 6)
+    $ s "sea sine" # shape 0.25 # speed "0.1 5"
+    # room 0.5 # size 0.8
+    -- # n (irand 20)
+    # gain "1.1 0.8"
+
+
+let arr = [1,3,2]
+
+d3 
+    $ every 4 ((#n 4).(# gain "1.3"))
+    $ s "sitar" 
+    # n (choose arr)
+    # room 0.5
+    # size 0.8
+    # gain "1.1"
+
+xfadeIn 2 10 
+d2
+    $ every 4 (degradeBy "0 <0.5 0.125> 0.125 0.5")
+    $ every 8 (0.25 ~>)
+    $ every 4 (ply 8)
+    -- $ fast 2
+    $ s "tkick:9 [ tkick:5 tkick:3 ] tt_clap:0 tt_hh:1"
+    # n (irand 20)
+    # shape (range 0.25 0.45 rand)
+    # gain "1 1 0.9 1"
+    
+
+d2 $ sound "akuma1*16" # n (choose [1,2,3,4,5,0])
+d2 $ sound "akuma1*16" # n (wchoose [(1,0.2),(2,0.15),(3,0.25),(4,0.1),(5,0.25),(0,0.1)])
+
