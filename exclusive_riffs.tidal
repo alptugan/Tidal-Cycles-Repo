@@ -2,7 +2,8 @@ d1 $ s "bd"
 
 
 -- riff 4 - ambient dark techno
-d3 $ striate 32.(every 4 (64)) $ fast 0.2 $ up "[0 1 3 10]/8" # sound "<ade:5 ~>"  # pan (slow 8 $ saw) # gain "0.9"
+d3 $ striate 32 $ fast 0.2 $ up "[0 1 3 10]/8" # sound "<ade:5 ~>"  # pan (slow 8 $ saw) # gain "0.9"
+
 cps(0.8)
 
 hush
@@ -47,7 +48,7 @@ d1 $ spread ($) [fast 2, rev, slow 2, striate 3, (# speed "0.8")]
 d2 silence
 -- alternate percussion glitchy sounds
 d2 $ s "psr*8" # n (irand 39) # gain "0.6"
-d2 $ s "psr*8" # n (run (irand 30)) # gain "0.4"
+d2 $ s "psr*8" # n (run (irand 30)) # gain "0.8"
 d2 $ every 4 ((jux(rev)).striate(irand 128)) $ s "psr*8" # n (run (irand 30)) # gain "1"
 d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "psr*8" # n (run (irand 30)) # gain "1.2"
 
@@ -55,6 +56,7 @@ hush
 -- Tidal bot
 cps 1
 d2 $ (jux (# speed (slow 8 $ scale 0.01 10 sine))) $ sound "[bd ~ cp hh]*4" # shape 0.99 # cutoff (slow 8 $ scale 0 9999 sine)
+
 d1 $ sound "drum*3 feel*4" |=| n (every 4 (palindrome) $ every 3 (0.10 ~>) $ sometimes (palindrome) $ "3") |=| coarse "2 16 4"
 
 d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "psr:18*2 psr:20*2 psr:25*2 psr:19*1" # n "1 7"
@@ -69,15 +71,15 @@ d1 $ brak $ sound "[click:10 click:5 click:4 click, bass1:0 . <psr:1 psr:12? psr
 d1 $ every 4 (brak) $ (0.55 ~>) $ striate 26 $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
 d2 $ slow 2 $ sound "sine/4" # gain 0.8 # speed 1
 -- Tidal Bot 2
-d1 $ every 4 (chop 32) $ every 2 (density 2) $ s "feelfx*3 bd*1" |=| n (sometimes (slow 2) $ "2 2 5 8 2 9 1 3 0")
-d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "blip*2 pluck*2 bass2*2 off*1" |=| n "1 7"
+d1 $ every 4 (chop 32) $ every 2 (density 2) $ s "feelfx*3 bd*1" # n (sometimes (slow 2) $ "2 2 5 8 2 9 1 3 0")
+d1 $ superimpose (slow 2 . striate 16) $ sometimes (density 2) $ s "blip*2 pluck*2 bass2*2 off*1" # n "1 7"
 
-d1 $ sometimes (density 20) $ s "bit1*20" |=| n "5" # hpf 1000
-d1 $ superimpose (|=| speed "3") $ every 3 (chop 8) $ sometimes (0.25 <~) $ s "pluck*2 feelfx*2" |=| n (sometimes (density 4) $ run 4)
+d1 $ sometimes (density 20) $ s "bit1*20" # n "5" # hpf 1000
+d1 $ superimpose (# speed "3") $ every 3 (chop 8) $ sometimes (0.25 <~) $ s "pluck*2 feelfx*2" # n (sometimes (density 4) $ run 4)
 
 d1 $ jux (|=| speed "-1 2 1 3") $ every 2 (0.125 ~>) $ s "auto*1 feelfx*3 bd*3 drum*2 hh*4 bass*4" |=| n "0 4 10 0 4 0 1"
 
-d1 $ superimpose (slow 4 . striate 8) $ every 2 (slow 2) $ s "house*1 ul*3" |=| n "8 7"
+d1 $ superimpose (slow 4 . striate 8) $ every 2 (slow 2) $ s "tta*1 ul*3" # n "8 7"
 
 
 --- Dark sometimes
@@ -141,3 +143,112 @@ d1 $ often (# n (irand 6)) $ sound "akuma4*3 akuma2*3"
 let oneshot d p = do now <- getNow; d $ (playWhen (< now+1) p)
 
 oneshot d1 $ sound "bev" # speed "-0.8"
+
+-------------------
+-- NEW MELODIC BREAKBEAT
+-------------------
+-- melody
+d1 $ "c" # s "supermandolin"
+
+d1 $ "c a f e" # sound "supermandolin" # legato 4
+
+d1 $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ n "c(3,8) a*2 f(3,8,2) [~ e*2]" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ off 0.125 (|+ n 7) $ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" # sound "supermandolin" # legato 4
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" 
+# sound "supermandolin" # legato 4
+# room 0.6 # size 0.9
+
+-- define array to create melodic dynamism
+setcps 0.6
+let melody = [12] 
+
+d1 $ jux rev $ off 0.25 (|+ n (choose melody)) $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) a*2 f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+# room 0.8 # size 0.8
+# gain "0.8"
+
+d1 $ jux rev $ off 0.25 (|+ n "12") $ off 0.125 (|+ n 7) 
+$ n "<c(3,8) <a*2 g*2 e*4> f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+# room 0.8 # size 0.8
+# gain "0.8"
+
+-- Drums
+d2 $ chunk 4 (hurry 2) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ every 3 (#crush 2) $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:1 dr_few:5 akuma1:2> [~ drum:1] bd"
+
+d2 $ chunk 4 (hurry 2) 
+$ every 3 (#crush 2) $ chunk 4 (hurry (1 + (irand 2))) $ s "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> [~ drum:1] dr_few:1*4" 
+# gain "1.12"
+
+--
+d3 $ jux rev $ iter 4 $ chop 1 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 8 (hurry 2) $ jux rev $ iter 4 $ chop 1 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 4 (#crush 2) $ jux rev $ iter 4 $ chop 2 $ s "akuma1*8" # n (irand 10) # gain "1.1"
+
+d3 $ every 4 (#crush 2) $ jux rev $ iter 4 $ s "akuma1*16" # n (irand 10) # gain "1.1"
+
+-- melody
+
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n "<12 12 14 14 16 10>") $ off 0.25 (|+ n 8) 
+$ n "<<a*2 g*2 e*4> <a(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "keys2" # legato 1
+# room 0.4 # size 0.9
+# gain "0.99"
+
+
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n "<12 12 14 14 16 10>") $ off 0.25 (|+ n 8) 
+$ every 2 (#speed "<0.5 1 0.25 2>") $ n "<<a*2 g*2 e*4> <a(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "01piano" # legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+
+unsolo 1
+
+d1 $ jux rev $ off 0.25 (|+n 12) $ off 0.125 (|+ n 7) $ n "<c(3,8) <a*2 g*2 e*2> f(3,8,2) [~ e*2]>" 
+# sound "superpiano" # legato 4
+#room 0.8 # size 0.9
+# gain "0.9"
+
+d2 $ every 4 (iter 4) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 ((iter 4).(fast 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 (iter 4) $ every 2 ((repeatCycles 4).(iter 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+
+d3 $ jux rev $ iter 4  $ chop 2 $ s "aset1*8" # n (irand 19) # gain "1.1"
+
+
+------------------------------------------------------------------------------------------------------------------
+-- FOOD  --
+------------------------------------------------------------------------------------------------------------------
+xfadeIn 3 10 $ every 4 ((#sustain "0.1").(fast "4").(#cut "2")) $ n "[d4 f3 e3 <a4 g4 f4>]" # s "superhoover" # sustain "1" # cut "1"
+
+d3 $ every 16 (#gain 0) $ every 4 ((#sustain "0.1").(fast "4").(#cut "2")) $ n "[d4 f3 e3 <a4 g4 f4>]" # s "superhoover" # sustain "1" # cut "1"
+
+d2 $ s "tt_kick" # gain "1.3"
+d1 $ sound "akuma1*16" # n (choose [1,2,3,4,5,0])
+
+d1 $ every 16 (#gain 0) $ sound "akuma1*16" # n (wchoose [(1,0.2),(2,0.15),(3,0.25),(4,0.1),(5,0.25),(0,0.1)]) # gain "1.1"
+d4 $ every 16 (#gain 0) $ every 8 (|+ speed (-0.25)) $ every 4 ((0.25 ~>).(#speed 0.5).(jux(rev))) $ fast 2 $ s "{bd hh tt_fx:2 tt_fx:7}%4" # gain 0.9
+
+
+d5 $ sound "whisper" # n (irand 3) 
+
+unsolo 5 

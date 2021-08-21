@@ -1,0 +1,20 @@
+d1 $ every 16 (iter 4) $ jux rev $ off 0.125 (|+ n "<12 12 14 14 16 10>") $ off 0.25 (|+ n 8) 
+$ every 2 (#speed "<0.5 1 0.25 2>") $ n "<<a*2 g*2 e*4> <a(1,4) c2(1,8)> [~ e2*2] [f(3,8,2)]>" 
+# sound "01piano" # legato 1
+# room 0.4 # size 0.9
+# speed 0.5
+# gain "0.99"
+
+
+unsolo 1
+
+
+solo 1
+d2 $ every 4 (iter 4) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 ((iter 4).(fast 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+d2 $ every 4 (iter 4) $ every 2 ((repeatCycles 4).(iter 2)) $ chunk 4 (hurry 2) $ s  "drum <dr_few:6 tt_fx:8 dr_few:5 akuma1:2> drum:1*2 dr_few*4" # gain "1.12"
+
+
+d3 $ jux rev $ iter 4  $ chop 2 $ s "aset1*8" # n (irand 19) # gain "1.1"
