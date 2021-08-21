@@ -1,0 +1,107 @@
+cps 1
+
+do
+let fastArr = [2,4,8]
+d1 
+     -- $ every 4 (# speed "1 4.5").(fast (choose fastArr))
+     -- $ every 8 (#speed "-0.5 5")
+     -- $ every 4 (#speed 6)
+    $ s "sea sine" # shape 0.25 # speed "0.1 5"
+    # room 0.5 # size 0.8
+-- # n (irand 20)
+    # gain "0.9 0.8"
+
+
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.99195" # speed "0.3"
+d2 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
+
+
+d3 $ s "procshort*4?" # n (irand 6) # gain "0.6" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
+d3 $ s "procshort*5?" # n (irand 16) # gain "0.6" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (irand 50) # cut "1" 
+d3 $ every 4 ((jux(rev)).(fast "[4 2]")) $ s "procshort*2" # n (20 + irand 1) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+
+
+
+
+d4 $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain 1
+
+d4 $ every 16 (iter 2) $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain 1
+
+d4 $ every 16 ((iter 3).(striate 64)) $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:8" # gain 1
+
+d5 $ every 4 ((#gain "1.3").(#n (irand 4))) $ s "hh:2*8" # gain "1.2"
+
+
+d3 $ every 2 ((#speed "4").(#gain 1.3)) $ every 8 ((0.25 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64) # pan "[0 1]"
+
+solo 1
+
+unsolo 1
+
+---------------- SHEPARD LIKE
+d1 $ slow 8 $ striate' 16 0.5 $ sound "moog" # gain "0.85" # accelerate "0.5" # sustain "1" # speed "0.5" 
+t1 (xfadeIn 30) $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
+d1 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
+
+
+
+-- Ambient 3 
+-- set 2 8 BIT CRUSH WAR
+d2 $ every (irand 4) ((jux(rev)).(brak)) $ s "nau*8" # n (run (irand 4)) # gain "0.85" #lpf 300 -- # speed "-1"
+
+
+
+-- AMbient new
+d1 $ stack [
+    slow 9 $ striate 9 $ sound "atrip1:0" # gain "1.1",
+    -- slow 4 $ striate 40 $ sound "atrip1:1",
+    -- slow 12 $ striate 64 $ sound "atrip1:2" # gain "1.1" # cut 1,
+    slow 14 $ striate 32 $ sound "atrip1:4" # gain "0.9" # cut "1",
+    slow 9 $ striate 9 $ sound "atrip1:5" # gain "1",
+    -- slow 15 $ striate 15 $ sound "atrip1:6",
+    slow 18 $ striate 18 $ sound "atrip1:7" # pan "[-1 1]",
+    slow 18 $ striate 18 $ sound "atrip1:8" # gain "0.5",
+     slow 10 $ striate 10 $ sound "atrip1:10" # gain "0.6",
+    slow 20 $ striate 20 $ sound "atrip1:11" # gain "0.6",
+    slow 6 $ striate 6 $ sound "atrip1:12" # gain "1"
+] 
+
+
+-- Ambient 2 #size matters stay under 2
+d3 $ s "supernoise" # gain "1" # accelerate "-0.03" # midinote "58" # size "3.1" # pitch1 "0.021"
+
+-- play with sustain keep it under 3
+d3 $ s "supernoise/5" # midinote ((irand 70)) # sustain "3"
+# accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
+# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "1"
+
+-- Piano to fadeout
+d3 $ s "superpiano/4" # midinote (50 + (irand 100)) # sustain "4"
+# accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
+# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "1"
+
+xfadeIn 2 20 $ s "bit1" # gain "0"
+
+
+
+
+
+d3 $ s "superpiano/4" # midinote rr # sustain "7" 
+# accelerate (rand) # slide "1.5" # resonance "0.7"
+# attack "1" # release "3" # room "1" # size "1" # gain "1" # cut "2"
+
+xfadeIn 3 20 $ s "bit1" # gain "0"
+
+
+let pat8 = "{2 0 4 5}"
+d1 $ s "bd*4" # n pat8
+
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.0195" # speed "0.3"
+d2 $ slow 8 $ striate' 64 1.3 $ sound "moog moog:3 moog:5" # gain "1" # speed "0.3" # cut "1"
+d2 $ slow 8 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "0.7" # speed "1" # cut "1"
+d2 $ slow 5 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
+d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "0.85" # speed "1" # cut "1"
+
+
+------------------------------------------------------------

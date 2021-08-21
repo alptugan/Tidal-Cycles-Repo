@@ -3,14 +3,14 @@ setcps 1
 xfadeIn 1 35 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.0>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
 unsolo 1
 
-xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 5000 $ sine)  
+xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 4500 $ sine)  
 # cut "1" 
 
 xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
 
 xfadeIn 4 55 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.68"
 
-
+solo 1
 
 
 d1 $ s "<chin*8 tt_fx*8 bit1*4>" # n (irand 65) # gain "<1.3 0.7 0.5>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
@@ -28,11 +28,13 @@ d4 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" #
 
 d1 $ s "bd"
 setcps 1
-
+let xfadeout i t = xfadeIn i t $ s "bit1" # gain "0"
 xfadeOut 4 40
 xfadeOut 2 20
 xfadeOut 3 20
 xfadeOut 1 20
+
+xfadeIn 4 0 $ s "bit1" # gain "0"
 
 ------------------------------------------------------------------------
 -- Ayvalık Song 2
@@ -68,11 +70,12 @@ d5 $ every 4 (#gain "0") $ s "procshort*8" # n (1 + (irand 25)) # gain "0.77" # 
 d1 $ s "arp/4" # gain "1.25"  # cut "3"
 
 
-xfadeOut 1 30 
-xfadeOut 2 20 
-xfadeOut 3 20 
-xfadeOut 4 20
-xfadeOut 5 20
+xfadeIn 1 30 $ s "bit1" # gain "0"
+xfadeIn 2 20 $ s "bit1" # gain "0"
+xfadeIn 3 20 $ s "bit1" # gain "0"
+xfadeIn 4 20 $ s "bit1" # gain "0"
+xfadeIn 5 20 $ s "bit1" # gain "0"
+
 
 
 unsolo 1
@@ -115,13 +118,13 @@ d4 $ every 4 ((jux(rev).(plyWith (irand 4) (|+ speed "0.5")))) $ s "bit1*4" # n 
 d4 $ every 4 ((jux(rev).(plyWith (irand 4) (|+ speed "0.5")))) $ s "bit1*4" # n (irand 10) # gain "1" # legato 1 # pan "[0.5 1]"
 d4 $ every 4 ((jux(rev).(brak).(plyWith (irand 8) (|+ speed (rand))))) $ s "bit1*4" # n (irand 10) # gain "1.1" # legato 1 # pan (slow 2 $ range 0 1 $ tri)
 
-xfadeOut 2 24
-xfadeOut 3 24
-xfadeOut 4 24
-xfadeOut 5 24
-xfadeOut 6 24
+xfadeIn 2 24 $ s "bit1" # gain "0"
+xfadeIn 3 24 $ s "bit1" # gain "0"
+xfadeIn 4 24 $ s "bit1" # gain "0"
+xfadeIn 5 24 $ s "bit1" # gain "0"
+xfadeIn 6 24 $ s "bit1" # gain "0"
 -- after some time start fadeout for main melody
-xfadeOut 1 24
+xfadeIn 1 24 $ s "bit1" # gain "0"
 
 ------------------------------------------------------------------------
 -- Ayvalik Song 4
@@ -130,16 +133,16 @@ d1 $ s "bd"
 
 
 d1 $ stack [
-    every 8 ((#n pat10).(#gain "1.1")) $ every 4 ((iter 2).(#n "1").(# cut "2")) $ s "tt_kick:2*8" # n pat9 # gain "1" # cut "1"
+    every 8 ((#n pat10).(#gain "1.1")) $ every 4 ((iter 2).(#n "1").(# cut "2")) $ s "tt_kick:1*8" # n pat9 # gain "1" # cut "1"
     -- , s "tt_fx:9/3" # gain "0.9"
     , every 4 (#speed (irand 10)) $ s "tt_perc*8" # n (irand 10) #speed (2 + irand 4) # legato 1 
 ]
 
 -- Chorus
-d2 $ s "tt_vocal:2" # gain "0.9" # speed "0.15" # cut "5"
+d2 $ s "tt_vocal:2" # gain "1.1" # speed "0.15" # cut "5"
 
 -- Noise
-d3 $ every 4 (#n pat7) $ every 8 (slow 2) $ s "noise*110" # gain "0.7"
+d3 $ every 4 (#n pat7) $ every 8 (slow 2) $ s "noise*110" # gain "0.8"
 
 -- Sub Kick
 d4 $ s "tt_kick/4" # gain "1.2"
@@ -153,10 +156,11 @@ d5 $ stack [
 d1 $ every 4 (#n pat3) $ s "tta*8" # n pat6 # gain "1"
 
 do 
-    xfadeOut 2 10
-    xfadeOut 3 10
-    xfadeOut 4 10
-    xfadeOut 5 10
+    xfadeIn 1 10 $ s "bit1" # gain "0"
+    xfadeIn 2 10 $ s "bit1" # gain "0"
+    xfadeIn 3 10 $ s "bit1" # gain "0"
+    xfadeIn 4 10 $ s "bit1" # gain "0"
+    xfadeIn 5 10 $ s "bit1" # gain "0"
 
 
 d6 $ every 4 (plyWith 4 (|* speed "0.8") ) $ s "tt_fx" # n (10 + irand 10) # gain "0.78" -- # cut "2"
@@ -169,23 +173,22 @@ d1 $ stack [
 
 
 -- Whispers
-d7 $ every 4 (#n pat3) $ s "whisper" # n (irand 10) # sustain "2" # gain "1" -- # cut "1"
+d7 $ every 4 (#n pat3) $ s "whisper" # n (irand 10) # sustain "2" # gain "1.3" -- # cut "1"
 
 -- Granular Noises
 d8 $ every 4 ((striate 4).(jux(rev))) $ s "yeah*8?" # n (irand 10) # gain "1.2"
 
 
 do 
-    xfadeOut 8 10
-    xfadeOut 7 10
-    xfadeOut 6 10
-    xfadeOut 5 10
-    xfadeOut 4 10
-    xfadeOut 3 10
-    xfadeOut 2 10
-    xfadeOut 1 15
+    xfadeIn 1 10 $ s "bit1" # gain "0"
+    xfadeIn 2 10 $ s "bit1" # gain "0"
+    xfadeIn 3 10 $ s "bit1" # gain "0"
+    xfadeIn 4 10 $ s "bit1" # gain "0"
+    xfadeIn 5 10 $ s "bit1" # gain "0"
+    xfadeIn 6 10 $ s "bit1" # gain "0"
+    xfadeIn 8 10 $ s "bit1" # gain "0"
 
-
+xfadeIn 7 30 $ s "bit1" # gain "0"
 ------------------------------------------------------------------------
 -- Ayvalik Song 5 (Ambient)
 ------------------------------------------------------------------------
@@ -228,14 +231,14 @@ d2 $ s "speechdark2:1/4" # begin "0.0" # end (0.3 + rand) # gain "1.45" # speed 
 unsolo 3
 
 do
-xfadeOut 1 16
-xfadeOut 2 16
-xfadeOut 4 16
-xfadeOut 5 16
-xfadeOut 6 16
+xfadeIn 1 16 $ s "bit1" # gain "0"
+xfadeIn 2 16 $ s "bit1" # gain "0"
+xfadeIn 4 16 $ s "bit1" # gain "0"
+xfadeIn 5 16 $ s "bit1" # gain "0"
+xfadeIn 6 16 $ s "bit1" # gain "0"
 
 
-xfadeOut 3 24
+xfadeIn 3 20 $ s "bit1" # gain "0"
 
 
 ------------------------------------------------------------------------------------------
@@ -254,17 +257,17 @@ do
     unmute 5
      
 
-
-d1 $ s "glitch*8" # n "5" # gain "1" # pan (rand)
+-- 8 in 2 sini çalıyor 6 si susyor
+d1 $ whenmod 8 2 (#gain 0) $ s "glitch*8" # n "5" # gain "1" # pan (rand)
 d2 $ whenmod 6 6 ((#gain "0")) $ s "glitch" # n (choose [6]) # gain "1" # pan (rand)
 
 d2 $ whenmod 6 2 ((#gain "0.8").(|- speed "0.8")) $ s "glitch" # n (choose [6]) # gain "1" # pan "[0 1]"
 
 -- 12,13,17,24,25,26,28,30 7
-d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (irand 200) # gain "0.65" # pan (rand)
+d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (irand 200) # gain "0.5" # pan (rand)
 
 -- after rhytm
-d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.0" # pan (rand)
+d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.8" # pan (rand)
 
 d4 $ whenmod 8 2 (# n (irand 120)) $ s "~ glitch2:9*1?" # gain "0.73"
 
