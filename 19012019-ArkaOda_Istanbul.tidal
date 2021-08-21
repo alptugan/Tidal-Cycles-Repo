@@ -64,7 +64,7 @@ cps 1
 -- 2nd stack
 
 d6 $ slow 2 $ stack [
-     -- s "cosmicg*8?" # n (irand 13) # gain "0" # speed "-0.044" # cut "1",
+     s "cosmicg*8?" # n (irand 13) # gain "0.2" # speed "-0.044" # cut "1",
      -- s "chin*3 chink*2? click*2 casio/10?" # n (irand 12) # pan (slow 5 sine) # gain "1",
      s "subroc3d*4" # n (irand 22) # pan (sine) # gain "0.8" # cut "1"
     --s "toys" # n (irand 34) # gain 0.7 # lpf "500" # speed "-0.3" # resonance (scale 0.02 0.2 $ slow 4 $ sine)
@@ -92,29 +92,40 @@ d1 $ s "supernoise/8" # midinote ((irand 10) + 30) # sustain "8"
 
 d1 $ s "supernoise/5" # midinote ((irand 30)) # sustain "8"
 # accelerate "0.5" # voice "0.5" # pitch1 "0.15" # slide "-0.5" # resonance "0.7"
-# attack "1" # release "20" # room "1" # size "2" # orbit "1" # gain "0.9"
+# attack "1" # release "20" # room "1" # size "2" # orbit "1" # gain "1"
 
 -- play with sustain keep it under 3
 d1 $ s "supernoise/5" # midinote ((irand 130)) # sustain "0.1"
 # accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
-# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "0.7"
+# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "1"
 
 let pat8 = "{2 0 4 5}"
-d1 $ s "bd" # n pat8
+d1 $ s "bd*4" # n pat8
 
-d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.75" # speed "0.3" # lpf (slow 4 $ scale 100 5000 $ sine)
-d2 $ slow 8 $ striate' 64 1.3 $ sound "moog moog:3 moog:5" # gain "0.9" # speed "0.3" # cut "1"
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.0195" # speed "0.3"
+d2 $ slow 8 $ striate' 64 1.3 $ sound "moog moog:3 moog:5" # gain "1" # speed "0.3" # cut "1"
 d2 $ slow 8 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "0.7" # speed "1" # cut "1"
 d2 $ slow 5 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
 d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "0.85" # speed "1" # cut "1"
 
 
+d2 $ every 4 ((#up pat4)) $ slow 5 $ striate' 12 0.3 $ up pat1 # sound "moog" # gain "1" # speed "1" # cut "1"
+
+
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.0195" # speed "0.3"
+
 d3 $ s "procshort*4?" # n (irand 6) # gain "0.6" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
 d3 $ s "procshort*5?" # n (irand 16) # gain "0.6" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
 d3 $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (irand 50) # cut "1" 
-d3 $ every 4 (jux(rev)) $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ every 4 ((jux(rev)).(fast "[4 2]")) $ s "procshort*2" # n (20 + irand 1) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
 
-d4 $ slow 2 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~ mlkick:3" # gain 1
+d3 silence
+d1 silence
+
+
+d4 $ every 16 (iter 2) $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain 0.9
+
+d5 $ every 4 ((#gain "1.3").(#n (irand 4))) $ s "hh:2*8" # gain "1.2"
 
 xfadeIn 1 1 $ s "bd" # gain 0
 
@@ -131,7 +142,7 @@ d2 $ every (irand 4) ((jux(rev)).(brak)) $ s "nau*8" # n (run (irand 30)) # gain
 -- set 4 --- Glitchy noises
 d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, auto:4 [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 1 |+| speed "-0.1" # sustain "0.11"
 d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]"
-d1 $ every 2 ((#speed "4").(#gain 1.3)) $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64) # pan "[0 1]"
+d3 $ every 2 ((#speed "4").(#gain 1.3)) $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64) # pan "[0 1]"
 
 
 --- WHOLE NEW Study
@@ -154,8 +165,8 @@ d4 silence
 
 d4 $ every 7 (jux(brak)) $ every 8 (striate (irand 24)) $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "0"
 
-d7 $  every 8 ((# gain "0")) $ sound "bit1*8" # n (irand 55) # pan "[0 0.5 1]" # gain "0" # cut "1.6"
-d5 $ sound "auto:8*30" # gain "0" # lpf (scale 400 10000 $ sine) 
+d7 $  every 8 ((# gain "0")) $ sound "bit1*8" # n (irand 55) # pan "[0 0.5 1]" # gain "0.9" # cut "1.6"
+d5 $ sound "auto:8*30" # gain "" # lpf (range 400 10000 $ sine) 
 d5 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
 
 
