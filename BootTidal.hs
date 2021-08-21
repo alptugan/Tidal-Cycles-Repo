@@ -78,7 +78,7 @@ let setI = streamSetI tidal
 let bpm x = setcps(x/60/4)
 
 -- fadeout function
-let xfadeOut i t = xfadeIn i t $ s "bit1" # gain "0"
+let xfadeout i t = xfadeIn i t $ s "bit1" # gain "0"
 
 
 
