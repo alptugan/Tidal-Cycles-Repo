@@ -12,7 +12,7 @@ d3 $ s "01drum" # n "8"
 d1 $ s "01drum*8" # n choose(pat8) # gain "0.2"
 d1 $ s "tutorial4" # freq (irand 1000)
 
-d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5]) # gain "0.1"
+d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5]) # gain "1"
 d4 $ s "bass*8" # n (choose arr) # gain "0.1"
 
 
@@ -29,7 +29,7 @@ d1 $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $
 
 d1 $ whenmod 8 4 (#gain 0) $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 1 $ range 0 1 $ tri)
 
-d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.66" # pan (rand)
+d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.76" # pan (rand)
 
 
 ------------------------------
@@ -37,7 +37,7 @@ d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9
 setcps 0.55
 setcps 0.55
 
-d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx ~ ~ ~ ~ ~ ~ tt_fx" # n "4" # gain "0.7" # pan (rand)
+d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx ~ ~ ~ ~ ~ ~ tt_fx" # n (irand 100) # gain "0.7" # pan (rand)
 
 do
     unmute 1
@@ -49,24 +49,29 @@ do
 
 unsolo 2
 
-d1 $ s "glitch*8" # n "5" # gain "1" # pan (rand)
-d2 $ whenmod 6 6 ((#gain "0")) $ s "glitch" # n (choose [6]) # gain "1" # pan (rand)
+let rnd = (irand 3)
 
-d2 $ whenmod 6 2 ((#gain "0.8").(|- speed "0.8")) $ s "glitch" # n (choose [6]) # gain "0.6" # pan "[0 1]"
+d1 $ s "glitch*8" # n "5" # gain "0" # pan (rand)
+d2 $ whenmod 4 2 ((#gain "0")) $ s "glitch" # n (choose [2]) # gain "0.9" # pan (rand) # speed rand
+d3 $ whenmod 4 1 ((#gain "0").(fast 2)) $ s "glitch" # n (choose [6]) # gain "0.9" # pan (rand) # speed (0.5 + (rand))
+
+d2 $ whenmod 6 2 ((#gain "0.8").(|- speed "0.8")) $ s "glitch" # n (choose [6,2]) # gain "0.8" # pan "[0 1]"
 
 -- 12,13,17,24,25,26,28,30 7
-d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12,13,17,24,25,26,28,30]) # gain "0.8" # pan (rand)
+d4 $ whenmod 8 1 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12,13,17,24,25,26,28,30]) # gain "0.7548" # pan (rand)
+d4 $ whenmod 16 8 (#speed 0.06) $ s "noise*8" # n "5" # gain "1.4" # pan (rand) # speed "0.055" # legato "1"
 
 -- after rhytm
-d3 $ whenmod 6 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.0" # pan (rand)
+d5 $ whenmod 32 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.8" # pan (rand)
+d5 $ whenmod 32 2 (#gain "0") $ fast (1) $ s "tt_fx*2" # n (choose [2, 8, 12]) # gain "0.9" # pan (rand)
+d6 $ whenmod 16 2 (# n (irand 120)) $ s "~ glitch2:9*2?" # gain "0.8"
 
-d4 $ whenmod 8 2 (# n (irand 120)) $ s "~ glitch2:9*3?" # gain "0.7"
 
 do
     unmute 1
     mute 2
     unmute 4
-    d4 $ s "noise*8" # n "5" # gain "0.9" # pan (rand) # speed "1"
+    d4 $ s "noise*8" # n "5" # gain "0.99" # pan (rand) # speed rand
 
 do
     unmute 1

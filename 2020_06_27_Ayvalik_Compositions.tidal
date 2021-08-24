@@ -296,3 +296,38 @@ do
 -- 1
 
 d5 $ s "sine:3 noise:2" # gain "1 1" # speed "4"
+
+
+
+--------------------
+-- song 7
+-------
+------------------------------
+-- song 7
+
+let arr = [pat8]
+unmute 3 
+d3 $ s "01drum" # n "8"
+
+d1 $ s "01drum*8" # n choose(pat8) # gain "0.2"
+d1 $ s "tutorial4" # freq (irand 1000)
+
+d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5]) # gain "1"
+d4 $ s "bass*8" # n (choose arr) # gain "0.1"
+
+
+d1 $ s "rawnoise" # freq "<<6000,1999,6002> <970,980,500>>/4" # gain "<0.85 0.75>/4"
+d1 $ s "rawnoise" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<0.85 0.75>/4"
+d1 $ s "rawnoise*8" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<0.85 0.75>/4" # sustain 0.01
+d1 $ s "rawnoise*8" # freq "<<12500,1999,6002> <970,980,620>>/4" # gain "<0.9 0.95>/4" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ sine) # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ whenmod 8 4 (#gain 0) $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 1 $ range 0 1 $ tri)
+
+d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.76" # pan (rand)
+

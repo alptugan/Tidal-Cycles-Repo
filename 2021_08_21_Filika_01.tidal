@@ -40,9 +40,8 @@ solo 1
 unsolo 1
 
 ---------------- SHEPARD LIKE
-d1 $ slow 8 $ striate' 16 0.5 $ sound "moog" # gain "0.85" # accelerate "0.5" # sustain "1" # speed "0.5" 
-t1 (xfadeIn 30) $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
-d1 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
+d2 $ slow 8 $ striate' 16 0.5 $ sound "moog" # gain "0.85" # accelerate "0.5" # sustain "1" # speed "0.5" 
+d2 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
 
 
 
@@ -54,22 +53,22 @@ d2 $ every (irand 4) ((jux(rev)).(brak)) $ s "nau*8" # n (run (irand 4)) # gain 
 
 -- AMbient new
 d1 $ stack [
-    slow 9 $ striate 9 $ sound "atrip1:0" # gain "1.1",
+    loopAt 8 $ every 4 (striate 8) $ striate 9 $ sound "atrip1:0" # gain "1.1",
     -- slow 4 $ striate 40 $ sound "atrip1:1",
     -- slow 12 $ striate 64 $ sound "atrip1:2" # gain "1.1" # cut 1,
-    slow 14 $ striate 32 $ sound "atrip1:4" # gain "0.9" # cut "1",
-    slow 9 $ striate 9 $ sound "atrip1:5" # gain "1",
+    loopAt 8 $ striate 9 $ sound "atrip1:5" # gain "1.1",
     -- slow 15 $ striate 15 $ sound "atrip1:6",
-    slow 18 $ striate 18 $ sound "atrip1:7" # pan "[-1 1]",
-    slow 18 $ striate 18 $ sound "atrip1:8" # gain "0.5",
-     slow 10 $ striate 10 $ sound "atrip1:10" # gain "0.6",
-    slow 20 $ striate 20 $ sound "atrip1:11" # gain "0.6",
-    slow 6 $ striate 6 $ sound "atrip1:12" # gain "1"
-] 
+    -- slow 18 $ striate 18 $ sound "atrip1:7" # pan "[-1 1]",
+    -- slow 18 $ striate 18 $ sound "atrip1:8" # gain "0.9",
+    slow 10 $ striate 10 $ sound "whisper:1" # n (irand 10) # room "0.4" # size "0.7" # gain "1",
+    slow 16 $ sound "tt_fx" # n (20 + (irand 10)) # gain "0.8",
+    shuffle 8 $ sound "<bleep*4 noise*8 click*4 bit1*4 defdo*4>" # pan "[-1 1]" # n (irand 90) # room "0.3" # size "0.7" # gain "0.65" # cut "3",
+    loopAt 6 $ striate 6 $ sound "atrip1:12" # gain "1"
+] # lpf (slow 8 $ range 1000 8000 $ sine)
 
 
 -- Ambient 2 #size matters stay under 2
-d3 $ s "supernoise" # gain "1" # accelerate "-0.03" # midinote "58" # size "3.1" # pitch1 "0.021"
+d3 $ s "supernoise" # gain "1" # accelerate "-0.03" # midinote "58" # size "3.1" # pitch1 "0.021" # cut "1"
 
 -- play with sustain keep it under 3
 d3 $ s "supernoise/5" # midinote ((irand 70)) # sustain "3"
@@ -105,3 +104,117 @@ d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "0.85" # speed "1"
 
 
 ------------------------------------------------------------
+
+-- NEW 01
+d1 $ s "supernoise/4" # midinote (120) # sustain "1"
+# accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.4"
+# attack "0.5" # release "1" # room "0.5" # size "1" # orbit "1" # gain "0.6" # cut "1"
+
+d1 $ s "supernoise" # midinote (120) # sustain "0.1" # gain "0.8"
+d1 $ every 4 (#sustain 0.5) $ s "supernoise" # midinote (120) # sustain "0.1" # gain "0.8"
+d1 $ every 4 (#sustain 0.2) $ s "supernoise*4" # midinote (5 + irand(120)) # sustain "0.05" # gain "0.8" # cut "2"
+
+d1 $ every 4 (#sustain 0.2) $ s "supernoise*4" # midinote (5 + irand(120)) # sustain "0.05 0.08 0.01 0.1" # gain "0.8" # room (slow 4 $ range 0 0.5 $ sine) # room "0.4" # cut "2"
+
+d1 $ s "supernoise" # midinote ("<90 100 80 110>") # sustain "1" # gain "0.75" # cut "3"
+d1 $ s "supernoise" # midinote ("<90 100 80 110>") # sustain "1" # gain "0.75" # cut "3"
+
+d2 $ every 2 ((#speed "4").(#gain 1.3)) $ every 8 ((0.25 ~>).(density "0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n pat1 # pan "[0 1]"
+
+d1 $ n "[d1 f1 e1 a1]" # s "superpiano"
+d1 $ n "[d1 f1 e1 a1]" # s "supergong"
+d1 $ n "[d1 f1 e2 a8*20]" # s "superhex" # gain "0.0"
+d1 $ n "[1 5 2 [e 12]]" # s "super808" # legato "4"-- # voice  "1"
+d1 $ n "[1 5 2 [e 12]]" # s "superhat" # legato "4" # sustain (slow 8 $ range 1 6 sine) # gain "0.9"
+d1 $ n "[d1 f1 e1 a1]" # s "supersnare"
+d1 $ n "[d1 f1 e1 a1]" # s "supersiren"
+d1 $ n "[d2 f1 e1 a1]" # s "supersquare" # voice "0.1"
+d1 $ n "[d1 f1 e1 a1]" # s "supersaw"
+d1 $ n "[d1 f1 e1 a1]" # s "superpwm"
+
+
+d3 $ every 4 (0.25<~) $ n "[d3]" # s "supercomparator" # attack (rand) # accelerate (rand) # cut "3" # gain "1"
+
+
+d1 $ s "supernoise" # midinote ("<10 20?>") # sustain "2" # gain "0.975" # cut "3"
+
+
+d1 silence
+d3 silence
+
+d2
+    $ every 16 (#gain "0")
+    -- $ every 17 (fast 2)
+    $ every 4 (degradeBy "0 <0.5 0.125> 0.125 0.5")
+    $ every 8 (0.25 ~>)
+    $ rarely (ply 8)
+    -- $ fast 2
+    $ s "<aset1 bd bit1 dr_few>"
+    # n (irand 20)
+    # shape (range 0.25 0.45 rand)
+    # gain "0.8 1 1 1"
+
+------------------------------------------
+-- HARSH NOISE
+d2 $ every 4 ((#n (irand 8)).(#accelerate rand).(#velocity rand).(#gain "1.2")) $ n "[ e3 a4 g6 d6]" # s "superhoover" #velocity rand # sustain "1" # gain "1.2" -- # cut "1"
+d1 $ every 4 (#gain "0") $ s "supernoise" # midinote ("<100 200?>") # sustain "2" # gain "0.975" # cut "3"
+------------------------
+d1 $ striate 64 $ every 4 (#n 4) $ s "<sitar:1 sitar:3>" # gain "1.2" # room "1" # sustain "1"
+
+---------------------
+------------------------------
+-- song 7
+
+let arr = [pat8]
+unmute 3 
+d3 $ s "01drum" # n "8"
+
+d1 $ s "01drum*8" # n choose(arr) # gain "1"
+d1 $ s "tutorial4" # freq (irand 1000)
+
+d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5,9]) # gain "1" -- # room "0.2"
+d4 $ s "bass2*8" # n (choose [4,5]) # gain "1" # pan "[0 0.5 1]"
+
+d3 $ s "bass*8" # n pat8 # gain "1.2" # pan "[0 0.5 1]"
+d1 $ s "01drum*8" # n pat8 # gain "0"
+
+
+d1 $ s "rawnoise" # freq "<<6000,1999,6002> <970,980,500>>/4" # gain "<0.85 0.75>/4"
+d1 $ s "rawnoise" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<0.85 0.75>/4"
+d1 $ s "rawnoise*8" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<1.0 1.0>/4" # sustain 0.01
+d1 $ s "rawnoise*8" # freq "<<12500,1999,6002> <970,980,620>>/4" # gain "<1 1.1>/4" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1.25" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
+d1 $ s "rawnoise*8" # freq (5000 + (irand 9000)) # gain "1.25" # sustain rand # pan (fast 2 $ range 0 1 $ tri)
+
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1.1" # sustain (slow 2 $ range 0.01 0.2 $ sine) # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1.2" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 2 $ range 0 1 $ tri)
+
+d1 $ whenmod 8 4 (#gain 0) $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 1 $ range 0 1 $ tri)
+
+d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.76" # pan (rand)
+
+-------------------------
+-- song 8
+let rnd = (irand 3)
+
+d1 $ s "glitch*8" # n "5" # gain "0" # pan (rand)
+d2 $ whenmod 4 2 ((#gain "0")) $ s "glitch" # n (choose [2]) # gain "0.9" # pan (rand) # speed rand
+d3 $ whenmod 4 1 ((#gain "0").(fast 2)) $ s "glitch" # n (choose [6]) # gain "0.9" # pan (rand) # speed (0.5 + (rand))
+
+d2 $ whenmod 6 2 ((#gain "0.8").(|- speed "0.8")) $ s "glitch" # n (choose [6,2]) # gain "0.8" # pan "[0 1]"
+
+-- 12,13,17,24,25,26,28,30 7
+d4 $ whenmod 8 1 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12,13,17,24,25,26,28,30]) # gain "0.7548" # pan (rand)
+d4 $ whenmod 16 8 (#speed 0.06) $ s "noise*8" # n "5" # gain "1.4" # pan (rand) # speed "0.055" # legato "1"
+
+-- after rhytm
+d5 $ whenmod 32 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.8" # pan (rand)
+d5 $ whenmod 32 2 (#gain "0") $ fast (1) $ s "tt_fx*2" # n (choose [2, 8, 12]) # gain "0.9" # pan (rand)
+d6 $ whenmod 16 2 (# n (irand 120)) $ s "~ glitch2:9*2?" # gain "0.8"
+
+d6 $ s "rawnoise" # freq "<<6000,1999,6002> <970,980,500>>/4" # gain "<0.85 0.75>/4"
+
+setcps (1)

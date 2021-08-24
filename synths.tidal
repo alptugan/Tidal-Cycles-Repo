@@ -47,7 +47,7 @@ d4 $ n "[d1 f1 e1 a1]" # s "supervibe" # decay "0.05" # velocity "2"
 
 
 -- (#superhoover parameters: #slide, #decay, #accelerate)
-d1 $ n "[d4 f3 e3 a4]" # s "superhoover" # sustain "1" -- # cut "1"
+d2 $ n "[d4 f3 e3 a4]" # s "superhoover" # sustain "1" -- # cut "1"
 
 
 -- (#superzow parameters: #decay, #accelerate, #slide, #detune)
