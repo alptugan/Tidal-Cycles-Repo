@@ -72,15 +72,15 @@ d1 $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.1" # cut "1"  # hpf 100
 xfadeIn 2 15 $ degradeBy "0.8" $ every 4 ((0.25 <~).(striate' 64 (1/2))) $ sound "defdo*4" # n (irand 18) # gain 0.55 -- # cut "2"
 
 -- 5
-d2 $ degradeBy 0.6 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain "1" # cut "2"
+d2 $ degradeBy 0.8 $ every 4 (0.25 <~) $ shuffle 8 $ sound "defdo*8" # n (irand 4) # gain "1" # cut "2"
 
-xfadeIn 3 15  $ degradeBy "0.5" $ s "ttm*8?" # n (irand 37) # gain "1.0" # cut "3"
+xfadeIn 3 15  $ degradeBy "0.15" $ s "ttm*8?" # n (irand 37) # gain "1.0" # cut "3"
 
 d3 $ degradeBy "0.5" $ s "ttm*8" # n (irand 68) # gain "0.9" -- # cut "3" # pan "[0.5 0 1]"
 
 
 -- p1 channel p2 loop num
-xfadeIn 1 10 $ s "bd" # gain "0"
+xfadeIn 3 10 $ s "bd" # gain "0"
 
 d6 $ stack [
     every 4 ((0.25 <~)) $ slow 4 $ up "[0 4 2 5]" # sound "bass1" # gain "1.2" # cut "4"  # hpf 100
@@ -96,11 +96,11 @@ d6 $ stack [
 
  d7 $ whenmod 8 3 ((fast 2)) $ every 4 (striate 12) $ s "tt_fx:3 tt_clap:3*4" # gain "0.9" # pan "[0.3 0.5 0.84]"
 
- d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5")) $ every 4 (striate 32) $ s "tt_clap:6 tt_clap:3*4" # gain "0.9" 
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5")) $ every 4 (striate 32) $ s "tt_clap:6 tt_clap:3*4" # gain "1" 
 
- d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "0.85" # hpf 100
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:1 tt_clap:3*3" # gain "1" # hpf 100
 
- xfadeIn 1 50 $ s "bd" # gain "0"
+ xfadeIn 8 50 $ s "bd" # gain "0"
 
 -----------------------------------------------------------------
 --- EXPERIMENTEL
@@ -108,15 +108,11 @@ d6
 $jux (iter 4)
 $jux (iter 8)
 $ stack[
-  -- sound "arpy(3,16,3)",
-  -- sound "felld(5,16,0)",
-  -- sound "fell2(5,16,8)"|+|up "-7 0 7 14",
-  --sound "procshort(3,16,4)",
-  --sound "procshort(2,15,3)",
+  -- sound "arp(3,16,3)",
+  -- sound "procshort(3,16,4)",
+  -- sound "procshort(2,15,3)",
   sound "bass(3,16,2)",
-  -- sound "space(3,16,10)",
   -- sound "glitch(3,16,5)",
-  ----sound "808bd(3,16,9)"
   -- sound "click(3,16,3)",
   sound "sine(3,16,3)"
 ]
@@ -372,7 +368,7 @@ $ stack [
   ,sound (samples "glitch*8" (every 2 (density 1.2) $ density 1.21 $ run 150)) # pan "[0 1]"
   ,sometimesBy 0.9 ((# sustain "10").(# pan "0.5")) $ sound (samples "print*4?" (irand 13)) # pan "[0 1]" # gain "0.95" # sustain "0.1" # speed (rand*7)
   ] |+| unit "c" |+| speed "2"
-  ,every 4 ((# n (irand 18)).(# hpf (slow 8 $ scale 200 8000 $ sine))) $ s "akuma1*8" # n (irand 18) # gain "0.9"
+  ,every 4 ((# n (irand 18)).(# hpf (slow 8 $ range 200 8000 $ sine))) $ s "akuma1*8" # n (irand 18) # gain "0.9"
 ]
 
 
@@ -487,12 +483,12 @@ d2 $ every (irand 4) ((jux(rev)).striate(irand 128)) $ s "nau*8" # n (run (irand
 
 
 -- set 3 NOISY BAG
-d2 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "bass*4 proc ade:4" |=| n "8" # gain 0.8
+d2 $ superimpose (slow 4 . striate 32) $ sometimes (density 4) $ s "bass*4 proc ade:4" |= n "8" # gain 0.8
 
 
 -- set 4 --- Glitchy noises
 d3 $ sound "[ade:15 [ade:1*4,ade:10] [click:1 click:2 click:3] ade:1, selfcpr [ade:7*2,ade:11] newnotes:6 newnotes:6]" # gain 1
-d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2"
+d1 $ every 4 (brak) $ (0.55 ~>) $ sound "[click:0 click:1 click:2 click:3,click:4 ~]/2" # n pat2
 d1 $ every 8 ((0.5 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64)
 
 -- set 5 BOT

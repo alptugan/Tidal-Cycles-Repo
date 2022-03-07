@@ -10,7 +10,7 @@ d1 $ loopAt 3 $ sound "{ade:2 pad pad:1}" # gain "1" # speed (rand)
 
 d6 $ every 4 (jux(rev)) $ s "procshort*5" # n (irand 26) # gain "0.95" # pan "[0.3 0.7]" # speed (rand) # cut "1"
 
-d7 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "mlkick:1*2 mlkick mlkick ~" # gain 1
+d7 $ every 16 (iter 4) $ every 4 (jux(rev)) $ s "aset1:0*2 aset1 bd ~" # gain 1
 
 d6 $ s "chin*8?" # n (irand 6) # gain "1.3" # pan "[0 0.5 1]" # speed (-0.5 + (rand)) -- # cut "1" 
 
