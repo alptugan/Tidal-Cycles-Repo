@@ -1,43 +1,52 @@
-cps 1
+setcps 1
+
+d1 $ s "bd(2,4)"
+
+d1 $ every 4 (fast 2) $ s "bd*2" # gain "0"
+
+d3 $ s "hh*8" # gain "1" 
 
 do
 let fastArr = [2,4,8]
-d1 
-     -- $ every 4 (# speed "1 4.5").(fast (choose fastArr))
-     -- $ every 8 (#speed "-0.5 5")
-     -- $ every 4 (#speed 6)
+d5 
+    -- $ every 4 (# speed "1 4.5").(fast (choose fastArr))
+    -- $ every 8 (#speed "-0.5 5")
+    $ every 4 (#speed 6)
     $ s "sea sine" # shape 0.25 # speed "0.1 5"
     # room 0.5 # size 0.8
--- # n (irand 20)
-    # gain "0.9 0.8"
+    # n (irand 20)
+    # gain "0 0"
 
 
-d2 $ slow 8 $ striate' 16 0.3 $ sound "moog moog:3 moog:5" # gain "0.99195" # speed "0.3"
-d2 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.85" 
+d2 $ slow 8 $ striate' 16 0.3 $ sound "moog:3 moog:5 moog:4" # gain "0.8" # speed "1" # cut "1"
+d2 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "moog moog:3 moog:5" # gain "0.8" 
 
 
-d3 $ s "procshort*4?" # n (irand 6) # gain "0.6" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
-d3 $ s "procshort*5?" # n (irand 16) # gain "0.6" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
+d3 $ s "procshort*4?" # n (irand 6) # gain "0.8" # pan "[0 0.5 1]" # speed "1" -- # cut "1" 
+d4 $ s "procshort*6?" # n (irand 16) # gain "0" # pan "[0 0.5 1]" # speed (rand) # cut "3" 
 d3 $ s "procshort*5" # n (irand 26) # gain "1" # pan "[0 0.5 1]" # speed (irand 50) # cut "1" 
 d3 $ every 4 ((jux(rev)).(fast "[4 2]")) $ s "procshort*2" # n (20 + irand 1) # gain "1" # pan "[0 0.5 1]" # speed (rand) # cut "1" 
 
 
 
 
-d4 $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain 1
+d4 $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain "1"
 
 d4 $ every 16 (iter 2) $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:4" # gain 1
 
 d4 $ every 16 ((iter 3).(striate 64)) $  every 4 ((jux(rev)).(fast "[2]")) $ s "hardkick:4*2 hardkick:4 hardkick:4 hardkick:8" # gain 1
 
-d5 $ every 4 ((#gain "1.3").(#n (irand 4))) $ s "hh:2*8" # gain "1.2"
+d5 $ every 4 ((#gain "1.3").(#n (irand 4))) $ s "hh:2*8" # gain "1.6" 
 
 
-d3 $ every 2 ((#speed "4").(#gain 1.3)) $ every 8 ((0.25 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:10>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64) # pan "[0 1]"
+
+d3 $ every 2 ((#speed "4").(#gain "1.4")) $ every 8 ((0.25 ~>).(density "-0.5")) $ brak $ sound "[click:10 click:5 click:4 click, glitch . <psr:1 psr:12? psr:0.9>]" # gain "[0.9 0.9 0.9 1, 1 . 1]" # n (irand 64) # pan "[0 1]"
 
 solo 1
 
 unsolo 1
+
+
 
 ---------------- SHEPARD LIKE
 d2 $ slow 8 $ striate' 16 0.5 $ sound "moog" # gain "0.85" # accelerate "0.5" # sustain "1" # speed "0.5" 
@@ -47,7 +56,7 @@ d2 $ sometimesBy 0.25 (#accelerate "0.5") $ slow 8 $ striate' 16 0.5 $ sound "mo
 
 -- Ambient 3 
 -- set 2 8 BIT CRUSH WAR
-d2 $ every (irand 4) ((jux(rev)).(brak)) $ s "nau*8" # n (run (irand 4)) # gain "0.85" #lpf 300 -- # speed "-1"
+d2 $ every (irand 4) ((jux(rev)).(brak)) $ s "nau*8" # n (run (irand 8)) # gain "0.985" #lpf 300 # cut "1"-- # speed "-1"
 
 
 
@@ -71,9 +80,9 @@ d1 $ stack [
 d3 $ s "supernoise" # gain "1" # accelerate "-0.03" # midinote "58" # size "3.1" # pitch1 "0.021" # cut "1"
 
 -- play with sustain keep it under 3
-d3 $ s "supernoise/5" # midinote ((irand 70)) # sustain "3"
+d3 $ s "supernoise/5" # midinote ((irand 70)) # sustain "1"
 # accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.7"
-# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "1"
+# attack "1" # release "3" # room "1" # size "1" # orbit "1" # gain "0.6" # cut "1"
 
 -- Piano to fadeout
 d3 $ s "superpiano/4" # midinote (50 + (irand 100)) # sustain "4"
@@ -106,9 +115,10 @@ d2 $ slow 5 $ striate' 12 0.3 $ up pat3 # sound "moog" # gain "0.85" # speed "1"
 ------------------------------------------------------------
 
 -- NEW 01
+
 d1 $ s "supernoise/4" # midinote (120) # sustain "1"
 # accelerate (rand) # voice "0.5" # pitch1 "0.15" # slide "0.5" # resonance "0.4"
-# attack "0.5" # release "1" # room "0.5" # size "1" # orbit "1" # gain "0.6" # cut "1"
+# attack "0.5" # release "1" # room "0.5" # size "1" # orbit "1" # gain "0" # cut "1"
 
 d1 $ s "supernoise" # midinote (120) # sustain "0.1" # gain "0.8"
 d1 $ every 4 (#sustain 0.5) $ s "supernoise" # midinote (120) # sustain "0.1" # gain "0.8"
@@ -172,29 +182,31 @@ d3 $ s "01drum" # n "8"
 d1 $ s "01drum*8" # n choose(arr) # gain "1"
 d1 $ s "tutorial4" # freq (irand 1000)
 
-d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5,9]) # gain "1" -- # room "0.2"
-d4 $ s "bass2*8" # n (choose [4,5]) # gain "1" # pan "[0 0.5 1]"
+d1 silence
 
-d3 $ s "bass*8" # n pat8 # gain "1.2" # pan "[0 0.5 1]"
-d1 $ s "01drum*8" # n pat8 # gain "0"
+d4 $ s "bass2*8" # n (choose [2,3,4,2,4,1,9,5,9]) # gain "1" -- # cut "2"-- # room "0.2"
+d4 $ s "bass2*8" # n (choose [3]) # gain "1" # pan "[0 0.5 1]"
 
+d3 $ s "bass*8" # n pat8 # gain "1" # pan "[0 0.5 1]"
+d1 $ s "01drum*8" # n pat8 # gain "1"
 
+setcps 1
 d1 $ s "rawnoise" # freq "<<6000,1999,6002> <970,980,500>>/4" # gain "<0.85 0.75>/4"
-d1 $ s "rawnoise" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<0.85 0.75>/4"
+d1 $ s "rawnoise" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<0.85 0.85>/4"
 d1 $ s "rawnoise*8" # freq "<<12000,1999,6002> <970,980,620>>/4" # gain "<1.0 1.0>/4" # sustain 0.01
 d1 $ s "rawnoise*8" # freq "<<12500,1999,6002> <970,980,620>>/4" # gain "<1 1.1>/4" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
 
-d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1.25" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
-d1 $ s "rawnoise*8" # freq (5000 + (irand 9000)) # gain "1.25" # sustain rand # pan (fast 2 $ range 0 1 $ tri)
+d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1.3" # sustain 0.07 # pan (fast 2 $ range 0 1 $ tri)
+d1 $ s "rawnoise*8" # freq (5000 + (irand 9000)) # gain "1.3" # sustain rand # pan (fast 2 $ range 0 1 $ tri)
 
 
 d1 $ s "rawnoise*8" # freq (2000 + (irand 9000)) # gain "1.1" # sustain (slow 2 $ range 0.01 0.2 $ sine) # pan (fast 2 $ range 0 1 $ tri)
 
-d1 $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1.2" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 2 $ range 0 1 $ tri)
+d1 $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1.1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 2 $ range 0 1 $ tri)
 
 d1 $ whenmod 8 4 (#gain 0) $ s "rawnoise*8" # freq (2000 + (irand 12000)) # gain "1" # sustain (slow 2 $ range 0.01 0.2 $ rand) # pan (fast 1 $ range 0 1 $ tri)
 
-d1 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.76" # pan (rand)
+d4 $ whenmod 4 1 ((#gain "0")) $ every 4 ((0.2 ~>)) $ s "tt_fx*8" # n "3 4 9 9 9 10 10 10 10" # gain "0.576" # pan (rand)
 
 -------------------------
 -- song 8
@@ -207,13 +219,13 @@ d3 $ whenmod 4 1 ((#gain "0").(fast 2)) $ s "glitch" # n (choose [6]) # gain "0
 d2 $ whenmod 6 2 ((#gain "0.8").(|- speed "0.8")) $ s "glitch" # n (choose [6,2]) # gain "0.8" # pan "[0 1]"
 
 -- 12,13,17,24,25,26,28,30 7
-d4 $ whenmod 8 1 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12,13,17,24,25,26,28,30]) # gain "0.7548" # pan (rand)
+d4 $ whenmod 8 1 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12,13,17,24,25,26,28,30]) # gain "0.97548" # pan (rand)
 d4 $ whenmod 16 8 (#speed 0.06) $ s "noise*8" # n "5" # gain "1.4" # pan (rand) # speed "0.055" # legato "1"
 
 -- after rhytm
-d5 $ whenmod 32 2 ((#gain "0")) $ s "tt_fx" # n (choose [10,11,12]) # gain "0.8" # pan (rand)
-d5 $ whenmod 32 2 (#gain "0") $ fast (1) $ s "tt_fx*2" # n (choose [2, 8, 12]) # gain "0.9" # pan (rand)
-d6 $ whenmod 16 2 (# n (irand 120)) $ s "~ glitch2:9*2?" # gain "0.8"
+d5 $ whenmod 32 2 ((#gain "0")) $ s "tt_fx(8,3)" # n (choose [10,11,12]) # gain "1" # pan (rand)
+d5 $ whenmod 32 2 (#gain "0") $ fast (1) $ s "tt_fx*2" # n (choose [2, 8, 12]) # gain "1" # pan (rand)
+d6 $ whenmod 16 2 (# n (irand 120)) $ s "~ glitch2:9*2?" # gain "1"
 
 d6 $ s "rawnoise" # freq "<<6000,1999,6002> <970,980,500>>/4" # gain "<0.85 0.75>/4"
 
