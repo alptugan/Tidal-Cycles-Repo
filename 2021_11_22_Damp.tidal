@@ -12,7 +12,7 @@ d1 $ s "sine(5,8)" # up (choose[0,3,5,7,10,14]) # room 0.35 # sz 0.8 # gain "0.9
 d2 $ fast "<1 2 1.5>/2" $ s "aset1:3*8" # room 0.25 # gain "0.9" # cut "1"
 d4 $ s "bass1:3" # shape 0.7 # gain "1"
 ---
-d4 $ s "bass1:3" # up "<0 3 <-4>>/2" # shape 0.6 # gain "1" # room "0.3" -- # sustain "4"
+d4 $ s "bass1:3" # up "<0 3 <-4>>/2" # shape 0.76 # gain "1" # room "0.3" -- # sustain "4"
 
 --- 2-3-4 same
 d1 
