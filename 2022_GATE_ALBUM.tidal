@@ -5,7 +5,7 @@ unsolo 1
 
 xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 4500 $ sine) # cut "1" 
 
-xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (hirand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
+xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
 
 xfadeIn 4 55 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.68"
 
@@ -21,7 +21,7 @@ d2 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repea
 
 d3 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.55" 
 
-d4 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.8"
+d4 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.99"
 
 
 
@@ -33,7 +33,7 @@ xfadeOut 2 20
 xfadeOut 3 20
 xfadeOut 1 20
 
-xfadeIn 6 10 $ s "bd" # gain "0"
+xfadeIn 8 30 $ s "bd" # gain "0"
 
 ------------------------------------------------------------------------
 -- Ayvalık Song 2 Pernicious
