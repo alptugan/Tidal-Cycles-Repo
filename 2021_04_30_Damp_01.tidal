@@ -1,5 +1,6 @@
 
 d1 $ sound "bd*4"
+setcps(0.65)
 
 do
 let fastArr = [2,4,8]
