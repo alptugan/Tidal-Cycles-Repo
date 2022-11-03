@@ -31,8 +31,8 @@ d1 $ s "akuma1*8" # n (1 + (irand 6))
 d1 $ every 3 (#n (irand 1)) $ s "akuma1*8" # n (1 + (irand 6))
 d1 $ every 3 ((#n (irand 1)).(#speed 0.5).(striate 3)) $ s "akuma1*8" # n (1 + (irand 6))
 
-d1 $ every 2 (|* speed "0.5") $ sound "dr_few*8" # speed "3" # n (irand 89)
-koko 2 "arp*8"
+d1 $ every 2 (|* speed "<0.5 2>") $ sound "<aset1*16 dr_few*8>" # speed "3" # n (irand 89)
+koko 3 "<aambience/4 [bass click*4]>"
 xfadeOut 1 5
 
 
