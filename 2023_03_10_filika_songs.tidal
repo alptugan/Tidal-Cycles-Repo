@@ -1,0 +1,72 @@
+d1 
+    $ every 4 ((#n "c4").(# release "0.9").(#sustain 1.0)) 
+    $ chunk 4 (hurry (choose[2,0.5]))
+    $ n "a4" # s "supergong" # release "0.8" # attack "0.81" # sustain "0.8" # gain "1" -- # nudge "0.22"
+
+do
+let fastArr = [2,4,8]
+
+d1 
+    $ every 8 (#speed "-0.5 5")
+    $ chunk 4 (hurry (choose[2,0.5]))
+    $ every 4 (#speed 6)
+    $ s "sea" # shape 0.25 # speed "0.1 0.2 -0.4 5"
+    # room 0.2 # size 0.8
+    # n (irand 2)
+    # gain "1 0.7"
+    # cut 1
+
+
+d1 $ degradeBy "0.1" $ s "aset1(4,10)" # n "4"
+
+
+do
+    let fxx = [3,5,7,8,9]
+    d2 
+        $ every 3 (off 0.125 (|+ 12))
+        $ every 9 (off 0.25 (#speed rand))
+        $ every 8 ((#speed "-0.5 5").(#pan "<1 0>")) 
+        $ chunk 4 (hurry (choose[2,0.5,-2]))
+        $ degradeBy "0.2" 
+        $ s "tt_fx(9,16)?" 
+        # n (choose fxx)
+
+d4 $ every 16 (#gain 0.9) $ superimpose (slow 4 . striate 64) $ sometimes (density (irand 20)) $ s "bass*4 proc pad ade:4" # n "8" # gain 0 # cut "1" # pan rand
+
+
+d3 $ slow 17 $ n "<7 12 16>" # sound "jungbass" # gain "1.8"
+
+d2 
+    $ every 2 (#gain 0)
+    $ every 3 (off 0.125 (|- 12))
+    $ every 6 (off 0.25 (|- 7))
+    $ chunk 4 (hurry (choose[2,0.5,-2]))
+    $ s "glitch2(12,16)" 
+    # n (irand 20)
+    # speed (0.5 + (rand)) -- # cut "2"
+    # pan rand
+    # gain "0.8"
+
+
+d2 
+    $ chunk 4 (hurry (choose[2,0.5,-2,1]))
+    -- $ every 3 (off 0.125 (|- 12))
+    $ s "drum*8" 
+    # n (irand 20)
+    # speed (0.6 + (rand)) -- # cut "2"
+
+
+d2 $ degradeBy "0.01" $ s "drum*8" # n (irand 23) # gain "1" -- # lpf "1500" -- # cut "1" 
+
+
+d2 $ randcat [
+    every 4 ((# n "1").(jux(rev)).(#speed "-0.5").(#gain 0.85)) $ every 4 (# gain 0) $ s "drum*8" # n (irand 8) # gain "1",
+    every 5 ((# n "1").(jux(rev)).(#speed "-0.1").(#gain 0.85)) $ every 4 (# gain 0) $ s "auto*8" # n (irand 8) # gain "1",
+    every 4 (# gain 0) $ s "drum*8" # n (irand 2) # gain "1",
+    s "drum*8" # n "<5 1>" # gain "1",
+    s "drum*8" # n (irand 6) # gain "1"
+] # lpf (slow 4 $ range 20 5900 $ sine)
+
+
+
+------

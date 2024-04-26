@@ -9,7 +9,9 @@ import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
 -- total latency = oLatency + cFrameTimespan
-tidal <- startTidal (superdirtTarget {oLatency = 0.5, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
+--tidal <- startTidal (superdirtTarget {oLatency = 0.5, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cFrameTimespan = 1/20})
+
+tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oPort = 57120}) (defaultConfig {cEnableLink = True, cQuantum = 4, cBeatsPerCycle = 4})
 
 
 :{
@@ -78,12 +80,12 @@ let setI = streamSetI tidal
 let bpm x = setcps(x/60/4)
 
 -- fadeout function
-let xfadeout i t = xfadeIn i t $ s "bit1" # gain "0"
+let xfadeout i t o = xfadeIn i t $ s "bit1" # gain "0" # orbit o
 
 
 
 -- custom pattern
-let koko i fname = p i $ every 2 (|* speed "0.5") $ sound fname # speed "3" # n (irand 89)
+let koko i fname f o = p i $ every 2 (|* speed "0.5") $ sound fname # speed "3" # n (irand 89) # gain f # orbit o
 
 let pat1 = "{0*2 ~ [0 ~] ~ 0*4 [~ 0] 0}%4"
 

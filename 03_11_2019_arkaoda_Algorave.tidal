@@ -1,7 +1,7 @@
 bpm 120
 d1 $ s "bd"
 d1 $ s "bd*4" # n pat2 # gain "1" # pan "0.5"
-d2 $ s "tfx*8" # n (irand 100) # gain "1" # cut "2"
+d2 $ s "tfx*8" # n (irand 100) # gain "0.3" # cut "2"
 
 
 
@@ -19,7 +19,7 @@ d1 $ every 8 ((const $ s "dr_few:1 dr_few:1*2 dr_few:1 dr_few:1*8" # gain 1).jux
 
 d1 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(iter 4)) $ s "dr_few:3 dr_few:1*2 bit1:1 dr_few:1*8" # gain 1).jux(rev).(every 2 (striate (irand 128)))).(every 2 (iter 4)) $ sound "auto:3 ~ [auto:3 auto:2] ~" # gain "1"
 
-d2 $ sound "auto:6*8" # gain "1.1"
+d2 $ sound "auto:6*8" # gain "1.2" # pan sine
 d3 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1"
 
 d4 $ every 16 ((loopAt "0.01").(# pan "[0 1]")) $ sound "bit1*8" # n (irand 100) # pan "[0 1]" # gain "1" # cut "1"
@@ -595,14 +595,14 @@ d3 $ sound "auto:6*8" # gain "1.1" # hpf (slow 8 $ range 1000 8500 $ sine)
 -- drum 2
 d4 $ s "auto:3 ~ [auto:3 auto:3] ~" # gain "1"
 -- filler 3
-d5 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "0" 
+d5 $ every 2 (#gain "0") $ sound "auto:8*30" # gain "1.2" 
 -- drum 4
 
 d4 $ every 8 ((const $ every 16 ((jux(rev)).(#gain 0.9).(0.25 ~>)) $ s "dr_few:1 dr_few:1*2 bit1:1 dr_few:1*8" # gain "1.1").jux(rev).(every 2 (striate (irand 128)))) $ sound "auto:3 ~ [auto:3 auto:3] ~" # gain "0" --  # lpf (slow 4 $ scale 20 6080 $ sine)
 
 3
 -- glitches 5
-d6 $ every 8 ((# gain "0")) $ sound "bit1*8" # n "2" # gain "1.1" # cut "1.6"
+d6 $ every 8 ((# gain "0")) $ sound "bit1*8" # n "2" # gain "1" # cut "1"
 d6 $ every 8 ((# gain "0")) $ sound "bit1*8" # n (irand 89) # pan (rand) # gain "1" # cut "1"
 
 -- rest 6
