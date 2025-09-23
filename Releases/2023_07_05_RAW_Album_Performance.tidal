@@ -1,0 +1,713 @@
+d1 $ s "bd"
+---------------------------------------------------------------------------------------
+-- Song: Allelopathy (Recorded)
+-- BPM: 132 cps(0.55)
+---------------------------------------------------------------------------------------
+
+-- 28 bars later
+d1 $ slow 2 $
+    jux(brak) $
+    every 4 ((fast (5 + (irand 10))).(#n (choose[48..86])).(#cut 1)) $ s "tt_fx*8" # n (choose[17..48]) # gain "0.75" # legato "1"
+
+-- 78 bar later - wait for Selcuk's bass back
+xfadeIn 2 10 $ every 32 ((#up "12*12 2*4").(plyWith 2 (|* "0.5"))) $ slow 4 $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "0.25" # gain "1.1" # cut "1"
+
+d2 $ every 32 ((#up "12*12 2*4").(plyWith 4 (|* "0.5"))) $ slow 4 $ up "4*4 2*2 8*8 1*2" # s "bass1" # sustain "0.25" # gain "1.1" # cut "1"
+
+d1 $ silence
+
+-- 112
+d4 $ s "sax" # gain (slow 4 $ range "0" "1.2" $ sine) #  speed "-0.6" # room "0.8" # size "0.8" # legato 6
+
+
+d1 $
+    jux(brak) $
+    every 2 ((fast (5 + (irand 10))).(#n (choose[48..86])).(#cut 1)) $ s "tt_fx*4" # n (choose[17..48]) # gain "0.8" # legato "1"
+
+
+-- 160
+d5 $ up "<13 10 7 1>" # s "sax" # room "0.8" # size "0.8" # gain "0.85" --- 0 7 10 13
+d6 $ up "10" # s "sax" # gain "0.88" # room "0.8" # size "0.8" -- 0 7 10 13
+
+let arr = [9, 12, 3, 15];
+d6 $ s "sax" # gain "0.8" # room "0.8" # size "0.8" # up (choose arr)
+
+d1 $
+    jux(brak) $
+    every 2 ((fast (15 + (irand 20))).(#n (choose[48..86])).(#cut 1)) $ s "tt_fx*4" # n (choose[48..86]) # gain "0.9" # legato "1"
+
+
+-- 200
+do
+    xfadeout 1 32 0
+    xfadeout 2 32 1
+    xfadeout 3 32 2
+    xfadeout 4 22 3
+    xfadeout 5 22 4
+    xfadeout 6 22 5
+
+---------------------------------------------------------------------------------------
+-- Song: Inflexion (RECORDED)
+-- BPM: 240 cps(1)
+---------------------------------------------------------------------------------------
+setcps(1)
+-- Alp starts
+
+d1 $ s "bd"
+
+-- every first sound resetcycles
+xfadeIn 5 20 $ n "1" # s "latibro" # gain "1.3" # speed "-0.1"
+
+-- 20
+xfadeIn 6 20 $ every 8 (#up "<1 5>") $ every 4 (#up "<2 4>") $ n "1" # s "latibro" # gain "1.2" # speed "-0.2"
+
+
+-- 88
+d7 $ slow "<2 1>" $ whenmod 16 10 (|+ speed (0.6 * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 2)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "glitch*4 ul*4" # n (run 2)  # gain "0.955"
+# room 0.6
+# cut 3
+
+-- 120 -- fade out gelecek
+do
+    xfadeout 7 18 6
+    xfadeout 5 16 4
+
+-- 130
+d1 $ every 4 (|* speed "<0.5 0.2>") $ sound "<aset1*16 dr_few*8>" # speed "-0.5" # n (irand 89) # gain "0.82"
+
+
+-- 152
+d2
+    $ every 4 (off 0.125 (|+ 12))
+    $ every 4 (off 0.25 (#speed rand))
+    $ every 4 (#up "<2 4>")
+    $ n "<3 1 2>" -- 3 1 2
+    # s "cosmicg"
+    -- # speed 2
+    # speed (range "-1" "2" $ fast 2 $ tri)
+    # gain "0.75"
+    # lpf 4000
+
+-- 168
+d2
+    $ off 0.125 (|+ 12)
+    $ off 0.25 ((#speed rand).(|+ 7))
+    $ every 4 (#up "<2 4>")
+    $ n "<3 1 2>" -- 3 1 2
+    # s "cosmicg"
+    -- # speed 2
+    # speed (range "-2" "2" $ fast 2 $ sine)
+    # gain "0.7"
+ # lpf 1000
+
+-- 200
+do
+    xfadeIn 1 24 $ silence
+    xfadeIn 2 24 $ silence
+    xfadeIn 4 24 $ silence
+    xfadeIn 5 24 $ silence
+    xfadeIn 7 24 $ silence
+
+
+-- 217
+koko 3 "<aambience/4 [darkworld click*4]>" 0.85 2
+
+
+-- 280
+d2
+    $ off 0.125 (|+ 12)
+    $ off 0.25 ((#speed rand).(|+ 7))
+    $ every 4 (#up "<-1 0 2 4 8 -2>")
+    $ n "<3 1 2 2 4 6 7 9>" -- 3 1 2
+    # s "[cosmicg tt_tom*3 tt_sn*2 tohh*10]"
+    -- # speed 2
+    # speed (range "-2" "2" $ fast 2 $ sine)
+    # gain "0.65"
+
+
+-- 298
+d7 $ slow "<2 1>" $ (|+ speed ((rand) * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 0.1)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "glitch*4 ul*4" # n (run 3)  # gain "1"
+# room 0.4
+# cut 4
+
+
+-- 350
+do
+    xfadeIn 1 32 $ silence
+    xfadeIn 2 32 $ silence
+    xfadeIn 3 32 $ silence
+    xfadeIn 4 32 $ silence
+    xfadeIn 7 32 $ silence
+
+
+-- 360
+d6 $ every 8 (#up "<1 5>") $ every 4 (#up "<2 4>") $ n "1" # s "latibro" # gain "1.3" # speed "-0.2"
+
+-- 384
+xfadeIn 6 25 $ silence
+
+
+---------------------------------------------------------------------------------------
+-- Song: BANEFUL (Recorded)
+-- BPM: 135, cps(1)
+---------------------------------------------------------------------------------------
+-- 15
+xfadeIn 1 4
+    -- $ whenmod 2 1 (off 0.125 (|+ 12))
+    -- $ whenmod 4 1 ((off 0.25 (|- sustain 0.01)).(#crush 4))
+    $ s "supernoise"
+    # midinote (choose [180, 160, 150, 200, 30])
+    # sustain (1 - (rand *0.01))
+    # gain "0.52"
+
+
+-- 30
+xfadeIn 2 4 $ whenmod 4 1 (#gain 0) $ s "made2" # gain "0.75" # speed (0.1 - rand*0.4) # legato "1"-- # cut 1
+
+-- 45 --
+do
+    let arr = [0,1,2,3,4,8,9,14]
+    d3
+        $ every 4 ((#n ((choose arr))).(fast (2+(irand 4)).(#pan "<0 0.5 1>")).(|-speed (irand (choose([-1,4])))))
+        $ sound "tfx/2"
+        # n (choose arr)
+        # speed (1 - (rand)*0.05)
+        # gain "0.9"
+        -- # legato 1
+        # size 0.8
+        # room 0.8 #speed (-0.5 + (rand)) --
+        # pan (rand)
+
+-- 138 -- wait for chimes to dissappear
+do
+    d1 $ silence
+    d2 $ silence
+    d3 $ silence
+
+-- 140 --
+d4
+    $ slow (choose([1,2,4,6]))
+    -- $ slow 4
+    -- $ every 8 ((fast "<128>").(#speed (20 - (irand 100))).(#gain (rand + 0.5)))
+    $ s "notes"
+    # gain "1"
+    # speed (choose([1.2, 1.6, 2.2,0.8, 0.7]))
+    # room "0.8" # size "0.95" # n 1
+    -- # nudge "1.025"
+
+-- 200 --
+do
+    let arr = [0,1,2,3,4,8,9,14]
+    d3
+        $ every 4 ((#n ((choose arr))).(fast (2+(irand 4)).(#pan "<0 0.5 1>")).(|-speed (irand (choose([-1,4])))))
+        $ sound "tfx/2"
+        # n (choose arr)
+        # speed (1 - (rand)*0.05)
+        # gain "0.85"
+        -- # legato 1
+        # size 0.8
+        # room 0.8 #speed (-0.5 + (rand)) --
+        # pan (rand)
+
+
+-- 220 --
+xfadeIn 5 10 $ every 4 (jux(rev)) $ every 2 (#cut 1) $ s "ua" # grain 0.11 0.2 # speed 0.05 # shape 0.4
+
+-- 240
+d5 $ s "ua" # grain 0.11 0.2 # speed 0.05 # shape 0.5
+d6 $ s "ua" # grain 0.10 0.22 # speed 0.05 # shape 0.6
+-- d6 $ s "ua" # grain 0.10 0.22 # speed 0.05 # shape 0.7
+-- d6 $ s "ua" # grain 0.10 0.22 # speed 0.05 # shape 0.8
+
+
+do
+    xfadeIn 1 32 $ silence
+    xfadeIn 2 32 $ silence
+    xfadeIn 3 32 $ silence
+    xfadeIn 4 32 $ silence
+    xfadeIn 5 32 $ silence
+    xfadeIn 6 32 $ silence
+    xfadeIn 7 32 $ silence
+
+
+---------------------------------------------------------------------------------------
+-- Song: HELOT (Recorded)
+-- BPM: 135 setcps(0.5) : Selçuk starts
+---------------------------------------------------------------------------------------
+setcps(1)
+
+d5 $ s "bd"
+
+-- 4
+d1 $ slow 4
+    $ cat [
+        s "tfx" # gain 0.9 # n "7",
+        s "tfx" # gain 0.9 # n "8",
+        s "tfx" # gain 0.7 # n "1",
+        s "tfx" # gain 0.8 # n "2"
+] # nudge (0.4 + (rand)*0.2) # room 0.9 # size 0.9
+
+-- 32
+xfadeout 1 10 0
+
+-- 32
+xfadeIn 2 8
+    $ every 4 ((#n (irand 10)).(# room (0.5 + (rand) * 0.4)).(fast 1).(#pan (rand))).(|+speed (irand (choose([2,4]))))
+    $ sound "click(<8 15>,16)?"
+    # n (irand 5)
+    # speed (1 + (rand)*0.5)
+    # room 0.8 # size 0.8 # speed (irand 2) -- # pan (irand 2)
+    # gain 0.8
+
+-- 60
+d2
+    $ every 4 ((#n (irand 20)).(# room (0.5 + (rand) * 0.4)).(fast (1+(irand 1)).(#pan (irand 2))).(|+speed (irand (choose([2,8])))))
+    $ sound "click(3,8)" # pan (cat[square,tri,sine])
+    # n (irand 2)
+    # pan (sine)
+    # speed (1 - (rand)*0.05)
+    # room 0.85
+    # size 0.85 #speed (irand 2)
+    # gain 0.95
+
+-- 90
+d2
+    $ every 4 ((#n (irand 20)).(#room 0.5).(fast (1+(irand 1)).(#pan (irand 2))).(|+speed (irand (choose([2,4])))))
+    $ sound "thh(7,8) click(7,8)" # pan (cat[square,tri])
+    -- # n (irand 5)
+    # n pat7
+    # speed (1 + (rand)*0.5)
+    # room 0.8
+    # size 0.9
+    # pan (rand)
+    # speed (irand 2)
+    # gain "0.8 1"
+    # hpf 1000
+
+
+-- 120 -- wait for chimnies
+d7 $ whenmod 16 8 (#gain 0) $ s "tkick(<3 2 7>,<8 16>)" # n pat8  # gain 1.1
+
+-- 128
+d7 $ s "tkick(<3 2 7>,<8 16>)" # n pat9 # gain 1.2
+
+-- 155
+d7 $ whenmod 16 8 (#gain 0) $ s "tkick(<3 2 7>,<8 16>)" # n pat8 # gain 1.2
+
+d1 $ slow 4
+    $ cat [
+        s "tfx" # gain 0.9 # n "7",
+        s "tfx" # gain 0.9 # n "8",
+        s "tfx" # gain 0.7 # n "1",
+        s "tfx" # gain 0.8 # n "2"
+] # nudge (0.4 + (rand)*0.2) # room 0.8 # size 0.9
+
+-- 165
+d7 $ s "tkick(<3 2 7>,<8 16 8 16 8 16>)" # n pat9
+
+-- 180
+d2
+    $ every 4 ((#n (irand 20)).(# room (0.5 + (rand) * 0.4)).(fast (1+(irand 1)).(#pan (irand 2))).(|+speed (irand (choose([2,8])))))
+    $ sound "click(3,8)" # pan (cat[square,tri,sine])
+    # n (irand 5)
+    # pan (rand)
+    # speed (1 - (rand)*0.05)
+    # room 0.85
+    # size 0.85 #speed (irand 2)
+    # gain 0.95
+
+-- 190
+d5
+    $ every 6 (# gain 1)
+    -- $ whenmod 4 2 (off 0.25 ((|+ speed rand).(|- 2).(|- gain 0.2)))
+    $ whenmod 8 4 (off 0.125 (|+ "<12 7>"))
+    $ striate 64
+    $ n "2" # s "latibro"
+    # shape 0.4
+    # speed "<-0.1 -0.2>"
+    # legato 4
+    # gain 0
+
+d5 silence
+
+
+---------------------------------------------------------------------------------------
+-- Song: LURCH (Recorded)
+-- BPM: 60 setcps() : Selçuk starts
+---------------------------------------------------------------------------------------
+
+-- 5
+xfadeIn 1 20
+  $ palindrome
+  $ every 8 ((# n "[a7]").(# legato 3).(# lpf 240))
+  -- $ every 2 ((# n "[a6]").(# legato 2).(#crush 3).(#gain "1.4"))
+  -- $ every 8 ((# n "[a6]").(# legato 3).(#crush 0.3).(#gain "0.55").(chop 16).(#room "0.3").(# pan rand))
+  $ every 4 ((# n "[c(3,8) | [f | e5 | a5 ]]").(# legato 2))
+  -- $ whenmod 8 6 (# silence)
+  $ jux rev $ n (off 0.125 (|+ 12) $ off 0.125 (|+ 7)  "<[d3 | d2] e3>")
+  -- $ jux rev $ n (off 0.125 (|+ 12) $ off 0.125 (|+ 7) (scale "major" "<[d3 | d2] e3>"))
+  # sound "superfm"
+  # legato "1 <1.5 0.5>"
+  # lpf (range 80 200 $ perlin)
+  # gain 1
+
+  -- # freeze "0.8"
+  -- # shape "0.2"
+  -- # resonance "0.6"
+
+-- 23
+xfadeIn 2 10
+    $ whenmod 4 2 ((# n "[a5|a6|c5]").(# legato 3).(striate 50).(#gain "0.6").(chop 16).(#room "0.3").(# pan rand))
+    $ sound "superfm"
+    -- # crush (slow 2 $ range "1" "2" $sine)
+    # lpf (fast 20 $ range 0 7000 $ sine)
+    # gain "0.55"
+    # legato "0.5"
+
+-- 48
+do
+    xfadeout 2 12 0
+    xfadeout 1 12 0
+
+
+
+---------------------------------------------------------------------------------------
+-- Song: Diachronic (NIN) (RECORDED)
+-- BPM: 60 setcps() selcuk starts
+---------------------------------------------------------------------------------------
+
+-- 12 --
+xfadeIn 1 5 $ chop 32 $ loopAt 5 $ s "speechdark:0" # gain 1 # shape "0.72" # room "0.5"
+
+-- 20 --
+d1 $ chop 32 $ loopAt 5 $ s "speechdark:0" # gain 1 # shape "0.75" # room "0.6" # size "0.8"
+
+-- 30
+xfadeIn 5 5
+    $ rarely ( striate (irand 32) )
+    $ s "fire*4 insect*4" # n (irand 10)
+    # pan rand
+    # speed ( choose[1,2,4] )
+    -- # shape 0.1
+    # legato 0.4
+    # room 0.7
+    # size 0.8
+    # gain 1
+
+-- 40
+d5 $ silence
+
+-- 45
+xfadeIn 5 5
+    $ rarely ( striate (irand 32))
+    $ s "fire*4 insect*4" # n (irand 100)
+    # pan rand
+    # speed ( choose[1,2,4])
+    -- # shape 0.1
+    # legato (rand)
+    # room 0.7
+    # size 0.7
+    # gain 1
+
+-- 50
+xfadeout 5 5 4
+
+-- 55
+xfadeIn 1 2 $ jux (fast 4) $ striate' 16 (1/8) $ sound "vocad:2/2" # gain "0.88"
+
+-- 60
+xfadeIn 2 3  $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2" # gain "1"
+
+-- 68
+d3 $ slow 8 $ n "6" # sound "jungbass" # gain "1.4" # shape 0.5
+
+-- 70 --
+d1 $ jux (fast 4) $ striate' 16 (1/4) $ sound "vocad:2" # gain "0.85"
+
+-- 80 --
+d1 $ jux (fast 4) $ striate' 16 (1) $ sound "vocad:2/2" # gain "0.83"
+
+d2
+    $ every 4 (palindrome)
+    $ every 4 (jux (rev))
+    $ whenmod 8 6 (|* speed (slow 2 (saw + 1)))
+    $ almostNever (stut 8 0.7 (range 0.0001 0.03 (slow 7 tri)))
+    $ sometimesBy (0.35) (ply 2)
+    $ fast 2 $ iter 4 $ s "<arkick(5,8) psr(5,8) akuma1(5,8) tt_perc(3,8)>" # n (irand 10) -- psr(5,8) -- sine -- toys
+    # room 0.3 # shape 0.5
+    # gain "<1 0.77 0.8 0.7>"
+
+d1 $ jux (fast 4) $ striate' 16 (1/16) $ sound "vocad:2" # gain "0.85"
+
+-- 85 --
+d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2" # gain "1"
+
+
+-- 98 --
+d3
+    $ every 4 (striate 32)
+    $ off 0.025 ((|+ speed (irand 4)).(# legato 0.2))
+    $ off 0.125 ((|+ n 2).(# legato 0.1))
+    $ sometimesBy (0.35) (ply 4)
+    $ almostNever (stut 8 0.7 (range 0.0001 0.03 (slow 7 tri)))
+    $ s "subroc3d" # n (irand 10) -- 3
+    # legato 0.1
+    # gain "0.95"
+
+-- 130 --
+do
+    xfadeout 1 10 0
+    xfadeout 2 10 1
+    xfadeout 3 10 2
+    xfadeout 5 10 4
+
+
+
+
+---------------------------------------------------------------------------------------
+-- Song: OBDURACY (Recorded)
+-- BPM: 90  - Selcuk starts
+---------------------------------------------------------------------------------------
+
+-- 10
+xfadeIn 1 10
+$ every 4 (#gain 0.7)
+$ jux (iter 4)
+$ every 4 (gap 4)
+$ every 5 (chop 4)
+$ stack[
+    up pat7 # sound "auto:4" # speed (range 1.0 5.0 $ rand),
+    up pat4 # sound "tt_fx:6" # speed (range 1.0 5.0 $ rand),
+    sound "tt_fx:6" # n pat6 # speed (range "-5.0" "5.0" $ rand),
+    up pat5 # sound "auto:2" # speed (range 1.0 5.0 $ rand)
+]
+# cutoff (range 20 10000 $ slow 3 $ sine) # resonance (range 0.1 0.4 $ rand)
+# delay "0.6" # delaytime "0.375" # delayfeedback "0.8" # room 0.8 # size 0.8
+# gain 0.7
+
+-- # hpf 200
+
+-- 50
+xfadeIn 3 10
+    $ every 4 (off 0.25 (|- 3))
+    $ every 8 (off 0.125 (|- 7))
+    $ striate 2
+    -- $ rarely ( striate (irand 32))
+    $ s "notes(3,8)" # n (choose [0,2,4,7,10])
+    # pan rand
+    # speed ( choose[1, 2, 4, -1, -2, 3])
+    # delay 0.6
+    # delaytime "0.375" # delayfeedback "0.8"
+    # gain 1
+    # room 0.8
+    # size 0.8
+    -- # resonance (range 0.1 0.4 $ rand)
+
+-- 60 --
+d3 $ every 4 (off 0.25 (|- 3))
+    $ every 8 (off 0.125 (|- 7))
+    $ striate 2
+    -- $ rarely ( striate (irand 32))
+    $ s "notes(1,4)" # n (choose [0,2,4,7,10])
+    # pan rand
+    # speed ( choose[1, 2, 4, -1, -2, 3])
+    # delay 0.6
+    # delaytime "0.375" # delayfeedback "0.8"
+    # gain 1
+    # room 0.8
+    # size 0.8
+    # resonance (range 0.1 0.4 $ rand)
+
+
+-- 85 --
+d4
+    $ every 4 (off 0.25 (|+ 12))
+    $ s "supernoise" # midinote (choose [40,20]) # sustain "<1 1 0.5 0.5>" # gain "1" # shape 0.2
+
+-- 95 --
+d4 $ silence
+
+-- 102 --
+d3 $ every 4 ( (off 0.25 (|- 3)).(|- gain "0.8") ) $ s "tt_fx:86(3,8) tt_fx:84(3,8) tt_fx:82(3,8)  <tt_fx:78(3,8) tt_fx:81(3,8) tt_fx:80(3,8)>" # legato 2  # gain "0.9" # room 0.7 # size 0.8
+
+-- 116 --
+d3 $ every 4 ( (off 0.25 (|- 3)).(|- gain "0.8") ) $ s "tt_fx:86(3,8)" # legato 2 # gain "0.9" # room 0.7 # size 0.8
+
+
+-- 120 --
+do
+    xfadeout 1 10 0
+    xfadeout 2 10 1
+    xfadeout 3 10 2
+    xfadeout 4 10 3
+
+---------------------------------------------------------------------------------------
+-- INDOLENT (Recorded)
+-- BPM: 120
+---------------------------------------------------------------------------------------
+setcps(0.55)
+
+
+d1 $ s "arp/4" # gain "1.2" # shape 0.7 -- # cut "3"
+
+-- 20
+d5 $ s "supernoise" # midinote 200 # sustain "2" # gain "0.5" # shape 0.1
+
+-- 30
+d5 $ silence
+
+d2 $ every 8 (#gain 0) $ fast 1.2 $ up "[4 4]/2" # speed "<-1>" # sound "ade:1"  # pan (slow 8 $ saw) # gain "1"
+
+-- 40
+d5 $ s "supernoise" # midinote 200 # sustain "2" # gain "0.5" # shape 0.1
+
+-- 50
+d2 $ fast 1.2 $ up "[0 1]/8" # speed "-2" # sound "ade:1"  # pan (slow 8 $ saw) # gain "1"
+
+-- 70
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "<ade:0 ade:1>"  # pan (slow 8 $ saw) # gain "1"
+
+-- 80
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "selffx"  # pan (slow 8 $ saw) # gain "1"
+
+-- 84
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "<ade:0 ade:1>"  # pan (slow 8 $ saw) # gain "1"
+
+-- 98
+d4 $ loopAt 2 $ striate 16 $ s "fire" # gain "0.8" # room 0.8 # size 0.8-- # speed (1-rand)
+
+-- 106
+d4 $ silence
+
+-- 110
+d4 $ loopAt 2 $ striate 16 $ s "fire" # gain "0.8" # room 0.8 # size 0.8-- # speed (1-rand)
+
+-- 122
+d4 $ silence
+
+-- 128
+d5 $ every 4 ((#gain 0.7).(# midinote 201)) $ s "supernoise" # midinote 200 # sustain "2" # gain "0.7" # shape 0.2
+
+-- 140
+d5 $ every 4 ((#gain 0.7).(# midinote 201)) $ s "supernoise(5,8)" # midinote 200 # sustain "0.5" # gain "0.7" # shape 0.1  -- # cut "1"
+
+-- 160
+d5 $ every 4 ((#gain 0.7).(# midinote 201)) $ s "supernoise" # midinote 200 # sustain "2" # gain "0.7" # shape 0.2
+
+-- 172
+d5 $ every 4 ((#gain 0.7).(# midinote "<201 202 203 204>")) $ s "supernoise(5,8)" # midinote 200 # sustain "0.5" # gain "0.7" # shape 0.2
+
+
+
+-- 224
+do
+    xfadeout 1 16 0
+    xfadeout 2 16 1
+    xfadeout 3 16 2
+    xfadeout 4 16 3
+    xfadeout 5 16 4
+
+
+
+
+
+---------------------------------------------------------------------------------------
+-- Song: UNKNOWN
+-- BPM: 60 setcps()
+---------------------------------------------------------------------------------------
+
+d5 $ whenmod 16 10 (|+ speed (1.6 * (perlin))) $ whenmod 8 4 ( (#n "<0 1 2*2 1 4*2>") . (jux(rev . (|+ 2)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2> 10>" $ s "tt_perc*4 tt_hh*4" # n (run 32) # room 0.3 # cut 3
+
+d1
+    $ whenmod 4 3 (|+ speed (1.6 * (perlin)))
+    $ striate 16 $ loopAt "1" $ s "ua" # n 0 -- # legato 1-- # cut "1"
+    |+ speed (1.6 * (perlin))
+    -- # speed 0.001
+
+d2
+    $ every 8 (off 0.25 (|+ speed 0.5))
+    $ zoom(0.3, 0.5)
+    $ striate 4
+    $ s "ua"
+    -- # n (irand 30)
+    # gain "1" # cut "1"
+
+
+
+
+-- 121
+d4 $ 4 10 $ every 8 (# cut 1) $ every 4 (# speed (-1*rand)) $ s "[pad:2 | pad:1]" # gain "1" # speed "0.5 0.6 0.4" -- # legato 1
+
+d4 $ every 8 (# cut 1) $ every 4 (# speed (-1*rand)) $ s "[pad:2 | pad:1]" # gain "1" # speed "0.5 0.6 0.4" -- # legato 1
+
+-- SELCUK YENİ
+d1 $ jux (fast 4) $ striate' 32 (1/8) $ sound "vocad:2" # gain "0.9" -- # crush 2
+d1 $ every 4 (# speed "-0.3") $ jux (fast 4) $ striate' 32 (1/8) $ sound "vocad:2" # gain "0.9" # crush 2
+d6 $ every 8 ((# gain "0")) $ sound "bit1(9,16)" # n "4" # gain "1.1" # cut "2" # shape 0.2
+d6 $ every 8 ((# gain "0")) $ sound "bit1(9,16)" # n (irand 89) # pan (rand) # gain "1" # shape 0.4 -- # cut "1"
+
+
+
+-- 145
+d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2" # gain "1"
+
+-- 150
+do
+    xfadeout 1 4
+    xfadeout 2 4
+    xfadeout 4 4
+
+-- 160
+d5
+    $ rarely ( striate (irand 32))
+    $ s "fire*4 insect*4" # n (irand 100)
+    # pan rand
+    # speed ( choose[1,2,4])
+    -- # shape 0.1
+    # legato 0.32
+    # room 0.7
+    # size 0.7
+    # gain 1
+
+-- 173
+d1 $ chop 32 $ loopAt 5 $ s "speechdark:0" # gain 1 # shape "0.75" # room "0.5" # size "0.8"
+
+-- 180
+d2
+    $ every 4 (palindrome)
+    $ every 4 (jux (rev))
+    $ whenmod 8 6 (|* speed (slow 2 (saw + 1)))
+    $ almostNever (stut 8 0.7 (range 0.0001 0.03 (slow 7 tri)))
+    $ sometimesBy (0.35) (ply 2)
+    $ fast 2 $ iter 4 $ s "<arkick(5,8) psr(5,8) aset1(5,8) tt_perc(3,8)>" # n (irand 10) -- psr(5,8) -- sine -- toys
+    # room 0.3 # shape 0.5
+    # gain "<1 0.77 0.8 0.7>"
+
+
+-- 200
+do
+    xfadeout 1 16
+    xfadeout 2 10
+    xfadeout 3 16
+    xfadeout 4 10
+    xfadeout 5 16
+
+
+
+d6 $ every 1 (#cut 3) $ s "ua" # grain 0.11 0.2 # speed "<0.1 <0.1> 0.1 0.08>" # shape 0.3
+d7 $ every 1 (#cut 2) $ s "ua" # grain 0.11 0.2 # speed "<0.4 0.4 0.4 0.8>"
+d8 $ every 1 (#cut 4) $ s "ua" # grain 0.41 0.42 # speed "<0.4 0.4 0.4 0.8>"
+
+d8 silence
+
+d4
+    $ whenmod 4 2 (off 0.25 ((#speed rand).(|+ 7)))
+    $ whenmod 8 4 (off 0.125 (|+ 12))
+    $ every 8 ((fast 8).(|- speed (perlin)).(#pan "<0 1>"))
+    $ s "insect/2" # (irand 20)
+    # gain "0.9"
+
+d5 $ every 8 ((#gain 1)) $ s "pad" # gain "0"-- # cut "2"
+
+d1 $ n (arpg "'major7 [-4,0,3,7]") # sound "superpiano" # sustain "0.1" # sz 0.7 # room 0.8
+-- Glitch +speed -> perlin noise

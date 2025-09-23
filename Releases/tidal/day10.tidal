@@ -1,0 +1,19 @@
+d1 $ slow 4 $ striate 64 $ up pat3 # s "padlong"
+|+| sustain "0.25"
+|+| delay "0.5" # delaytime "0.375" # delayfeedback "0.75"
+|+| cutoff (scale 800 5000 $ slow 4 $ sine1) # resonance (scale 0.02 0.4 $ slow 4 $ sine1)
+
+
+let pat1 = "{0*2 ~ [0 ~] ~ 0*4 [~ 0] 0}%4"
+let pat3 = "{0 0*4 [~ 0] [~ 0] 0*2  0 ~ 0*4 ~ 0 -12 0 ~ [~ 0] [~ 0] ~ 0*2 -12}%8"
+
+
+hush
+
+cps 1
+
+d1 $ striate 128 $ slow 5 $ s "[alonevox]*5" # gain 0
+#cutoff (scale 100 1000 $ saw)
+
+
+d2 $ s "ade:2" # sustain "7"

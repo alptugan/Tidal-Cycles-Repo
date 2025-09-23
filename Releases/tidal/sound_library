@@ -1,0 +1,86 @@
+sound library
+-- VOX
+alonevox -7 sec.
+
+
+auto - electro break beat library
+
+ade 10
+ade:0 - bassline
+ade:1 - melody
+ade:2 - pure string signal
+ade:3 - pure choir like signal
+ade:4 - fan noise
+ade:5 - fan noise short treble
+ade:6 - finger tick on glass
+ade:7 - micro granular sounds
+ade:8 - sample sound rhytm noise
+ade:9 - pure sine signal like
+
+akuma1 5
+akuma2 5
+akuma3 5
+akuma4 32
+akuma5 32
+akuma6 32
+akuma7 32
+
+amencutup
+
+armora 7 - noisy sounds white, brown, pink
+
+bass1 30
+bass1:0
+
+click 4
+
+ifdrums 3 - kick,snare,trumpet
+
+psr 30 - glitchy sound bank
+psr:24 - short glitchy sample
+psr:25 - short glitchy sample
+psr:20 - short glitchy sample alva noto
+psr:19 - short glitchy sample alva noto
+psr:18 - long glitchy sample alva noto
+psr:17 - short distorted glitchy sample alva noto
+psr:16 - short distorted glitchy sample alva noto
+psr:15 - short/long distorted glitchy sample alva noto
+psr:11 - sub noise short
+psr:10 - high noise short kick
+psr:9 - high noise bit short kick
+psr:3 - melodic short sample
+psr:1 - noise signal
+
+-- Glitchy sounds long shot
+proc -2
+
+-- Glitchy sounds short shot
+procshort -8
+
+-- Atmosheric long shot: 26 seconds
+padlong -1
+
+pad -3
+pad:0 -12 sec (alien monolith)
+pad:1 -5 sec (angels)
+pad:2 -3 sec (bells)
+
+sax 22
+
+sea 2
+sea:0 - submarine ambient signal
+sea:1 - submarine long ambient signal
+
+selfx 1 - pure ambient sinesoidal tone
+
+selfcpr 1 - cymbal with ambient reverb
+
+sine 6
+sine:0 - pure sine tone
+
+nau 6 - single long show few seconds
+
+newnotes 15 - sin tone
+
+
+world 3 - kick/snare

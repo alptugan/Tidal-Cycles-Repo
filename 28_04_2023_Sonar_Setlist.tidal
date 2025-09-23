@@ -27,19 +27,19 @@ d1 $ every 32 ((#up "12*12 2*4").(plyWith 2 (|* "0.5"))) $ slow 4 $ up "4*4 ~ 8*
 
 
 do
-    d3 silence 
-    d5 silence 
-    d1 silence 
-    d4 silence 
+    d3 silence
+    d5 silence
+    d1 silence
+    d4 silence
 
 d1 $ every 32 ((#up "12*12 2*4").(plyWith 2 (|* "0.5"))) $ slow 4 $ up "4*4 ~ 8*8 ~" # s "bass1" # sustain "<0.25 0.25 0.25 0.3 1>" # gain "1.1" # cut "3"
 
 d6 $ s "vocad/4" # gain "1.15" -- # sustain "1" -- # legato 2
 
-d2 $ jux (rev) $ every 8((striate' 64 (1/2)).(#gain "0.9").(# speed ("0.94"))) $ sound "speechdark" # gain "0.9" # cut "2" 
+d2 $ jux (rev) $ every 8((striate' 64 (1/2)).(#gain "0.9").(# speed ("0.94"))) $ sound "speechdark" # gain "0.9" # cut "2"
 
 
-d2 $ s "speechdark2:1/4" # begin "0.0" # end (0.3 + rand) # gain "1.2" # speed "-0.8"-- # cut "2" 
+d2 $ s "speechdark2:1/4" # begin "0.0" # end (0.3 + rand) # gain "1.2" # speed "-0.8"-- # cut "2"
 
 
 do
@@ -54,7 +54,8 @@ do
 -- NOVUM
 
 setcps(0.55)
-d1 $ s "sine(5,8)" # up (choose[0,3,5,7,10,14]) # room 0.35 # sz 0.8 # gain "0."
+
+d1 $ s "sine(5,8)" # up (choose[0,3,5,7,10,14]) # room 0.35 # sz 0.8 # gain "1"
 
 d2 $ fast "<1 2 1.5>/2" $ s "aset1:3*8" # room 0.4 # gain "1" # pan (rand) # cut "1"
 
@@ -63,14 +64,14 @@ d3 $ s "aset1(<1 <3 5>>,8) aset1:2" # shape 0.2
 d4 $ s "bass1:3" # up "<0 1 <-4>>/2" # shape 0.6 # gain "1" # room "0.15" -- # sustain "4"
 
 
-d1 
+d1
     $ stutWith 2 0.125 ((|* speed 1.3) . (|* gain 0.85)) -- 2
     $ chunk 4 (hurry (choose[2,0.5]))
     $ jux (rev . (|+ n 3)) -- 1
-    $ s "sine(5,8)" 
+    $ s "sine(5,8)"
     -- # speed 0.8
-    # up (choose[0,3,5,7,10,14]) 
-    # room 0.35 # sz 0.75 
+    # up (choose[0,3,5,7,10,14])
+    # room 0.35 # sz 0.75
     # gain "0.95"
 
 
@@ -85,15 +86,15 @@ d5 $ whenmod 16 10 (|+ speed (1.6 * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2
 
 do
     d2 $ fast "<1 2 1.5>/2" $ s "aset1:3*8" # room 0.5 # gain "0.99" # cut "1"
-    d3 $ s "aset1(<1 <3 5>>,8) aset1:2" # shape 0.35     
-    d1 
+    d3 $ s "aset1(<1 <3 5>>,8) aset1:2" # shape 0.35
+    d1
         $ stutWith 2 0.125 ((|* speed 2) . (|* gain 0.85)) -- 2
         $ chunk 4 (hurry (choose[2,0.5]))
         $ jux (rev . (|+ n 1)) -- 1*
-        $ s "sine(5,8)" 
+        $ s "sine(5,8)"
         -- # speed 0.8
-        # up (choose[0,3,5,7,10,13]) 
-        # room 0.35 # sz 0.7 
+        # up (choose[0,3,5,7,10,13])
+        # room 0.35 # sz 0.7
         # gain "0.88"
 
 
@@ -103,9 +104,9 @@ d5 $ whenmod 8 4 (#n "<1 2 1>") $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>"
 -- Glitch pan
 d5 $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 4)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "psr*2 procshort*2" # n (run 10) # room 0.4 # cut 3
 
-d5 $ whenmod 16 10 (|+ speed (1.6 * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 4)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "psr*4 procshort*4" # n (run 1) # room 0.3 
+d5 $ whenmod 16 10 (|+ speed (1.6 * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 4)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "psr*4 procshort*4" # n (run 1) # room 0.3
 # cut 3 # shape 0.7
-    
+
 do
     xfadeIn 1 40 $ s "bd" #gain "0"
     xfadeIn 2 40 $ s "bd" #gain "0"
@@ -174,9 +175,9 @@ xfadeIn 1 35 $ s "<chin*8? tt_fx*8>" # n (irand 65) # gain "<1.3 0.0>" # pan "[0
 
 --- unsolo 1
 
-xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 4500 $ sine) # cut "1" 
+xfadeIn 2 45 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain 1 # lpf (slow 8 $ range 100 4500 $ sine) # cut "1"
 
-xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6" 
+xfadeIn 3 45 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.6"
 
 xfadeIn 4 55 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "92" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.68"
 
@@ -193,15 +194,15 @@ do
 d1 $ s "<chin*8 tt_fx*8 bit1*4>" # n (irand 65) # gain "<1.3 0.7 0.5>" # pan "[0 0.5 1]" # speed (-0.01 + (rand))
 
 
-d2 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain "1.1" # lpf (slow 8 $ range 100 5000 $ sine)  
-# cut "1" 
+d2 $ whenmod 8 4 (#n (irand 8)) $ every 16 (iter 4) $ every 4 (jux(rev)) $ repeatCycles 4 $ s "aset1:0 [hh tfx] tta <tt_kick aset1> aset1:0 [hh tfx] akuma1 <akuma1 aset1>" # gain "1.1" # lpf (slow 8 $ range 100 5000 $ sine)
+# cut "1"
 
-d3 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.55" 
+d3 $ whenmod 8 4 ((iter 4).(#accelerate (irand 10))) $ jux (# accelerate "-0.1") $ s "nau" # n "<5 {8 17 20} 8 ~ 8 10 5 10>" # release "20.1" #accelerate (slow 16 $ range 0.1 4 $ sine) # pan (slow 8 $ range 0 1 $ sine) # gain "0.55"
 
 d4 $ whenmod 8 4 (#accelerate (slow 16 $ range 0.1 4 $ sine)) $ s "superpiano" # n "<5 8 17 ~ 20 20 ~? 8 12 ~ 10>" # decay "[1 0.2]/8" # release "2" # voice "[0.5 0.03 0.1]/8" # sustain (slow 10 $ range 10 20 $ sine) # gain "0.8"
 
 
-do 
+do
     xfadeout 4 16
     xfadeout 2 16
     xfadeout 3 16
@@ -245,7 +246,7 @@ do
     xfadeIn 5 30 $ s "bd" # gain "0"
 
 
-do 
+do
     d1 silence
     d2 silence
     d3 silence
@@ -262,9 +263,9 @@ d6 $ stack [
 
  d8 $ whenmod 8 6 ((fast 4).(# pan (rand))) $ s "tta*8" # n (irand 10) # lpf (range 350 5000 $ slow 2 $ sine) # hpf 100 # gain "0.98"
 
- d7 $ jux(rev) $ whenmod 8 3 ((fast 2)) $ every 4 (striate "<24 32 64 128>") $ s "tt_fx:3 tt_clap:3*4" # gain "1" 
+ d7 $ jux(rev) $ whenmod 8 3 ((fast 2)) $ every 4 (striate "<24 32 64 128>") $ s "tt_fx:3 tt_clap:3*4" # gain "1"
 
- d7 $ whenmod 8 6 ((fast 2).(# speed "-0.44")) $ every 4 (striate 32) $ s "tt_clap:7 tt_clap:3*4" # gain "1" 
+ d7 $ whenmod 8 6 ((fast 2).(# speed "-0.44")) $ every 4 (striate 32) $ s "tt_clap:7 tt_clap:3*4" # gain "1"
 
  d7 $ whenmod 8 6 ((fast 2).(# speed "-0.5").(jux(rev))) $ every 4 (striate 128) $ s "tt_clap:6 asubkick:2 tt_clap:3*3" # gain "0.9" # hpf 100
 
@@ -305,7 +306,7 @@ d4 $ s "noise*8" # n "5" # gain "0.9" # pan (rand) # speed "0.85" -- 0.85
 
 -- 1
 
-d5 $ slow 2 $ jux(rev) $ s "sine:3 noise:2" # gain "0.9" # speed "4" 
+d5 $ slow 2 $ jux(rev) $ s "sine:3 noise:2" # gain "0.9" # speed "4"
 
 
 do
@@ -318,7 +319,7 @@ d4 silence
 ------------------------------------------------
 -- FLIP A COIN
 ------------------------------------------------
--- 132 BPM 
+-- 132 BPM
 
 cps(0.55)
 let coinExcept = [];
@@ -368,13 +369,13 @@ d2 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2" # g
 
 d4 $ every 8 (# cut 1) $ every 4 (# speed (-1*rand)) $ s "[pad:2 | pad:1]" # gain "0.9" # speed "0.5 0.6 0.4" # legato 1
 
-d4 silence 
+d4 silence
 
 d3 $ slow 8 $ n "6" # sound "jungbass" # gain "1.2"
 -- d3 $ n "6" # sound "jungbass" # gain "1"
-d3 silence 
+d3 silence
 
-d5 
+d5
     $ rarely ( striate (irand 64))
     $ s "fire*4 insect*4" # n (irand 100)
     # pan "0"
@@ -396,11 +397,11 @@ d2
     # room 0.1 # shape 0.5
     # gain "1"
 
-d2 silence 
-d3 silence 
+d2 silence
+d3 silence
 d2 silence
 
-d3 
+d3
     $ every 4 (striate 32)
     $ off 0.025 (|+ speed (irand 4))
     $ sometimesBy (0.35) (ply 4)
@@ -436,7 +437,7 @@ d6 $ every 8 (#up "<1 5>") $ every 4 (#up "<2 4>") $ n "1" # s "latibro" # gain 
 
 -- Selcuk kick girer, sonra burası
 d7 $ slow "<2 1>" $ whenmod 16 10 (|+ speed (0.6 * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 2)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "glitch3*4 ul*4" # n (run 2)  # gain "1.0"
-# room 0.5 
+# room 0.5
 # cut 3
 
 d7 silence
@@ -444,23 +445,23 @@ d5 silence
 
 d1 $ every 4 (|* speed "<0.5 0.2>") $ sound "<aset1*16 dr_few*8>" # speed "-0.5" # n (irand 89) # gain "0.8"
 
-d2 
+d2
     $ every 4 (off 0.125 (|+ 12))
     $ every 4 (off 0.25 (#speed rand))
-    $ every 4 (#up "<2 4>") 
+    $ every 4 (#up "<2 4>")
     $ n "<3 1 2>" -- 3 1 2
-    # s "cosmicg" 
+    # s "cosmicg"
     -- # speed 2
     # speed (range "-2" "2" $ fast 2 $ sine)
     # gain "0.1"
     # lpf 3000
 
-d2 
+d2
     $ off 0.125 (|+ 12)
     $ off 0.25 ((#speed rand).(|+ 7))
-    $ every 4 (#up "<2 4>") 
+    $ every 4 (#up "<2 4>")
     $ n "<3 1 2>" -- 3 1 2
-    # s "cosmicg" 
+    # s "cosmicg"
     -- # speed 2
     # speed (range "-2" "2" $ fast 2 $ sine)
     # gain "0.7"
@@ -471,7 +472,7 @@ do
     xfadeIn 1 16 $ silence
     xfadeIn 2 16 $ silence
     xfadeIn 4 16 $ silence
-    xfadeIn 5 16 $ silence    
+    xfadeIn 5 16 $ silence
     xfadeIn 7 16 $ silence
 
 
@@ -480,19 +481,19 @@ koko 3 "<aambience/4 [bass click*4]>"
 d2 silence
 d7 silence
 
-d2 
+d2
     $ off 0.125 (|+ 12)
     $ off 0.25 ((#speed rand).(|+ 7))
-    $ every 4 (#up "<-1 0 2 4 8 -2>") 
+    $ every 4 (#up "<-1 0 2 4 8 -2>")
     $ n "<3 1 2 2 4 6 7 9>" -- 3 1 2
-    # s "[cosmicg tt_tom*3 tt_sn*2 tohh*10]" 
+    # s "[cosmicg tt_tom*3 tt_sn*2 tohh*10]"
     -- # speed 2
     # speed (range "-2" "2" $ fast 2 $ sine)
     # gain "0.8"
 
 
 d7 $ slow "<2 1>" $ (|+ speed ((rand) * (perlin))) $ whenmod 8 4 ( (#n "<1 2*2 1 4*2>") . (jux(rev . (|+ 0.1)))) $ bite 4 "<0*2 0> <1*2 3*1> 2 <3 2*2 <2,3,0*2>>" $ s "glitch*4 ul*8" # n (run 3)  # gain "1.0"
-# room 0.5 
+# room 0.5
 # cut 3
 
 do

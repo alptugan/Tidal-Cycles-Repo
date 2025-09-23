@@ -1,0 +1,4 @@
+import Sound.Tidal.MIDI.Context
+displayOutputDevices >>= putStrLn
+devices <- midiDevices
+m1 <- midiStream devices "USB MIDI Device" 1 synthController

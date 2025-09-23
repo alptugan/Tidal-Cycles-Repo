@@ -1,0 +1,41 @@
+-- Network communication
+d1 $ s  "bd <cp*2 cp>"
+d1 $ s "bd"
+cps(1)
+
+d1 <- stream "192.168.0.100" 7771 dirt
+
+d1 $ slow 16 $ striate 128 $ sound "bd*12 sn*8 [hh sn bd]*4 sn*4 bd*4"
+
+hush
+
+import Sound.Tidal.OscStream
+import Sound.OSC.FD
+
+let sd ip port = do s <- makeConnection ip port superDirtSlang
+                    let backend = Backend s (\_ _ _ -> return ())
+                    ds <- Sound.Tidal.Stream.state backend dirt
+                    return (setter ds)
+
+
+
+s1 <- sd "169.254.205.222" 57120 
+
+s1 $ sound "bd cp*4"
+s2 $ s "bd*8"
+
+import Sound.Tidal.MIDI.Context
+displayOutputDevices >>= putStrLn
+devices <- midiDevices
+
+--     --
+-- OSC --
+--     --
+var addr = NetAddr.new("127.0.0.1", 3333);
+
+OSCFunc({ |msg, time, tidalAddr|
+	var latency = time - Main.elapsedTime;
+	msg = msg ++ ["time", time, "latency", latency];
+	msg.postln;
+    addr.sendBundle(latency, msg)
+}, '/play2').fix;

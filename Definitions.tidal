@@ -1,0 +1,176 @@
+
+let fscreen x n = do
+      putStr result
+      where
+        result = concat [x | i <- [1,2..n]]
+
+hush
+
+-- example
+fscreen "RAW " 1000
+
+let sus p = (const $ s "~") $ p
+
+let bpm x = setcps(x/60/4)
+
+bpm 135
+
+hush
+
+setcps(1)
+
+let volcaNuBass = midichan 0
+    volcaBass = midichan 1
+    volcaKick = midichan 9
+    -- volca kick
+    vk_pulse_color = ccn 40 -- PULSE COLOUR 40
+    vk_pulse_level = ccn 41 -- PULSE LEVEL 41
+    vk_amp_attack = ccn 42 -- AMP ATTACK 42
+    vk_amp_decay = ccn 43 -- AMP DECAY 43
+    vk_drive = ccn 44 -- DRIVE 44
+    vk_tone = ccn 45 -- TONE 45
+    vk_resonator_pitch = ccn 46 -- RESONATOR PITCH 46
+    vk_resonator_bend = ccn 47 -- RESONATOR BEND 47
+    vk_resonator_time = ccn 48 -- RESONATOR TIME 48
+    vk_accent = ccn 49 -- ACCENT 49
+    -- volca nubas
+    vnb_vto_pitch = ccn 40 -- VTO PITCH 40
+    vnb_vto_saturation = ccn 41 -- VTO SATURATION 41
+    vnb_vto_level = ccn 42 -- VTO LEVEL 42
+    vnb_vcf_cutoff = ccn 43 -- VCF CUTOFF 43
+    vnb_vcf_peak = ccn 44 -- VCF PEAK 44
+    vnb_vcf_attack = ccn 45 -- VCF ATTACK 45
+    vnb_vcf_decay = ccn 46 -- VCF DECAY 46
+    vnb_vcf_eg_int = ccn 47 -- VCF EG INT 47
+    vnb_accent = ccn 48 -- ACCENT 48
+    vnb_lfo_rate = ccn 49 -- LFO RATE 49
+    vnb_lfo_int = ccn 50 -- LFO INT 50
+    -- volca bass
+    vb_octave = ccn 40 -- OCTAVE 40
+    vb_lfo_rate = ccn 41 -- LFO RATE 41
+    vb_lfo_int = ccn 42 -- LFO INT 42
+    vb_vco_pitch1 = ccn 43 -- VCO PITCH1 43
+    vb_vco_pitch2 = ccn 44 -- VCO PITCH2 44
+    vb_vco_pitch3 = ccn 45 -- VCO PITCH3 45
+    vb_eg_attack = ccn 46 -- EG ATTACK 46
+    vb_eg_decay_release = ccn 47 -- EG DECAY/RELEASE 47
+    vb_cutoff = ccn 48 -- CUTOFF 48
+    vb_gate_time = ccn 49 -- GATE TIME 49
+
+
+
+-- transformations
+-- fade in
+-- ex: t1 (xfadeIn 8)
+
+let xfadeOutAll t = do
+                        xfadeIn 1 t $ silence #orbit 0
+                        xfadeIn 2 t $ silence #orbit 1
+                        xfadeIn 3 t $ silence #orbit 2
+                        xfadeIn 4 t $ silence #orbit 3
+                        xfadeIn 5 t $ silence #orbit 4
+                        xfadeIn 6 t $ silence #orbit 5
+                        xfadeIn 7 t $ silence #orbit 6
+                        xfadeIn 8 t $ silence #orbit 7
+                        xfadeIn 9 t $ silence #orbit 8
+                        xfadeIn 10 t $ silence #orbit 9
+                        xfadeIn 11 t $ silence #orbit 10
+                        xfadeIn 12 t $ silence #orbit 11
+                        xfadeIn 13 t $ silence #orbit 12
+                        xfadeIn 14 t $ silence #orbit 13
+                        xfadeIn 15 t $ silence #orbit 14
+                        xfadeIn 16 t $ silence #orbit 15
+
+
+let xfadeOut i t = xfadeIn i t $ silence
+
+--- multiple orbit
+let xfadeOut i t p = xfadeIn i t $ silence #orbit p
+
+-- osc control over sounds
+
+let osc = pS "osc"
+
+-- osc control over channels
+-- add synthdef kontroll in supercollider
+let kchan = pI "kchan"
+    state = pI "state"
+
+-- cutoff
+-- ex: # cutoff (scale 300 2200 $ slow 2 $ sine)
+{--
+major maj minor min major7 maj7 dom7 minor7 min7 aug
+dim dim7 one 1 five 5 plus sharp5 msharp5 sus2 sus4 six 6
+m6 sevenSus2 7sus2 sevenSus4 7sus4 sevenFlat5 7f5 m7flat5
+m7f5 sevenSharp5 7s5 m7sharp5 m7s5 nine m9 m7sharp9 m7s9
+maj9 nineSus4 ninesus4 9sus4 sixby9 6by9 m6by9 sevenFlat9
+7f9 m7flat9 m7f9 sevenFlat10 7f10 nineSharp5 9s5 m9sharp5
+m9s5 sevenSharp5flat9 7s5f9 m7sharp5flat9 eleven 11 m11
+maj11 elevenSharp 11s m11sharp m11s thirteen 13 m13
+--}
+
+
+
+
+let replicator text1 = [putStr (text1) | x <- replicate 500 text1]
+      putStr text1
+
+
+
+    let tsdelay = pF "tsdelay"
+        xsdelay = pI "xsdelay"
+
+    let delaytime = pF "delaytime"
+        decaytime = pI "decaytime"
+
+
+
+--- terminal
+
+--say --i interactive
+--say -v Alex "hello world"
+--say -v Alex -r 200 -o output.aiff "Custom speech settings"
+
+
+
+--send osc message
+import Sound.Tidal.Context
+
+let text = pS "text"
+
+let speechTarget =
+      Target { oName = "speech"
+             , oAddress = "192.168.1.154"
+             , oPort = 7777
+             , oLatency = 0.2
+             , oSchedule = Live
+             , oWindow = Nothing
+             , oHandshake = False
+             , oBusPort = Nothing
+             }
+
+vis <- startTidal speechTarget (defaultConfig {cFrameTimespan = 1/20})
+
+streamOnce vis (s "say" # text (pure "we code and compose"))
+
+-- lsof -i :7777
+-- kill -9 pid
+
+
+d1 $ s "raw-kick"
+
+d2 $ s "raw-hh" #gain 1
+
+hush
+
+
+
+
+
+
+
+
+
+
+
+

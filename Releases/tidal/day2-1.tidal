@@ -1,0 +1,66 @@
+d4 $ up "[0 0 0 0]" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
+
+-- Intro - 1
+d3 $ sound "selffx" # gain "1" # pan rand
+-- <sax:3 sax:1 sax:2 sax:5>/2
+d2 $ slow 4.5 $ sound "selfcpr sea/2 " # gain "0.85 1"
+hush
+
+
+""" riff 3 - ambient glitchy numbers """
+d2 $ slow 2 $ up "[0]" # sound "<ade ade:3 ade:2>" #gain "0.9 0.8 0.8"
+d2 silence
+hush
+
+
+-- Intro 2  katıl
+""" riff 4 - ambient dark techno # pan (slow 0.3 $ saw) ade 3 - 7 - 8 - 9 - 10"""
+d5  $ sound "[ade:5 ade:10]" # gain "[0.5 0]" # pan (slow 0.3 $ saw)
+hush
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+cps(0.8)
+d1 $ every 8 (striate 32) $ sound "akuma1*8" # n (irand 12) #gain "1 1.2 1 0.8 1.1 1.2" # pan (slow 8 $ saw)
+hush
+d1 $ sound "akuma1*8" # n (irand 1) #gain 0.8
+d1 $ sound "akuma1*8" # n (irand 1) #gain "0.8 1.1 1 0.8 1.1 1.1"
+d1 $ sound "akuma1*8" # n (irand 8) #gain "1 1.2 1 0.9 1.1 1.2"
+
+
+
+
+hush
+
+d3 $ fast 1.2 $ up "[0 1]/8" # sound "ade:2"  # pan (slow 8 $ saw)
+d1 $ every 8 (striate 32) $ sound "auto*8" # n (irand 12) # pan (slow 8 $ sine)
+d1 $ every 8 ((striate 32).jux(rev)) $ sound "akuma1*8" # n (irand 12)
+
+
+d1 silence
+d2 $ slow 4 $ sound "bass1"
+d3 $ striate 64 $ slow 2 $ sound "[psr:9 psr:7 psr:12)] psr:1*8? ~ psr:3" #gain 0.7 # pan rand
+d3 silence
+d2 $ up "[0 2 0 4]/16" #sound "bass1" #gain "1.1 1.1 1.3 1.1"
+d2 $ up "[0 2 0 4]/4" #sound "bass1" #gain "1.1 1.1 1.4 1.1"
+
+d4 $ loopAt 1 $ s "selfx" # gain "1.3"
+d2 silence
+hush
+--cps(1)
+
+d2 silence
+d3 silence
+d4 silence
+
+""" old riff - complex systems2 """
+d1 $ slow 2 $ jux ((# speed "0.5") . rev)  $ up "[1 0]/2" # sound "armora:2"
+hush
+
+""" Strecth time with loopAt function """
+d1  $ loopAt 5 $ chop 64 $ sound "<wind:1 wind:0>" # gain "1.1"
+d1 $  loopAt "<4 6 2 3>" $ chop 32 $ sound "wind:0"
+d1 $ sound "fm/6"
+d1 $ jux(rev) $ loopAt 12 $ striate 32 $ sound "fm/6"
+
+hush
+
+d1 $ slow 3 $jux (fast 4) $ striate' 16 (1/4) $ sound "vocad/2"
