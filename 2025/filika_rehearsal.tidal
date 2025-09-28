@@ -1,0 +1,191 @@
+setcps(1)
+
+d1 $ s "bd"
+
+d2 $ s "aset1(7,8)" # n pat9 # shape 0.7 # gain 1 # lpf 500 -- # release 1-- pat9
+
+unsolo 2
+
+d4 $ fast 2 $ s "aset1:1(8,16)" # shape 0.1 # release (range 0.001 0.01 sine) # room 0.9 # size 0.9
+d4 $ fast 2 $ s "aset1:1(8,16)" # shape 0.1 # release (range 0.001 0.9 sine) # room 0.99 # size 0.99 # pan "[0 1]"
+
+d1 $ n "[d3'min7 a3'min7]/4"
+# s "superchip"
+# hpf 200
+# crush 12
+# lpf (range 100 500 sine) --100 --500
+# gain "1"
+
+d1 silence
+
+
+d3 $ splice 4 ("8 3 2 1 2 4!4")
+$ s "aambience:5"
+# gain "0"
+
+
+d5 $ arp "up"
+$ n "[d3'min7 ~6! a4'min7 ~3!]/2"
+# s "glitch"
+# crush 12
+# shape 0.4
+# lpf (range 200 3000 sine)
+# gain "1"
+
+
+d4 $ arp "up"
+$ n "[d2'min7 ~6! a4'min7 ~3!]"
+# s "[glitch <ttfx>]"
+# crush 4
+# shape 0.4
+# room 0.8
+# size 0.85
+-- # release 0.1
+# lpf (range 100 2000 sine)
+# gain "1"
+
+
+d1 $ n "[d3'min7 ~3! a2'min7 ~4!]"
+# s "supernoise"
+-- # hpf 200
+# lpf (range 100 6000 sine)
+# release (range 0.1 0.4 sine)
+# room 0.8
+# size 0.9
+# gain "1"
+
+unsolo 1
+
+d2 $ n "[d3'min7 ~2! g5'maj7 ~5!]"
+# s "[superpiano, tt_fx]"
+-- # hpf 300
+# lpf (range 100 300 tri)
+-- # release (range 0.1 0.8 sine)
+# room 0.8
+# size 0.9
+# gain "0.9"
+
+d2 silence
+
+
+
+---- CELLO INTRO
+
+d4 $ sound "[[[bass1] bass1/2 bass1 bass1/2], [click:1, click:5/4]]" #gain 1.1 # shape 0.5 # cut 4
+d4 $ sound "[[[bass1] bass1/2 bass1 bass1/2], [click:1*8, click:5/4]]" #gain 1.1 # shape 0.5 # cut 4
+
+d5 $ s "click(<8 7 9>,16)" # n pat8 # size 0.9 # room 0.9 # release 0.01
+
+d2 $ every 4 (jux (rev)) $ sound "[bd:10*4 dr_few:4*4,aset1:1 auto:9]" # gain "[[1 0.7]*2-0.5 [0.5-0.2 0.7-0.2]]/2"
+
+d6 $ s "tt_fx(9,16)" # n (100 + (irand 200)) # release 0.13 # pan sine
+
+unsolo 6
+
+d6 silence
+
+
+--- SECOND 2
+d2 $ s "aset1(8,16)" # n pat9 # shape 0.5 # gain 1 # lpf 9000
+
+d2 $ s "aset1(7,8)" # n pat9 # shape 0.7 # gain 1 # lpf 300 -- # release 1-- pat9
+
+d4 $ fast 2 $ s "aset1:3(8,16)" # shape 0.1 # release (range 0.001 0.6 sine) # room 0.8 # size 0.9 # pan "[0 1]"
+d4 $ fast 2 $ s "aset1:1(8,16)" # shape 0.1 # release (range 0.001 0.6 sine) # room 0.9 # size 1 # pan "[0 1]"
+
+d5 $ s "click(<8 16 7 9>,16)" # n pat9 # size 0.9 # room 0.9 # release 0.51
+
+unsolo 4
+solo 4
+
+
+--- THIRD (PIANO)
+d1 $ s "bd"
+
+setcps(0.55)
+
+d5 $ s "atrip1" # n pat9 # gain "1.2" # shape 0.4 # cut 1 # lpf 100
+
+d6 $ s "atrip1" # n pat1 # gain "1.1" # shape 0.4 # room 0.9 # size 0.99 # cut 2
+
+d5 silence
+
+d2 $ every 8 ((#n pat6).(jux(rev))) $ s "aset1(7,8)" # n pat9 # shape 0.6 # gain 1 # release "0.031" -- pat9
+
+d2 $ s "aset1(8,16)" # n pat9 # shape 0.5 # gain 0.9 # release "0.05" -- pat9
+
+d2 $ s "aset1(8,16)" # n pat1 # shape 0.4 # gain 1 # release "0.02" # room 0.8 # size 0.85
+
+solo 3
+unsolo 3
+
+d6 $ s "auto*8" # n pat9 # shape 0.65 # room 0.8 # size 0.8 -- # lpf 1250
+d7 $ s "aset1:1(16,16)" # n pat9 # shape 0.5 # gain 0.9 # release "0.05" -- pat9
+
+
+d3 $ fast 2 $ every 2 (#gain "0") $ sound "auto:3*40(4,4)" # pan sine # gain "0.95" # release 0.02 # lpf (range 100 4000 sine) # room 0.9 # size 0.8
+
+d3 $ every 4 (jux(rev)) $ fast 2 $ every 2 (#gain "0") $ sound "auto:3*40(4,4)" # pan sine # gain "0.95" # release 0.1
+
+
+d2 silence
+
+xfadeout 2 10 0
+xfadeout 4 10 0
+xfadeout 5 10 0
+
+------------------------------------------------------------------------------------------------------------
+--- 2025-09-28 - Home
+------------------------------------------------------------------------------------------------------------
+setcps(128/60/4)
+let pattern = (struct "t(5,8,2)" "[a4'min7 c4'maj7]*2?")
+d1 $ slow 2 $ arp "<diverge up>" $ n pattern # s "superpwm" # gain 0.5 # room 0.5 # sz 0.8 # decay 3
+d2 $ fast (range 2 4 tri) $ n pattern # s "superchip" # bpf (range 900 1000 sine) # legato (range 1 2 perlin) # gain 0.6 # sz 0.5 # room 0.6
+d3 $ s "bd:12*4"
+
+d4 $ n "{~ a3}*4" # s "superpwm" # legato 0.7 # lpf (range 150 300 sine) $ rev
+
+
+d1 $ s "superfm*4" # voice 0 # n "c4 e4 g4 c5" # sustain 1 # detune 0.1
+
+d1 $ s "superkick*4" # n 1 # pitch1 "1" # decay 200 # accelerate 20
+
+d1 $ s "super808*4" # n 0 # rate 100 # voice 0
+d1 $ s "soskick*8" # n 0 # freq 40 # pitch1 10 # pitch2 0.04
+
+d1 $ s "cyclo*8" # n 0 # freq 40 # sustain 0.5 # accelerate 1
+d1 $ s "supergrind*8" # accelerate 0.5 # detune 2 # voice 0 # freq 420
+
+d1 $ n (arp "<up down diverge>" "<a3'm9'8 e3'7sus4'8>") # sound "superpiano" # sustain 5 # room 0.5 # size 0.5
+
+d1 $ n "c'min9'5" # sound "superpiano" # sustain 5
+d1 $ n "c'min9'd3" # sound "superpiano"
+d1 $ n "c'min9'i2" # sound "superpiano"
+
+d1 $ stack
+  [  note "<d4 c4 a3 bf3>" # s "bass1:18" # legato 1 # metatune 1
+  , note "[~ d5'min'o]*4" # s "superpiano" # release 4 # sustain 4
+  -- , fast 2 $ n (arp "<up down diverge>" "<g4'sus4'8 d4'min'8>") # sound "superpiano" # sustain 2
+  ] # cps 0.35
+
+
+
+d1 $ n (arpg "'major7 [0,4,7,11]") # sound "superpiano"
+
+------------------------------------------------------------------------------------------------------------
+--- NEW Samples ocp ofx ohi okick operc osn oynth
+------------------------------------------------------------------------------------------------------------
+d1 $ up "[3 4] ~" # s "osynth" # room 0.8 # sz 0.8
+
+d2 $ s "okick*4"
+d3 $ s "ocp*8" # hpf (range 1000 5000 sine) # room 0.9 # sz (range 0.9 0.999 sine) # pan perlin
+d4 $ fast 2 $ s "osynth:6(5,8)" # lpf (range 200 1000 sine) # pan sine
+
+d5 $ n (arp "<up down diverge>" "<a5'm9'8 e5'7sus4'8>") # s "superpiano(8,16)" # release 2 # sustain 2 # sz 0.8 # room 0.8 # shape 0.3
+
+d5 $ fast 8 $ n "a6" # s "superpiano" # release 2 # sustain 2 # sz 0.8 # room 0.8 # shape 0.3
+
+d4 $ fast 2 $ s "osynth:8(5,8)" # lpf (range 200 1000 sine) # pan sine
+
+
+unsolo 3

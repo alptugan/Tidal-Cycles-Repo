@@ -1,6 +1,10 @@
-  
+
 :set -XOverloadedStrings
 :set prompt ""
+
+module PatternFunctions where
+import Sound.Tidal.Params
+
 
 import Sound.Tidal.Context
 
@@ -18,7 +22,7 @@ tidal <- startTidal (superdirtTarget {oLatency = 0.1, oAddress = "127.0.0.1", oP
 let p = streamReplace tidal
     hush = streamHush tidal
     list = streamList tidal
-    mute = streamMute tidal 
+    mute = streamMute tidal
     unmute = streamUnmute tidal
     solo = streamSolo tidal
     unsolo = streamUnsolo tidal
@@ -29,10 +33,10 @@ let p = streamReplace tidal
     all = streamAll tidal
     resetCycles = streamResetCycles tidal
     setcps = asap . cps
-    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i  
-    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i 
-    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i 
-    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i 
+    xfade i = transition tidal True (Sound.Tidal.Transition.xfadeIn 4) i
+    xfadeIn i t = transition tidal True (Sound.Tidal.Transition.xfadeIn t) i
+    histpan i t = transition tidal True (Sound.Tidal.Transition.histpan t) i
+    wait i t = transition tidal True (Sound.Tidal.Transition.wait t) i
     waitT i f t = transition tidal True (Sound.Tidal.Transition.waitT f t) i
     jump i = transition tidal True (Sound.Tidal.Transition.jump) i
     jumpIn i t = transition tidal True (Sound.Tidal.Transition.jumpIn t) i
@@ -46,14 +50,14 @@ let p = streamReplace tidal
     anticipate i = transition tidal True (Sound.Tidal.Transition.anticipate) i
     anticipateIn i t = transition tidal True (Sound.Tidal.Transition.anticipateIn t) i
     forId i t = transition tidal False (Sound.Tidal.Transition.mortalOverlay t) i
-    d1 = p 1 . (|< orbit 0) 
-    d2 = p 2 . (|< orbit 1) 
-    d3 = p 3 . (|< orbit 2) 
-    d4 = p 4 . (|< orbit 3) 
-    d5 = p 5 . (|< orbit 4) 
-    d6 = p 6 . (|< orbit 5) 
-    d7 = p 7 . (|< orbit 6) 
-    d8 = p 8 . (|< orbit 7) 
+    d1 = p 1 . (|< orbit 0)
+    d2 = p 2 . (|< orbit 1)
+    d3 = p 3 . (|< orbit 2)
+    d4 = p 4 . (|< orbit 3)
+    d5 = p 5 . (|< orbit 4)
+    d6 = p 6 . (|< orbit 5)
+    d7 = p 7 . (|< orbit 6)
+    d8 = p 8 . (|< orbit 7)
     d9 = p 9 . (|< orbit 8)
     d10 = p 10 . (|< orbit 9)
     d11 = p 11 . (|< orbit 10)
@@ -71,8 +75,6 @@ let setI = streamSetI tidal
     setR = streamSetR tidal
     setB = streamSetB tidal
 :}
-
-
 
 
 -- custom function
@@ -104,6 +106,51 @@ let pat7 = "{2 0 4 5}"
 let pat8 = "{0*2 ~ [4 ~] ~ 3*4 [~ 1] 8}%2"
 
 let pat9 = "{2 0 4 5}%8"
+
+
+-- Equalizer
+let hiPassFreq = pF "hiPassFreq"
+    hiPassRq   = pF "hiPassRq"
+    hiPassBypass   = pF "hiPassBypass"
+    loShelfFreq = pF "loShelfFreq"
+    loShelfGain = pF "loShelfGain"
+    loShelfRs   = pF "loShelfRs"
+    loShelfBypass   = pF "loShelfBypass"
+    loPeakFreq  = pF "loPeakFreq"
+    loPeakGain  = pF "loPeakGain"
+    loPeakRq    = pF "loPeakRq"
+    loPeakBypass    = pF "loPeakBypass"
+    midPeakFreq = pF "midPeakFreq"
+    midPeakGain = pF "midPeakGain"
+    midPeakRq   = pF "midPeakRq"
+    midPeakBypass   = pF "midPeakBypass"
+    hiPeakFreq  = pF "hiPeakFreq"
+    hiPeakGain  = pF "hiPeakGain"
+    hiPeakRq    = pF "hiPeakRq"
+    hiPeakBypass    = pF "hiPeakBypass"
+    hiShelfFreq = pF "hiShelfFreq"
+    hiShelfGain = pF "hiShelfGain"
+    hiShelfRs   = pF "hiShelfRs"
+    hiShelfBypass   = pF "hiShelfBypass"
+    loPassFreq = pF "loPassFreq"
+    loPassRq   = pF "loPassRq"
+    loPassBypass   = pF "loPassBypass"
+
+-- Compressor
+let cpAttack = pF "cpAttack"
+    cpRelease = pF "cpRelease"
+    cpThresh = pF "cpThresh"
+    cpTrim = pF "cpTrim"
+    cpGain = pF "cpGain"
+    cpRatio = pF "cpRatio"
+    cpLookahead = pF "cpLookahead"
+    cpSaturate = pF "cpSaturate"
+    cpHpf = pF "cpHpf"
+    cpKnee = pF "cpKnee"
+    cpBias = pF "cpBias"
+
+-- Mixer
+let masterGain = pF "masterGain"
 
 :set prompt "tidal> "
 :set prompt-cont ""
